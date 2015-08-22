@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello to League of legends builder!</h1>
+    <script>
+
+      var ipc = require('ipc');
+      ipc.on('url', function(ev, ev2, url) {
+        console.log(ev, ev2, url);
+      });
+    </script>
+  </body>
+</html>

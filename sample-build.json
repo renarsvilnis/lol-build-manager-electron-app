@@ -1,0 +1,24 @@
+{
+    "title": "The name of the page",
+    "type": "custom",
+    "map": "any",
+    "mode": "any",
+    "priority": false,
+    "sortrank": 0,
+    "blocks": [
+        {
+            "type": "A block with just boots",
+            "recMath": false,
+            "minSummonerLevel": -1,
+            "maxSummonerLevel": -1,
+            "showIfSummonerSpell": "",
+            "hideIfSummonerSpell": "",
+            "items": [
+                {
+                    "id": "1001",
+                    "count": 1
+                }
+            ]
+        }
+    ]
+}

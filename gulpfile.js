@@ -178,7 +178,8 @@ gulp.task('fonts', function() {
 // ####################
 gulp.task('js', function() {
   // gulp.start('js-index', 'js-main');
-  return gulp.src(IN.JS + '**/**')
+  return gulp.src(IN.JS + '**/*.js')
+    .pipe($.babel())
     .pipe(gulp.dest(OUT.JS));
 });
 

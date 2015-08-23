@@ -6,12 +6,9 @@
 // ########################################
 var gulp              = require('gulp'),
     del               = require('del'),
-    through2          = require('through2'),
-    browserify        = require('browserify'),
-    babelify          = require('babelify'),
     mqpacker          = require('css-mqpacker'),
     autoprefixer      = require('autoprefixer-core'),
-    wiredep           = require('wiredep').stream,
+    // wiredep           = require('wiredep').stream,
     packager          = require('electron-packager');
 
 var $ = require('gulp-load-plugins')({
@@ -177,43 +174,12 @@ gulp.task('fonts', function() {
 // Javacript
 // ####################
 gulp.task('js', function() {
-  // gulp.start('js-index', 'js-main');
   return gulp.src(IN.JS + '**/*.js')
     .pipe($.babel())
-    .pipe(gulp.dest(OUT.JS));
-});
-
-gulp.task('js-index', function() {
-  // return gulp.src(IN.JS + 'index.js')
-  //   .pipe(through2.obj(function (file, enc, next) {
-  //     browserify(file.path, {
-  //       debug        : isProduction(),
-  //       // builtins     : false,
-  //       insertGlobals: false,
-  //       cache        : {},
-  //       packageCache : {},
-  //       fullPaths    : false
-  //     })
-  //       .transform(babelify)
-  //       .bundle(function (err, res) {
-  //         if(err)
-  //           return next(err);
-
-  //         file.contents = res;
-  //         next(null, file);
-  //       });
-  //   })).on('error', function (error) {
-  //     console.log(error.stack);
-  //     this.emit('end');
-  //   })
-  //   .pipe(gulp.dest(OUT.JS));
-
-  return gulp.src(IN.JS + 'index.js')
-    .pipe(gulp.dest(OUT.JS));
-});
-
-gulp.task('js-main', function() {
-  return gulp.src(IN.JS + 'main.js')
+    .on('error', function(e) {
+      console.error(e);
+      this.emit('end');
+    })
     .pipe(gulp.dest(OUT.JS));
 });
 

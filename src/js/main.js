@@ -28,6 +28,7 @@ app.on('window-all-closed', function() {
 var RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
 
 // var util = require('lol-build-manager-util');
+var db = require('./modules/db.js');
 
 var ipc = require('ipc');
 
@@ -79,3 +80,16 @@ var createWindow = function() {
     mainWindow = null;
   });
 };
+
+
+/**
+ * IPC methods for database module from renderer
+ */
+
+ipc.on('db.getLolVersion', function(ev) {
+  ev.sender.send('db.getLolVersion.reply', db.getLolVersion());
+});
+
+ipc.on('db.getLolRegion', function(ev) {
+  ev.sender.send('db.getLolRegion.reply', db.getLolRegion());
+});

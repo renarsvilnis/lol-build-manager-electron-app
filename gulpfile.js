@@ -117,13 +117,13 @@ gulp.task('styles', function() {
   ];
 
   return gulp.src(IN.CSS + '**/*.scss')
-    .pipe(wiredep({
-      ignorePath: /^(\.\.\/)+/,
-      overrides: {
-        'modularized-normalize-scss': {
-        }
-      }
-    }))
+    // .pipe(wiredep({
+    //   ignorePath: /^(\.\.\/)+/,
+    //   overrides: {
+    //     'modularized-normalize-scss': {
+    //     }
+    //   }
+    // }))
     .pipe($.sass({
       precision: 10,
       includePaths: ['.'],
@@ -177,37 +177,41 @@ gulp.task('fonts', function() {
 // Javacript
 // ####################
 gulp.task('js', function() {
-  gulp.start('js-index', 'js-main');
+  // gulp.start('js-index', 'js-main');
+  return gulp.src(IN.JS + '**/**')
+    .pipe(gulp.dest(OUT.JS));
 });
 
 gulp.task('js-index', function() {
-  return gulp.src(IN.JS + 'index.js')
-    .pipe(through2.obj(function (file, enc, next) {
-      browserify(file.path, {
-        debug        : isProduction(),
-        // builtins     : false,
-        insertGlobals: false,
-        cache        : {},
-        packageCache : {},
-        fullPaths    : false
-      })
-        .transform(babelify)
-        .bundle(function (err, res) {
-          if(err)
-            return next(err);
+  // return gulp.src(IN.JS + 'index.js')
+  //   .pipe(through2.obj(function (file, enc, next) {
+  //     browserify(file.path, {
+  //       debug        : isProduction(),
+  //       // builtins     : false,
+  //       insertGlobals: false,
+  //       cache        : {},
+  //       packageCache : {},
+  //       fullPaths    : false
+  //     })
+  //       .transform(babelify)
+  //       .bundle(function (err, res) {
+  //         if(err)
+  //           return next(err);
 
-          file.contents = res;
-          next(null, file);
-        });
-    })).on('error', function (error) {
-      console.log(error.stack);
-      this.emit('end');
-    })
+  //         file.contents = res;
+  //         next(null, file);
+  //       });
+  //   })).on('error', function (error) {
+  //     console.log(error.stack);
+  //     this.emit('end');
+  //   })
+  //   .pipe(gulp.dest(OUT.JS));
+
+  return gulp.src(IN.JS + 'index.js')
     .pipe(gulp.dest(OUT.JS));
 });
 
 gulp.task('js-main', function() {
-
   return gulp.src(IN.JS + 'main.js')
     .pipe(gulp.dest(OUT.JS));
 });

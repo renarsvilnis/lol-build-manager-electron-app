@@ -1,0 +1,30 @@
+@charset 'UTF-8';
+
+// Vendors - all the CSS files from external libraries and frameworks
+// bower:scss
+// endbower
+
+// Utils - gathers all Sass tools and helpers used across the project.
+@import 'utils/variables';
+@import 'utils/functions';
+@import 'utils/mixins';
+@import 'utils/helpers';
+
+// Fonts
+@import 'fonts/karla';
+
+// Base - holds what we might call the boilerplate code for the project.
+@import 'base/typography';
+@import 'base/base';
+
+// Layout - contains everything that takes part in laying out the site or application.
+// @import 'layout/{filename}';
+
+// Components - is more focused on widgets.
+// @import 'components/dashboard';
+
+// Pages - page-specific styles
+// @import 'pages/index';
+
+// Theme - On large sites and applications, it is not unusual to have different themes.
+// @import 'themes/{filename}';

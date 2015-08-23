@@ -27,7 +27,7 @@ app.on('window-all-closed', function() {
 // Reference: https://developer.riotgames.com/docs/item-sets
 var RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
 
-var util = require('lol-build-manager-util');
+// var util = require('lol-build-manager-util');
 
 var ipc = require('ipc');
 
@@ -56,7 +56,14 @@ var createWindow = function() {
     return;
 
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    center: true,
+    // title
+    show: true,
+    frame: true
+  });
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/../html/index.html');

@@ -6,9 +6,9 @@
  * https://github.com/typicode/lowdb
  */
 
-var low = require('lowdb'),
-    app = require('app'),
-    ipc = require('ipc');
+import low from 'lowdb';
+import app from 'app';
+import ipc from 'ipc';
 
 let dir      = app.getPath('userCache'),
     filename = 'cache.json',
@@ -19,7 +19,7 @@ let db = low(path, {
   async: true
 });
 
-// db._.mixin(require('underscore-db'));
+db._.mixin(require('underscore-db'));
 
 var dbMethods = {
 
@@ -28,7 +28,8 @@ var dbMethods = {
    * @return {string || null}
    */
   getGameVersion: function() {
-    let ver = db.object.lol.version;
+    console.log(db.object);
+    let ver = db.object['lol'] ? db.object.lol['version'] : null;
     return ver !== 'string' ? null : ver;
   },
 
@@ -37,9 +38,9 @@ var dbMethods = {
    * @return {string || null}
    */
   getLolRegion: function() {
-    let ver = db.object.lol.region;
+    let ver = db.object.lol ? db.object.lol.region : null;
     return ver !== 'string' ? null : ver;
   }
 };
 
-module.exports = dbMethods;
+export default dbMethods;

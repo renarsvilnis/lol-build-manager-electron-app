@@ -3,14 +3,22 @@ import Router from 'react-router';
 
 import Body from './body';
 
+let RouteNavigation = Router.Navigation;
 let RouteHandler = Router.RouteHandler;
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+// class Home extends React.Component {
 
-  render() {
+let Home = React.createClass({
+  mixins: [RouteNavigation],
+
+  componentDidMount: function() {
+
+    setTimeout(() => {
+      this.transitionTo('welcome');
+    }, 1000);
+  },
+
+  render: function() {
     return (
       <div>
         'Home'
@@ -19,6 +27,6 @@ class Home extends React.Component {
       </div>
     );
   }
-};
+});
 
 module.exports = Home;

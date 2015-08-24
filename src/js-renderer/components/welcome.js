@@ -10,9 +10,10 @@ class Welcome extends React.Component {
 
   render() {
     return (
-      <div>
+
+      <div class="welcome">
         'Welcome'
-        <RouteHandler {...this.props} />
+        {/*<RouteHandler {...this.props} />*/}
       </div>
     );
   }

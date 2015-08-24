@@ -1,12 +1,15 @@
-var path = require('path');
+import path from 'path';
+import app from 'app';
+import BrowserWindow from 'browser-window';
+import ipc from 'ipc';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
+let db = require('./db.js');
 
-var mainWindow = null;
+let mainWindow = null;
 
 // Report crashes to our server.
-require('crash-reporter').start();
+import CrashReporter from 'crash-reporter';
+CrashReporter.start();
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -25,12 +28,7 @@ app.on('window-all-closed', function() {
 // progress bar for first installation - http://electron.atom.io/docs/v0.30.0/tutorial/desktop-environment-integration/
 
 // Reference: https://developer.riotgames.com/docs/item-sets
-var RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
-
-// var util = require('lol-build-manager-util');
-var db = require('./db.js');
-
-var ipc = require('ipc');
+let RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
 
 app.on('ready', function() {
   createWindow();
@@ -51,7 +49,7 @@ app.on('open-url', function(ev, url) {
 
 });
 
-var createWindow = function() {
+let createWindow = function() {
 
   if(mainWindow)
     return;
@@ -71,6 +69,8 @@ var createWindow = function() {
 
   // Open the devtools.
   mainWindow.openDevTools();
+
+  mainWindow.focus();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

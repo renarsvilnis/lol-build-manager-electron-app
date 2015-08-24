@@ -2,6 +2,11 @@ import ipc from 'ipc';
 
 import Router from './router';
 
+
+import remote from 'remote';
+let db = remote.require('./db');
+console.log(db.getGameVersion());
+
 Router.run(document.body);
 
 ipc.on('url', function(ev, ev2, url) {

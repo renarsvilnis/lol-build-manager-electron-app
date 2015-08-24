@@ -29,4 +29,4 @@ React.render(
 
 
 document.addEventListener('DOMContentLoaded', function() {
-};
+});

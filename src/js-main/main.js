@@ -28,7 +28,7 @@ app.on('window-all-closed', function() {
 var RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
 
 // var util = require('lol-build-manager-util');
-var db = require('./modules/db.js');
+var db = require('./db.js');
 
 var ipc = require('ipc');
 

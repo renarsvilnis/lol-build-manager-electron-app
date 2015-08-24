@@ -30,21 +30,23 @@ var OUT_BASE  = 'prebuild/';
 var OUT_BUILD = 'build/';
 var BOWER     = 'bower_components/';
 
-var IN  = {
-  CSS   : IN_BASE + 'scss/',
-  JS    : IN_BASE + 'js/',
-  IMG   : IN_BASE + 'img/',
-  FONTS : IN_BASE + 'fonts/',
-  HTML  : IN_BASE + 'html/',
+var IN = {
+  CSS        : IN_BASE + 'scss/',
+  JS_RENDERER: IN_BASE + 'js-renderer/',
+  JS_MAIN    : IN_BASE + 'js-main/',
+  IMG        : IN_BASE + 'img/',
+  FONTS      : IN_BASE + 'fonts/',
+  HTML       : IN_BASE + 'html/'
 };
 
 var OUT = {
-  CSS   : OUT_BASE + 'stylesheets/',
-  JS    : OUT_BASE + 'javascripts/',
-  IMG   : OUT_BASE + 'images/',
-  FONTS : OUT_BASE + 'fonts/',
-  HTML  : OUT_BASE + 'html/',
-  ICONS : OUT_BASE + 'icons/',
+  CSS        : OUT_BASE + 'stylesheets/',
+  JS_RENDERER: OUT_BASE + 'javascripts-renderer/',
+  JS_MAIN    : OUT_BASE + 'javascripts-main/',
+  IMG        : OUT_BASE + 'images/',
+  FONTS      : OUT_BASE + 'fonts/',
+  HTML       : OUT_BASE + 'html/',
+  ICONS      : OUT_BASE + 'icons/'
 };
 
 
@@ -173,13 +175,27 @@ gulp.task('fonts', function() {
 // Javacript
 // ####################
 gulp.task('js', function() {
-  return gulp.src(IN.JS + '**/*.js')
+  return gulp.start('js-renderer', 'js-main');
+});
+
+gulp.task('js-renderer', function() {
+  return gulp.src(IN.JS_RENDERER + '**/*.js')
     .pipe($.babel())
     .on('error', function(e) {
       console.error(e);
       this.emit('end');
     })
-    .pipe(gulp.dest(OUT.JS));
+    .pipe(gulp.dest(OUT.JS_RENDERER));
+});
+
+gulp.task('js-main', function() {
+  return gulp.src(IN.JS_MAIN + '**/*.js')
+    .pipe($.babel())
+    .on('error', function(e) {
+      console.error(e);
+      this.emit('end');
+    })
+    .pipe(gulp.dest(OUT.JS_MAIN));
 });
 
 // ####################
@@ -261,7 +277,8 @@ gulp.task('watch', function () {
   // package.json
   gulp.watch(IN.FONTS + '**/*', ['fonts']);
   gulp.watch(IN.IMG + '**/*', ['images']);
-  gulp.watch(IN.JS + '**/*.{js,jsx}', ['js']);
+  gulp.watch(IN.JS_MAIN + '**/*.{js,jsx}', ['js-main']);
+  gulp.watch(IN.JS_RENDERER + '**/*.{js,jsx}', ['js-renderer']);
   gulp.watch(IN.CSS + '**/*.scss', ['styles']);
   gulp.watch(IN.HTML + '**/*.html', ['html']);
 });

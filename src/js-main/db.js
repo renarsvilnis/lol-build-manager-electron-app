@@ -6,8 +6,6 @@
  * https://github.com/typicode/lowdb
  */
 
-
-
 var low = require('lowdb'),
     app = require('app'),
     ipc = require('ipc');

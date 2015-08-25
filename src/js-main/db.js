@@ -16,7 +16,7 @@ import ipc from 'ipc';
 
 let dir      = app.getPath('userCache'),
     filename = 'cache.json',
-    path  = dir + '/' + filename;
+    path     = dir + '/' + filename;
 
 let db = low(path, {
   autosave: true,
@@ -27,19 +27,29 @@ var dbMethods = {
 
   /**
    * Get cached version of League of Legends
-   * @return {string || null}
+   * @return {String|Undefined}
    */
-  getGameVersion: function() {
+  getLolVersion: function() {
     return objectPath.get(db.object, 'db.object.lol.version');
   },
 
   /**
    * Get region info of installed League of Legends
-   * @return {string || null}
+   * @return {String|Undefined}
    */
   getLolRegion: function() {
     return objectPath.get(db.object, 'db.object.lol.region');
-  }
+  },
+
+  /**
+   * Get path of League of Legends game folder
+   * @return {String|Undefined}
+   */
+  getLolPath: function() {
+    return objectPath.get(db.object, 'db.object.lol.path');
+  },
+
+
 };
 
 export default dbMethods;

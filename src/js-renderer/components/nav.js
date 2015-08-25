@@ -1,6 +1,6 @@
 import React from 'react';
 
-let Sidebar = React.createClass({
+let Nav = React.createClass({
 
   componentDidMount: function() {
   },
@@ -8,10 +8,10 @@ let Sidebar = React.createClass({
   render: function() {
     return (
       <div>
-        'Sidebar'
+        'Nav'
       </div>
     );
   }
 });
 
-module.exports = Sidebar;
+module.exports = Nav;

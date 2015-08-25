@@ -122,6 +122,7 @@ gulp.task('styles', function() {
     //     }
     //   }
     // }))
+    .pipe($.plumber())
     .pipe($.sass({
       precision: 10,
       includePaths: ['.'],

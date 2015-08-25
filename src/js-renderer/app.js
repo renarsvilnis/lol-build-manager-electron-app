@@ -1,11 +1,7 @@
 import ipc from 'ipc';
+import remote from 'remote';
 
 import Router from './router';
-
-
-import remote from 'remote';
-let db = remote.require('./db');
-console.log(db.getGameVersion());
 
 Router.run(document.body);
 

@@ -3,7 +3,7 @@ import app from 'app';
 import BrowserWindow from 'browser-window';
 import ipc from 'ipc';
 
-let db = require('./db.js');
+import db from './db';
 
 let mainWindow = null;
 
@@ -13,19 +13,8 @@ CrashReporter.start();
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
-  // For this app commented out because we want the app to close
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  // if (process.platform != 'darwin') {
-    // app.quit();
-  // }
-
   app.quit();
 });
-
-
-// detect network
-// progress bar for first installation - http://electron.atom.io/docs/v0.30.0/tutorial/desktop-environment-integration/
 
 // Reference: https://developer.riotgames.com/docs/item-sets
 let RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
@@ -59,7 +48,6 @@ let createMainWindow = function() {
     width: 800,
     height: 600,
     center: true,
-    // title
     show: true,
     frame: true
   });
@@ -72,11 +60,8 @@ let createMainWindow = function() {
 
   mainWindow.focus();
 
-  // Emitted when the window is closed.
   mainWindow.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     mainWindow = null;
   });
+  
 };

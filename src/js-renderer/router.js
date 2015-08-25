@@ -12,8 +12,8 @@ let NotFoundRoute = Router.NotFoundRoute;
 
 let routes = (
   <Route handler={App} path="/">
-    <DefaultRoute name="app" handler={Home} />
-    <Route name="welcome" handler={Welcome} />
+    <DefaultRoute name="welcome" handler={Welcome} />
+    <Route name="home" handler={Home} />
     <NotFoundRoute handler={NotFound} />
   </Route>
 );
@@ -21,6 +21,7 @@ let routes = (
 export default {
   run: function(el) {
     Router.run(routes, function(Handler, state) {
+      console.log('State', state);
       // "Alternatively, you can pass the param data down..."
       // https://github.com/rackt/react-router/blob/master/docs/guides/
       // overview.md#dynamic-segments

@@ -2,28 +2,33 @@ import React from 'react';
 import Router from 'react-router';
 
 import Body from './body';
+import Sidebar from './sidebar';
+import Nav from './nav';
+
+import AppStore from '../stores/app-store';
 
 let RouteNavigation = Router.Navigation;
 let RouteHandler = Router.RouteHandler;
 
-// class Home extends React.Component {
+
 
 let Home = React.createClass({
   mixins: [RouteNavigation],
 
   componentDidMount: function() {
-
-    setTimeout(() => {
-      this.transitionTo('welcome');
-    }, 1000);
+    // if(AppStore.showWelcomeScreen()) {
+    //   this.transitionTo('welcome');
+    // }
   },
 
   render: function() {
     return (
-      <div>
+      <div className="v_home">
         'Home'
+        <Nav/>
+        <Sidebar/>
         <Body/>
-        <RouteHandler {...this.props} />
+        {/*<RouteHandler {...this.props} />*/}
       </div>
     );
   }

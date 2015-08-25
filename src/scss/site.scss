@@ -21,10 +21,13 @@
 // @import 'layout/{filename}';
 
 // Components - is more focused on widgets.
-// @import 'components/dashboard';
+@import 'components/app';
+@import 'components/body';
+@import 'components/sidebar';
 
 // Pages - page-specific styles
-// @import 'pages/index';
+@import 'pages/home';
+@import 'pages/welcome';
 
 // Theme - On large sites and applications, it is not unusual to have different themes.
 // @import 'themes/{filename}';

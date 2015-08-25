@@ -10,8 +10,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        'App'
+      <div className="app">
         <RouteHandler {...this.props} />
       </div>
     );

@@ -1,0 +1,19 @@
+
+.v_welcome {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // background-color: #AED581;
+
+  text-align: center;
+
+  &__regions {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__continue {
+    display: block;
+    margin: 0 auto;
+  }
+}

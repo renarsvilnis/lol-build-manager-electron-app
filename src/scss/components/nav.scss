@@ -1,7 +1,11 @@
 
 .c_nav {
   display: block;
-  width: 100%;
-  height: 24px;
-  background-color: #ccc;
+  height: 100%;
+  width: 24px;
+  background-color: #343C47;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 24px;
 }

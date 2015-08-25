@@ -9,7 +9,6 @@ let Sidebar = React.createClass({
     return (
       <div className="c_sidebar">
         <h2>Champions</h2>
-        'Sidebar'
       </div>
     );
   }

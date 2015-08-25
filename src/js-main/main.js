@@ -49,7 +49,8 @@ let createMainWindow = function() {
     height: 600,
     center: true,
     show: true,
-    frame: true
+    frame: true,
+    resizable: false
   });
 
   // and load the index.html of the app.
@@ -63,5 +64,5 @@ let createMainWindow = function() {
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
-  
+
 };

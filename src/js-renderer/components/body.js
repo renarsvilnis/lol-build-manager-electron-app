@@ -8,7 +8,7 @@ class Body extends React.Component {
   render() {
     return (
       <div className="c_body">
-        'Body'
+        <h2>Build</h2>
       </div>
     );
   }

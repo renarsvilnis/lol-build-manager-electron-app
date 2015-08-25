@@ -1,4 +1,9 @@
 .c_body {
-  float: left;
-  background: red;
+  height: 100%;
+  background-color: #F3F2F7;
+  padding: 1em;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 24px;
 }

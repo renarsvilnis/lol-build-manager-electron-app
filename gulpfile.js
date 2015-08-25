@@ -141,6 +141,9 @@ gulp.task('styles', function() {
 // ####################
 gulp.task('html', function() {
   return gulp.src(IN.HTML + '**/*.html')
+    .pipe($.if(isProduction(), $.minifyHtml({
+      spare: true
+    })))
     .pipe(gulp.dest(OUT.HTML));
 });
 

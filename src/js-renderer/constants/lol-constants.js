@@ -17,3 +17,9 @@ export const LOL_INSTALL_PATH_OSX = '/Applications/League Of Legends.app';
 export const LOL_INSTALL_PATH = process.platform === 'darwin'
   ? LOL_INSTALL_PATH_OSX
   : LOL_INSTALL_PATH_WIN;
+
+/**
+ * Added with help of gulp-preprocessor
+ * @type {String}
+ */
+export const API_KEY = '/* @echo API_KEY */';

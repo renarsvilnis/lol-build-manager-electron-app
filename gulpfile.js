@@ -185,6 +185,7 @@ gulp.task('js', function() {
 gulp.task('js-renderer', function() {
   return gulp.src(IN.JS_RENDERER + '**/*.js')
     .pipe($.babel())
+    .pipe($.preprocess())
     .on('error', function(e) {
       console.error(e);
       this.emit('end');

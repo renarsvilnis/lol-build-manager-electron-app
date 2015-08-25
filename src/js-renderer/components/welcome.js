@@ -43,7 +43,7 @@ var Welcome = React.createClass({
   },
 
   componentDidMount: function() {
-    if(!AppStore.showWelcomeScreen()) {
+    if(!AppStore.shouldShowWelcomeScreen()) {
       this.transitionTo('home');
     }
 

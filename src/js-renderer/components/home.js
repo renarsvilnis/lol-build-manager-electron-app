@@ -24,7 +24,6 @@ let Home = React.createClass({
   render: function() {
     return (
       <div className="v_home">
-        'Home'
         <Nav/>
         <Sidebar/>
         <Body/>

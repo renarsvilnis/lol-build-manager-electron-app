@@ -7,9 +7,8 @@ let Nav = React.createClass({
 
   render: function() {
     return (
-      <div>
-        'Nav'
-      </div>
+      <nav className="c_nav">
+      </nav>
     );
   }
 });

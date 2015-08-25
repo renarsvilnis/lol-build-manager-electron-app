@@ -7,7 +7,7 @@ class Body extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="c_body">
         'Body'
       </div>
     );

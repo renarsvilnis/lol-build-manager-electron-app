@@ -178,12 +178,13 @@ gulp.task('fonts', function() {
 // ####################
 gulp.task('js', function() {
   return gulp.src(IN.JS + '**/*.js')
+    .pipe($.plumber())
     .pipe($.babel())
     .pipe($.preprocess())
-    .on('error', function(e) {
-      console.error(e);
-      this.emit('end');
-    })
+    // .on('error', function(e) {
+    //   console.error(e);
+    //   this.emit('end');
+    // })
     .pipe(gulp.dest(OUT.JS));
 });
 

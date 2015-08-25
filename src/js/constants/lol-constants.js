@@ -30,13 +30,6 @@ export const LOL_INSTALL_PATH = process.platform === 'darwin'
 
 
 /**
- * Used in League of Legends API requests
- * Added with help of gulp-preprocessor
- * @type {String}
- */
-export const API_KEY = '/* @echo API_KEY */';
-
-/**
  * Reserved filename suffixes for item-sets
  * Reference: https://developer.riotgames.com/docs/item-sets
  * @type {Array}

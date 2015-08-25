@@ -2,16 +2,13 @@
 
 import remote from 'remote';
 
+import db from '../modules/db';
 import Biff from '../modules/biff';
-
-// import main process db module into store
-let db = remote.require('./db');
 
 // Creates a DataStore
 let AppStore = Biff.createStore({
 
-
-  showWelcomeScreen: function() {
+  shouldShowWelcomeScreen: function() {
     return !db.getLolVersion() || db.getLolRegion() || !db.getLolPath();
   },
 

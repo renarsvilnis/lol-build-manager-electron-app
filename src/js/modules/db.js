@@ -29,6 +29,10 @@ let db = low(path, {
 
 let dbMethods = {
 
+  // ########################################
+  // GET
+  // ########################################
+
   /**
    * Get cached version of League of Legends
    * @return {String|Undefined}
@@ -53,6 +57,42 @@ let dbMethods = {
     return objectPath.get(db.object, 'db.object.lol.path');
   },
 
+  getItems: function() {
+    return objectPath.get(db.object, 'db.object.items');
+  },
+
+  getChampions: function() {
+    return objectPath.get(db.object, 'db.object.champions');
+  },
+
+  // ########################################
+  // POST
+  // ########################################
+
+  setLolVersion: function(version) {
+    objectPath.set(db.object, 'db.object.lol.version', version);
+    db.save();
+  },
+
+  setLolRegion: function(region) {
+    objectPath.set(db.object, 'db.object.lol.region', region);
+    db.save();
+  },
+
+  setLolPath: function(path) {
+    objectPath.set(db.object, 'db.object.lol.path', path);
+    db.save();
+  },
+
+  setItems: function(items) {
+    objectPath.set(db.object, 'db.object.items', path);
+    db.save();
+  },
+
+  setChampions: function(champs) {
+    objectPath.set(db.object, 'db.object.champions', path);
+    db.save();
+  }
 
 };
 

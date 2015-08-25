@@ -119,7 +119,7 @@ let lolApi = {
    * @return {Error}
    * @return {Object} results containing version and champion data object
    */
-  getChamps: function(region, callback) {
+  getChampions: function(region, callback) {
 
     if(!region) {
       callback(getStatusMessage('NO_REGION'));

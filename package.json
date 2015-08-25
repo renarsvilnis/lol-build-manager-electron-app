@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "biff": "^0.2.0",
+    "compare-versions": "^1.1.2",
     "lol-build-manager-config": "git+https://github.com/renarsvilnis/lol-build-manager-config.git",
     "lol-build-manager-util": "git+https://github.com/renarsvilnis/lol-build-manager-util.git",
     "lowdb": "^0.10.2",

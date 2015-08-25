@@ -13,9 +13,9 @@ let RouteNavigation = Router.Navigation;
 let RouteHandler = Router.RouteHandler;
 
 import lolApi from '../modules/lol-api';
-lolApi.getChamps('eune', function(err, results) {
-  console.log(err, results);
-});
+// lolApi.getChampions('eune', function(err, results) {
+//   console.log(err, results);
+// });
 
 let Home = React.createClass({
   mixins: [RouteNavigation],

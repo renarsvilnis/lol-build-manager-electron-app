@@ -29,3 +29,8 @@ npm run start
 # Get your development key from developer.riotgames.com
 API_KEY="<YOUR_API_KEY>" node_env="production" gulp package
 ```
+
+
+### Tests
+![Ain't nobody got time fo dat](http://images.akamai.steamusercontent.com/ugc/548633388689781205/C8FCD52B53C4D81510C5CE4DD8A8856890A714EB/)
+But seriously, due to the tight time constraints, didn't have any time to write tests.

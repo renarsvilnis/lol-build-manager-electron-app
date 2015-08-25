@@ -13,7 +13,7 @@ Although writing all JavaScript in ES2015 need to write React class with ES5 syn
 git clone git@github.com:renarsvilnis/lol-build-manager-electron-app.git
 cd lol-build-manager-electron-app
 npm install
-``
+```
 
 **Development**
 ```bash

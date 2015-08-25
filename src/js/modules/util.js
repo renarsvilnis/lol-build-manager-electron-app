@@ -1,6 +1,6 @@
 'use strict';
 
-var util = {
+let util = {
 
   /**
    * Return human readable filesize
@@ -10,15 +10,15 @@ var util = {
    * @return {String}
    */
   humanFileSize: function(bytes, si) {
-    var thresh = si ? 1000 : 1024;
+    let thresh = si ? 1000 : 1024;
 
     if(Math.abs(bytes) < thresh)
       return bytes + ' B';
 
-    var units = si ?
+    let units = si ?
       ['kB','MB','GB','TB','PB','EB','ZB','YB'] :
       ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
-    var u = -1;
+    let u = -1;
 
     do {
       bytes /= thresh;
@@ -30,4 +30,4 @@ var util = {
 
 };
 
-module.exports = util;
+export default util;

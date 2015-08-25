@@ -1,17 +1,19 @@
+'use strict';
+
 import React from 'react';
 
-class Body extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div className="c_body">
-        <h2>Build</h2>
+      <div>
+        'Not found'
       </div>
     );
   }
 };
 
-module.exports = Body;
+module.exports = Home;

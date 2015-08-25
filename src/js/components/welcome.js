@@ -1,3 +1,5 @@
+'use strict';
+
 import remote from 'remote';
 import React from 'react';
 import Router from 'react-router';

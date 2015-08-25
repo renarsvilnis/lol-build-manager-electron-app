@@ -1,9 +1,9 @@
+'use strict';
+
 import path from 'path';
 import app from 'app';
 import BrowserWindow from 'browser-window';
 import ipc from 'ipc';
-
-import db from './db';
 
 let mainWindow = null;
 

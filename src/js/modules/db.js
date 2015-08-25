@@ -1,5 +1,6 @@
 /**
  * Module for retriving and storing app cache related stuff
+ * NOTE - ONLY WORKS IN RENDERER!
  *
  * References:
  * https://github.com/typicode/lowdb
@@ -8,11 +9,14 @@
  * Possible alternative to lowdb:
  * https://github.com/typicode/jsop
  */
+'use strict';
 
 import low from 'lowdb';
 import objectPath from 'object-path';
-import app from 'app';
+import remote from 'remote';
 import ipc from 'ipc';
+
+let app = remote.require('app');
 
 let dir      = app.getPath('userCache'),
     filename = 'cache.json',

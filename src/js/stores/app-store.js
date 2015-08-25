@@ -1,3 +1,5 @@
+'use strict';
+
 import remote from 'remote';
 
 import Biff from '../biff';

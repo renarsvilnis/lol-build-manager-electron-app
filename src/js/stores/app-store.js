@@ -2,13 +2,13 @@
 
 import remote from 'remote';
 
-import Biff from '../biff';
+import Biff from '../modules/biff';
 
 // import main process db module into store
 let db = remote.require('./db');
 
 // Creates a DataStore
-var AppStore = Biff.createStore({
+let AppStore = Biff.createStore({
 
 
   showWelcomeScreen: function() {
@@ -23,4 +23,4 @@ var AppStore = Biff.createStore({
   }
 });
 
-module.exports = AppStore;
+export default AppStore;

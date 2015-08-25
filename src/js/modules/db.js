@@ -27,7 +27,7 @@ let db = low(path, {
   async: true
 });
 
-var dbMethods = {
+let dbMethods = {
 
   /**
    * Get cached version of League of Legends

@@ -32,7 +32,7 @@ for(let value in REGIONS) {
 };
 
 
-var Welcome = React.createClass({
+let Welcome = React.createClass({
 
   mixins: [RouteNavigation],
 
@@ -114,4 +114,4 @@ var Welcome = React.createClass({
   }
 });
 
-module.exports = Welcome;
+export default Welcome;

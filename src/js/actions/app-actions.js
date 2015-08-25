@@ -5,7 +5,7 @@ import Biff from '../modules/biff';
 // Request
 // var request = require("superagent");
 
-export default Biff.createActions({
+let AppActions = Biff.createActions({
   recipeCreated: function (data) {
     var self = this;
 
@@ -27,3 +27,5 @@ export default Biff.createActions({
     });
   },
 });
+
+export default AppActions;

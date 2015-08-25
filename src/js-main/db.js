@@ -2,11 +2,15 @@
  * Module for retriving and storing app cache related stuff
  *
  * References:
- * https://github.com/typicode/underscore-db
  * https://github.com/typicode/lowdb
+ * https://github.com/mariocasciaro/object-path
+ *
+ * Possible alternative to lowdb:
+ * https://github.com/typicode/jsop
  */
 
 import low from 'lowdb';
+import objectPath from 'object-path';
 import app from 'app';
 import ipc from 'ipc';
 
@@ -19,8 +23,6 @@ let db = low(path, {
   async: true
 });
 
-db._.mixin(require('underscore-db'));
-
 var dbMethods = {
 
   /**
@@ -28,9 +30,7 @@ var dbMethods = {
    * @return {string || null}
    */
   getGameVersion: function() {
-    console.log(db.object);
-    let ver = db.object['lol'] ? db.object.lol['version'] : null;
-    return ver !== 'string' ? null : ver;
+    return objectPath.get(db.object, 'db.object.lol.version');
   },
 
   /**
@@ -38,8 +38,7 @@ var dbMethods = {
    * @return {string || null}
    */
   getLolRegion: function() {
-    let ver = db.object.lol ? db.object.lol.region : null;
-    return ver !== 'string' ? null : ver;
+    return objectPath.get(db.object, 'db.object.lol.region');
   }
 };
 

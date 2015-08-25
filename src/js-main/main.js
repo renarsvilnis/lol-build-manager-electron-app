@@ -31,14 +31,14 @@ app.on('window-all-closed', function() {
 let RESERVED_SUFFFIXES = ['SR', 'TT', 'DM', 'ASC', 'PG'];
 
 app.on('ready', function() {
-  createWindow();
+  createMainWindow();
 });
 
 app.on('open-url', function(ev, url) {
 
   if(!mainWindow) {
     app.on('ready', function() {
-      createWindow();  
+      createMainWindow();  
 
       mainWindow.webContents.on('did-finish-load', function() {
         mainWindow.webContents.send('url', util.decodeUrlData(url));
@@ -49,7 +49,7 @@ app.on('open-url', function(ev, url) {
 
 });
 
-let createWindow = function() {
+let createMainWindow = function() {
 
   if(mainWindow)
     return;
@@ -80,16 +80,3 @@ let createWindow = function() {
     mainWindow = null;
   });
 };
-
-
-/**
- * IPC methods for database module from renderer
- */
-
-ipc.on('db.getLolVersion', function(ev) {
-  ev.sender.send('db.getLolVersion.reply', db.getLolVersion());
-});
-
-ipc.on('db.getLolRegion', function(ev) {
-  ev.sender.send('db.getLolRegion.reply', db.getLolRegion());
-});

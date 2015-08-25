@@ -1,5 +1,9 @@
 'use strict';
 
+import fs from 'fs';
+import mkdirp from 'mkdirp';
+import request from 'request';
+
 let util = {
 
   /**
@@ -27,6 +31,44 @@ let util = {
 
     return bytes.toFixed(1) + ' ' + units[u];
   },
+
+  /**
+   * Download an image to a specific folder
+   * @param  {String} filename with extension
+   * @param  {String} url for the image including filename
+   * @param  {String} path to directory where image is going to be saved
+   * @param  {Function} callback
+   * @return {Error} error message
+   * @return {String} path to saved image
+   */
+  downloadImage: function(filename, url, saveDirectory, callback) {
+
+    // craete save directory if needed
+    mkdirp(saveDirectory, function(err) {
+
+      if(err) {
+        callback(new Error('Issue creating a save directory'));
+        return;
+      }
+
+      err = null;
+      
+      let savePath = saveDirectory + filename;
+
+      request(url)
+        .on('response', function(res) {
+          // Only if response is valid create the file
+          if(res.statusCode === 200) {
+            this.pipe(fs.createWriteStream(savePath));
+          } else {
+            err = new Error('Issue while downloading image');
+          }
+        }).on('end', function() {
+          callback(err, savePath);
+        });
+
+    });
+  }
 
 };
 

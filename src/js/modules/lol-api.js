@@ -1,3 +1,7 @@
+/**
+ * Node module that exports methods for League of Legends api querying
+ */
+'use strict';
 
 import request from 'request';
 

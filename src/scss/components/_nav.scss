@@ -1,0 +1,22 @@
+.c_nav {
+  $nav-width: 1.2em;
+  
+  height: 100%;
+
+  background-color: $nav-color-bg;
+  font-size: $nav-font-size;
+  color: $nav-color;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: $nav-width;
+
+  padding: 0.5em 0;
+
+  &__item {
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+  }
+}

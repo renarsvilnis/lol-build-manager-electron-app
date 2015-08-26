@@ -22,9 +22,12 @@
 
 // Components - is more focused on widgets.
 @import 'components/app';
-@import 'components/body';
-@import 'components/sidebar';
+@import 'components/build-add';
+@import 'components/builds';
+@import 'components/builds-body';
+@import 'components/builds-sidebar';
 @import 'components/nav';
+@import 'components/settings';
 
 // Pages - page-specific styles
 @import 'pages/home';

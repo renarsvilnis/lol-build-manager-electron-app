@@ -2,18 +2,18 @@
 
 import React from 'react';
 
-class Body extends React.Component {
+class BuildsBody extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div className="c_body">
+      <div className="c_builds-body">
         <h2>Build</h2>
       </div>
     );
   }
 };
 
-export default Body;
+export default BuildsBody;

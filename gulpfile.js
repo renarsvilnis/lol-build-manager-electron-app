@@ -113,19 +113,10 @@ gulp.task('styles', function() {
   ];
 
   return gulp.src(IN.CSS + '**/*.scss')
-    // .pipe(wiredep({
-    //   ignorePath: /^(\.\.\/)+/,
-    //   overrides: {
-    //     'modularized-normalize-scss': {
-    //     }
-    //   }
-    // }))
     .pipe($.plumber())
     .pipe($.sass({
-      precision: 10,
-      includePaths: ['.'],
-      onError: console.error.bind(console, 'Sass error:')
-    }))
+      // includePaths: IN.CSS
+    }).on('error', $.sass.logError))
     .pipe($.postcss(processors))
     .pipe($.if(isProduction(), $.minifyCss({
       keepSpecialComments: 0,

@@ -2,15 +2,17 @@
 // Colors
 // ########################################
 
-$color-white: #fff;
-$color-black: #000;
-$color-grey: #E0E6E9;
-$color-dark-grey: #78909C;
+// font colors
+$color-font-light: #fff;
+$color-font-dark: #333;
+
+$color-grey-dark: #343C47;
+$color-grey: #3C4451;
+$color-grey-light: #F3F2F7;
 
 
-$color-background: $color-grey;
-$color-modal-background: $color-dark-grey;
-$color-font: $color-black;
+
+
 
 // ########################################
 // Z-indexes - map, gathering all Z layers of the application
@@ -19,7 +21,6 @@ $color-font: $color-black;
 // @prop {String} key - Layer's name
 // @prop {Number} value - Z value mapped to the key
 // ########################################
-
 $z-indexes: (
   'modal': 5000,
   'dropdown': 4000,
@@ -31,15 +32,29 @@ $z-indexes: (
 // ########################################
 // TYPE
 // ########################################
-
 $font-family: 'Montserrat', sans-serif;
-$font-color: $color-black;
-$font-color-disabled: $color-dark-grey;
+$font-color: $color-font-dark;
+// $font-color-disabled: $color-grey-dark;
 
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 
 // ########################################
-// TODO
-// K
+// Navigation
 // ########################################
+$nav-color-bg: $color-grey-dark;
+$nav-color: $color-font-light;
+$nav-font-size: 1.25em;
+
+$sidebar-color-bg: $color-grey;
+$sidebar-color: $color-font-light;
+
+
+$settings-color-bg: $color-grey-light;
+$settings-color: $color-font-dark;
+
+$build-add-color-bg: $color-grey-light;
+$build-add-color: $color-font-dark;
+
+$builds-body-color-bg: $color-grey-light;
+$builds-body-color: $color-font-dark;

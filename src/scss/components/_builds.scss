@@ -1,0 +1,9 @@
+.c_builds {
+  height: 100%;
+  overflow: hidden;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  @include flexbox-parent;
+}

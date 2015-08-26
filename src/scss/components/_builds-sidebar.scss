@@ -1,0 +1,15 @@
+.c_builds-sidebar {
+  $sidebar-width: 16em;
+
+  height: 100%;
+  overflow: hidden;
+
+  background-color: $sidebar-color-bg;
+  color: $sidebar-color;
+
+  padding: 1em;
+  
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: $sidebar-width;
+}

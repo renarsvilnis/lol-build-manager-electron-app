@@ -36,3 +36,28 @@ API_KEY="<YOUR_API_KEY>" node_env="production" gulp package
 ![Ain't nobody got time fo dat](http://images.akamai.steamusercontent.com/ugc/548633388689781205/C8FCD52B53C4D81510C5CE4DD8A8856890A714EB/)
 
 But seriously, due to the tight time constraints, didn't have any time to write tests.
+
+
+### Render tree structure
+```txt
+.app
+    .v_welcome
+
+.app
+    .v_home
+        .c_nav
+        .c_builds
+            .c_sidebar
+            .c_builds-body
+
+.app
+    .v_home
+        .c_nav
+        .c_build-add
+
+.app
+    .v_home
+        .c_nav
+        .c_settings
+
+```

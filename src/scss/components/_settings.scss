@@ -1,0 +1,12 @@
+.c_settings {
+  height: 100%;
+  overflow: hidden;
+
+  background-color: $settings-color-bg;
+  color: $settings-color;
+
+  padding: 1em;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+}

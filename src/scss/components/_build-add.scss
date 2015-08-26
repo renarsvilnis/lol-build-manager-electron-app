@@ -1,0 +1,12 @@
+.c_build-add {
+  height: 100%;
+  overflow: hidden;
+
+  background-color: $build-add-color-bg;
+  color: $build-add-color;
+
+  padding: 1em;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+}

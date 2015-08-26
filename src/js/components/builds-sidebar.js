@@ -9,7 +9,7 @@ let Sidebar = React.createClass({
 
   render: function() {
     return (
-      <div className="c_sidebar">
+      <div className="c_builds-sidebar">
         <h2>Champions</h2>
       </div>
     );

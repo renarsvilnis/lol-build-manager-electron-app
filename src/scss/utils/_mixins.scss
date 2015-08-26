@@ -26,7 +26,6 @@
   transform: translateY(-50%);
 }
 
-
 /**
  * Create a mixin that overrides that global variable.
   * USAGE EXAMPLE:
@@ -54,4 +53,14 @@
 */
 @mixin global-variable-overriding {
   $variable: 'mixin value' !global;
+}
+
+
+@mixin flexbox-parent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
 }

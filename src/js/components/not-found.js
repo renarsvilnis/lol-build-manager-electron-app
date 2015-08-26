@@ -2,18 +2,15 @@
 
 import React from 'react';
 
-class NotFound extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+let NotFound = React.createClass({
 
-  render() {
+  render: function() {
     return (
       <div>
         'Not found'
       </div>
     );
   }
-};
+});
 
 export default NotFound;

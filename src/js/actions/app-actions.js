@@ -2,9 +2,6 @@
 
 import Biff from '../modules/biff';
 
-// Request
-// var request = require("superagent");
-
 let AppActions = Biff.createActions({
   recipeCreated: function (data) {
     var self = this;
@@ -20,6 +17,7 @@ let AppActions = Biff.createActions({
     //     });
     //   });
   },
+
   portionsChanged: function (data) {
     this.dispatch({
       actionType: "PORTIONS_CHANGED",

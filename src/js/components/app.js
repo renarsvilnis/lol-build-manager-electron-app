@@ -5,18 +5,14 @@ import Router from 'react-router';
 
 let RouteHandler = Router.RouteHandler;
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
+let App = React.createClass({
+  render: function() {
     return (
       <div className="app">
         <RouteHandler {...this.props} />
       </div>
     );
   }
-};
+});
 
 export default App;

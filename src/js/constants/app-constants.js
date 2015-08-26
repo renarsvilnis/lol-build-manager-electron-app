@@ -1,3 +1,5 @@
+'use strict';
+
 import remote from 'remote';
 
 let app = remote.require('app');

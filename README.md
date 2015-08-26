@@ -3,10 +3,13 @@ Cross platform application built with help of Electron framework for the League 
 
 
 ### Challenges
+TODO: registring a url protocol
+
 Although writing all JavaScript in ES2015 need to write React class with ES5 syntax due to `react-router` dependency as it uses mixins which aren't supported in ES2015 React component classes.
 
 
 ### Developing
+First things first, get yourself a League of Legends API key from developer.riotgames.com
 
 **Installing**
 ```bash
@@ -18,17 +21,15 @@ npm install
 **Development**
 ```bash
 # gulp watch that listen to anyfile changes
-# Get your development key from developer.riotgames.com
 API_KEY="<YOUR_API_KEY>" gulp
 
-# in a another terminal tab
+# in a another terminal tab to run the app without building
 npm run start
 ```
 
 **Production**
 ```bash
-# Get your development key from developer.riotgames.com
-API_KEY="<YOUR_API_KEY>" node_env="production" gulp package
+API_KEY="<YOUR_API_KEY>" npm run package
 ```
 
 

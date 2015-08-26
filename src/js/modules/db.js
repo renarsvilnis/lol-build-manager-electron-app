@@ -13,14 +13,11 @@
 
 import low from 'lowdb';
 import objectPath from 'object-path';
-import remote from 'remote';
-import ipc from 'ipc';
 
-let app = remote.require('app');
+import {CACHE_DIR} from '../constants/app-constants';
 
-let dir      = app.getPath('userCache'),
-    filename = 'cache.json',
-    path     = dir + '/' + filename;
+let filename = 'cache.json',
+    path     = CACHE_DIR + '/' + filename;
 
 let db = low(path, {
   autosave: true,

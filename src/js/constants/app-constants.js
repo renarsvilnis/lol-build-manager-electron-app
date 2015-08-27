@@ -50,22 +50,45 @@ export const GUIDE_TEMPLATE = {
     url: ''
   },
 
-  
+  /**
+   * Info about builds inside of guides - as many League of Legends guide
+   * websites have the ability for a single  guide to create several builds
+   * @type {Array} builds
+   */
   builds: [
+
+    /**
+     * Build information
+     * @type {Object} guide
+     * @type {string} guide.title - Title of the guide
+     * @type {Array} guide.blocks - Array of objects of block rows
+     */
     // {
     //   title: '',
     //   blocks: [
-    //     {
-    //       type: '',
-    //       items: [
+        /**
+         * Item block
+         * @type {Object} block
+         * @type {string} block.type - Title of the block, same as LOL API
+         * @type {Array} block.items - Array of objects of block items
+         */
+        // {
+        //   type: '',
+        //   items: [
+            /**
+             * Item
+             * @type {object} item
+             * @type {string} item.id - Item Id as string
+             * @type {count} item.count - Shows how many item needed
+             */
     //         {
     //           id: '1001',
     //           count: 1
-    //         }, ..
+    //         } 
     //       ]
-    //     }, ..
+    //     }
     //   ]
-    // }, ..
+    // }
   ],
 
   /**

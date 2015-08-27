@@ -64,7 +64,7 @@ let dbMethods = {
   },
 
   getItemByName: function(name) {
-    let items = dbMethods.getItems();
+    let items = this.getItems();
 
     if(!items || typeof items.data === 'undefined')
       return null;
@@ -79,6 +79,24 @@ let dbMethods = {
 
       if(mgnUtil.isSubtringInString(itemName, name))
         return item.id;
+    }
+
+    return null;
+  },
+
+  getItemById: function(id) {
+    let items = thus.getItems();
+
+    if(!items || typeof items.data === 'undefined')
+      return null;
+
+    items = items.data;
+
+    for(let key in items) {
+      let item = items[key];
+
+      if(item.id === id)
+        return item;
     }
 
     return null;

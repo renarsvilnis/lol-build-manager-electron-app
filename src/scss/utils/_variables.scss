@@ -39,22 +39,32 @@ $font-color: $color-font-dark;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 
-// ########################################
-// Navigation
-// ########################################
+$body-color-bg: $color-grey;
+$body-color: $color-font-light;
+
+// Left navigation bar
 $nav-color-bg: $color-grey-dark;
 $nav-color: $color-font-light;
 $nav-font-size: 1.25em;
 
+// Build champion sidebar
 $sidebar-color-bg: $color-grey;
 $sidebar-color: $color-font-light;
 
-
+// Settings content
 $settings-color-bg: $color-grey-light;
 $settings-color: $color-font-dark;
 
+// Add build content
 $build-add-color-bg: $color-grey-light;
 $build-add-color: $color-font-dark;
 
+// Build body content
 $builds-body-color-bg: $color-grey-light;
 $builds-body-color: $color-font-dark;
+
+// Loader screen
+$loader-color-bg: $color-grey;
+$loader-color-circle-bg: $color-grey-dark;
+$loader-color-circle: $color-font-light;
+$loader-color: $color-font-light;

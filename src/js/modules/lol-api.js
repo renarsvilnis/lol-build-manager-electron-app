@@ -7,6 +7,7 @@ import request from 'request';
 
 import db from './db';
 import {API_KEY} from '../constants/app-constants';
+import {objectToArray} from './util';
 
 /**
  * API constants
@@ -109,7 +110,7 @@ let lolApi = {
 
       let results = {
         version: body.version,
-        data: body.data
+        data: objectToArray(body.data)
       };
 
       callback(null, results);
@@ -145,7 +146,7 @@ let lolApi = {
 
       let results = {
         version: body.version,
-        data: body.data
+        data: objectToArray(body.data)
       };
 
       callback(null, results);

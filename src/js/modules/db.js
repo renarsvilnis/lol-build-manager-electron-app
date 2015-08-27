@@ -22,7 +22,7 @@ let filename = 'cache.json',
 
 let db = low(path, {
   autosave: true,
-  async: true
+  async: false // synchronous for now, as we don't have heavy I/O operations
 });
 
 let dbMethods = {
@@ -95,7 +95,7 @@ let dbMethods = {
       let championName = champion.name.toLowerCase();
       let championKey = champion.key.toLowerCase();
 
-      console.log(name, championName, championKey);
+      // Depending on name good ideda to try to look for key and name match
       if(mgnUtil.isSubtringInString(championName, name) || mgnUtil.isSubtringInString(championKey, name))
         return champion.id;
     }

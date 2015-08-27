@@ -76,3 +76,13 @@ export function downloadImage(filename, url, saveDirectory, callback) {
 export function removeNonNumbericCharacters(str) {
   return str.replace(/\D/g,'');
 };
+
+/**
+ * Converts object to an array by droping keys
+ * Reference: http://stackoverflow.com/a/26166303
+ * @param  {Object} obj
+ * @return {Array}
+ */
+export function objectToArray(obj) {
+  return Object.keys(obj).map((key) => obj[key]);
+};

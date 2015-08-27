@@ -58,10 +58,9 @@ let findChampion = function($, parent) {
   buildText.trim();
 
   // Using substring as the patern is on the end of file
-  let championName = buildText.substring(0, REMOVE_PATTERN.length + 1).toLowerCase();
+  let championName = buildText.substring(0, REMOVE_PATTERN.length + 1);
 
-  // TODO: find champion id
-  let championId = 0;
+  let championId = db.getChampionByName(championName);
   
   return championId;
 };

@@ -95,6 +95,7 @@ let dbMethods = {
       let championName = champion.name.toLowerCase();
       let championKey = champion.key.toLowerCase();
 
+      console.log(name, championName, championKey);
       if(mgnUtil.isSubtringInString(championName, name) || mgnUtil.isSubtringInString(championKey, name))
         return champion.id;
     }
@@ -144,8 +145,8 @@ let dbMethods = {
     db.save();
   },
 
-  setChampions: function(champs) {
-    objectPath.set(db.object, 'db.object.champions', path);
+  setChampions: function(champions) {
+    objectPath.set(db.object, 'db.object.champions', champions);
     db.save();
   }
 

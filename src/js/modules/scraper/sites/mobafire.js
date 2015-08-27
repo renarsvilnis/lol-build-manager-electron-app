@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
 import objectAssign from 'object-assign';
 import chrono from 'chrono-node';
+import request from 'request';
 
 import {GUIDE_TEMPLATE} from '../../../constants/app-constants';
 import {removeNonNumbericCharacters} from '../../util';
@@ -140,17 +141,13 @@ let findBuild = function($, parent) {
   };
 };
 
-// TODO: pass url instead of html
-// So each module can have their own logic to handle scraping
-export default function(html) {
-
+let parse = function(url, html) {
   let $ = cheerio.load(html);
 
   // Create new tempalte object of response
   let json = objectAssign({}, GUIDE_TEMPLATE);
 
-  // TODO: add url
-  // json.url = url
+  json.url = url;
 
   let guideDetails = $('.guide-details');
 
@@ -179,4 +176,16 @@ export default function(html) {
   json.author.url = json.author.url.trim();
 
   return json;
+}
+
+export default function(url, callback) {
+  request(url, {
+    timeout: 2000
+  }, function(err, res, html) {
+    if (!err && res.statusCode === 200) {
+      callback(null, parse(url, html));
+    } else {
+      callback(new Error('Issue getting request'), null);
+    }
+  });
 };

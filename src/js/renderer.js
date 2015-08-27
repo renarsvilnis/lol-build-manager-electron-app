@@ -44,5 +44,14 @@ import scraper from './modules/scraper';
 // let url = 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408';
 // let url = 'http://www.mobafire.com/league-of-legends/build/kayle-angel-more-like-a-god-429690';
 // let url = 'http://www.mobafire.com/league-of-legends/build/shyvana-the-ultimate-assassin-jungle-how-2-penta-as-a-jungle-430011';
-let url = 'http://www.mobafire.com/league-of-legends/build/support-katarina-support-fear-not-its-not-a-troll-pick-429930';
-scraper(url);
+let buildUrl = 'http://www.mobafire.com/league-of-legends/build/support-katarina-support-fear-not-its-not-a-troll-pick-429930';
+scraper(buildUrl);
+
+
+import url from 'url';
+import normalizeUrl from 'normalize-url';
+
+let parseUrl = (str) => url.parse(normalizeUrl(str));
+
+console.log(parseUrl(buildUrl));
+console.log(parseUrl('mobafire.com/league-of-legends/build/support-katarina-support-fear-not-its-not-a-troll-pick-429930'));

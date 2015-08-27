@@ -15,16 +15,14 @@ export default function(url, callback) {
   // 2. pass to correct scrape module
   // 3. call callback with scraped data - hopefully
 
-  request(url, {
-    timeout: 2000
-  }, function(err, res, html) {
-    if (!err && res.statusCode === 200) {
-      console.log(moduleMobafire(html));
-    } else {
-      callback(new Error('Issue getting request'), null);
-    }
-  });
+  // moduleMobafire
 
+  let moduleCallback = function(err, json) {
+    // Validate callback
+    console.log(json);
+  };
+
+  moduleMobafire(url, moduleCallback);
   
 };
 

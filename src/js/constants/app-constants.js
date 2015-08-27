@@ -92,11 +92,11 @@ export const GUIDE_TEMPLATE = {
   ],
 
   /**
-   * Epoch date related to the creation or update of the guide
-   * Note: whichever is higher
+   * Epoch date representing creation, last updated time for the
+   * guide, taken from the guide origin
    * @type {Number}
    */
-  createdAt: 0,
+  updatedAt: 0,
 
   /**
    * Epoch date when crawled

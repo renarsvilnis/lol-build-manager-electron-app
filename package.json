@@ -15,6 +15,7 @@
   "dependencies": {
     "biff": "^0.2.0",
     "cheerio": "^0.19.0",
+    "chrono-node": "^1.0.6",
     "compare-versions": "^1.1.2",
     "lol-build-manager-config": "git+https://github.com/renarsvilnis/lol-build-manager-config.git",
     "lol-build-manager-util": "git+https://github.com/renarsvilnis/lol-build-manager-util.git",

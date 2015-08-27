@@ -43,6 +43,6 @@ import scraper from './modules/scraper';
 // let url = 'http://www.probuilds.net/guide/NA/1925326964/60783';
 // let url = 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408';
 // let url = 'http://www.mobafire.com/league-of-legends/build/kayle-angel-more-like-a-god-429690';
-let url = 'http://www.mobafire.com/league-of-legends/build/shyvana-the-ultimate-assassin-jungle-how-2-penta-as-a-jungle-430011';
+// let url = 'http://www.mobafire.com/league-of-legends/build/shyvana-the-ultimate-assassin-jungle-how-2-penta-as-a-jungle-430011';
+let url = 'http://www.mobafire.com/league-of-legends/build/support-katarina-support-fear-not-its-not-a-troll-pick-429930';
 scraper(url);
-

@@ -1,5 +1,6 @@
 import cheerio from 'cheerio';
 import objectAssign from 'object-assign';
+import chrono from 'chrono-node';
 
 import {GUIDE_TEMPLATE} from '../../../constants/app-constants';
 import {removeNonNumbericCharacters} from '../../util';
@@ -17,6 +18,18 @@ let findGuideAuthor = function($, parent) {
     name: profileEl.text(),
     url: DOMAIN + profileEl.attr('href')
   };
+};
+
+let findUpdateAt = function($, parent) {
+  let authorInfoEl = parent.find('> .author-info');
+  let dateContainerEl = authorInfoEl.children().last();
+
+  // Remove the a tag, wierd but first need to empty the contents
+  // of the tag
+  dateContainerEl.find('a').text('').remove();
+
+  // TODO: tinker more for a better result
+  return chrono.parseDate(dateContainerEl.text().trim()).getTime();
 };
 
 let findChampion = function($, parent) {
@@ -94,7 +107,7 @@ let findItems = function($, parent) {
 
 
     blocks.push({
-      title,
+      type: title,
       items
     });
   });
@@ -144,8 +157,7 @@ export default function(html) {
   json.title = findGuideTitle($, guideDetails);
   json.author = findGuideAuthor($, guideDetails);
 
-  // TODO: read create stirng
-  // json.createdAt = Date.now();
+  json.updatedAt = findUpdateAt($, guideDetails);
   json.addedAt = Date.now();
 
   // All build containers

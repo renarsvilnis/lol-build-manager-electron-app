@@ -31,37 +31,15 @@ let dbMethods = {
   // GET
   // ########################################
 
-  /**
-   * Get cached version of League of Legends
-   * @return {String|Undefined}
-   */
-  getLolVersion: function() {
-    return objectPath.get(db.object, 'db.object.lol.version');
-  },
+  getLolVersion: () => objectPath.get(db.object, 'db.object.lol.version'),
 
-  /**
-   * Get region info of installed League of Legends
-   * @return {String|Undefined}
-   */
-  getLolRegion: function() {
-    return objectPath.get(db.object, 'db.object.lol.region');
-  },
+  getLolRegion: () => objectPath.get(db.object, 'db.object.lol.region'),
 
-  /**
-   * Get path of League of Legends game folder
-   * @return {String|Undefined}
-   */
-  getLolPath: function() {
-    return objectPath.get(db.object, 'db.object.lol.path');
-  },
+  getLolPath: () => objectPath.get(db.object, 'db.object.lol.path'),
 
-  getItems: function() {
-    return objectPath.get(db.object, 'db.object.items');
-  },
+  getItems: () => objectPath.get(db.object, 'db.object.items'),
 
-  getChampions: function() {
-    return objectPath.get(db.object, 'db.object.champions');
-  },
+  getChampions: () => objectPath.get(db.object, 'db.object.champions'),
 
   getItemByName: function(name) {
     let items = this.getItems();

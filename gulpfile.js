@@ -90,10 +90,12 @@ gulp.task('node-modules', function() {
   }
 
   dependencies = dependencies.map(function(dep) {
-    return './node_modules/' + dep;
+    return './node_modules/' + dep + '/**/*';
   })
 
-  return gulp.src(dependencies)
+  return gulp.src(dependencies, {
+    base: './node_modules/'
+  })
     .pipe(gulp.dest(OUT_BASE + 'node_modules/'));
 });
 

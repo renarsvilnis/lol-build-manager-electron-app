@@ -14,6 +14,7 @@
 import low from 'lowdb';
 import objectPath from 'object-path';
 
+import mgnUtil from 'lol-build-manager-util';
 import {CACHE_DIR} from '../constants/app-constants';
 
 let filename = 'cache.json',
@@ -62,6 +63,27 @@ let dbMethods = {
     return objectPath.get(db.object, 'db.object.champions');
   },
 
+  getItemByName: function(name) {
+    let items = dbMethods.getItems();
+
+    if(!items || typeof items.data === 'undefined')
+      return null;
+
+    items = items.data;
+    name = name.toLowerCase();
+
+    for(let id in items) {
+      let item = items[id];
+
+      let itemName = item.name.toLowerCase();
+
+      if(mgnUtil.isSubtringInString(itemName, name))
+        return item.id;
+    }
+
+    return null;
+  },
+
   // ########################################
   // POST
   // ########################################
@@ -82,7 +104,7 @@ let dbMethods = {
   },
 
   setItems: function(items) {
-    objectPath.set(db.object, 'db.object.items', path);
+    objectPath.set(db.object, 'db.object.items', items);
     db.save();
   },
 

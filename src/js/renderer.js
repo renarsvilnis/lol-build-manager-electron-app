@@ -55,3 +55,17 @@ let parseUrl = (str) => url.parse(normalizeUrl(str));
 
 console.log(parseUrl(buildUrl));
 console.log(parseUrl('mobafire.com/league-of-legends/build/support-katarina-support-fear-not-its-not-a-troll-pick-429930'));
+
+
+import db from './modules/db';
+import lolApi from './modules/lol-api';
+
+lolApi.getItems('na', function(err, results) {
+  if(!err)
+    db.setItems(results);
+});
+
+lolApi.getChampions('na', function(err, results) {
+  if(!err)
+    db.setChampions(results);
+});

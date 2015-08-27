@@ -3,6 +3,7 @@ import objectAssign from 'object-assign';
 import chrono from 'chrono-node';
 import request from 'request';
 
+import db from '../../db';
 import {GUIDE_TEMPLATE} from '../../../constants/app-constants';
 import {removeNonNumbericCharacters} from '../../util';
 
@@ -97,8 +98,7 @@ let findItems = function($, parent) {
         itemCount = parseInt(removeNonNumbericCharacters(countString), 10);
       }
 
-      // TODO: find id from name
-      let itemId = 0;
+      let itemId = db.getItemByName(itemName);
 
       items.push({
         id: itemId,

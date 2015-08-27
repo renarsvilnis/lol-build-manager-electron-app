@@ -1,0 +1,170 @@
+import cheerio from 'cheerio';
+import objectAssign from 'object-assign';
+
+import {GUIDE_TEMPLATE} from '../../../constants/app-constants';
+import {removeNonNumbericCharacters} from '../../util';
+
+const DOMAIN = '//www.mobafire.com';
+
+let findGuideTitle = function($, parent) {
+  return parent.find('.guide-main-title').text();
+};
+
+let findGuideAuthor = function($, parent) {
+  let profileEl = parent.find('a');
+
+  return {
+    name: profileEl.text(),
+    url: DOMAIN + profileEl.attr('href')
+  };
+};
+
+let findChampion = function($, parent) {
+  let buildTitleEl = parent.find('.build-title');
+
+  // User can define a custom title for the block as a h2 tag
+  // else champion name is withing h2 tag
+  // otherwise it gets placed within a h3 tag
+  let h2 = buildTitleEl.find('> h2');
+  let h3 = buildTitleEl.find('> h3');
+
+  // Placeholder text within build title
+  // Defined by template "<CHAMPION_NAME> BUILD"
+  // Champion anme gets extracted from string
+  let buildText;
+  const REMOVE_PATTERN = ' BUILD';
+
+  if(!h3.length || !h3.text().length) {
+    buildText = h2.text();
+  } else {
+    buildText = h3.text();
+  }
+
+  buildText.trim();
+
+  // Using substring as the patern is on the end of file
+  let championName = buildText.substring(0, REMOVE_PATTERN.length + 1).toLowerCase();
+
+  // TODO: find champion id
+  let championId = 0;
+  
+  return championId;
+};
+
+let findItems = function($, parent) {
+
+  let blocks = [];
+
+  let itemWraps = parent.find('.item-wrap');
+
+  // iterate item blocks
+  itemWraps.each(function() {
+    let itemWrap = $(this);
+
+    // block title
+    let title = itemWrap.find('> h2').text().trim() || '';
+    let items = [];
+
+    // iterate each block item
+    itemWrap.find('.main-items').each(function() {
+      let item = $(this);
+
+      // item name
+      let itemName = item.find('.item-title').text().trim();
+
+      // item count
+      // if has count greater then 1, it gets shown as 'x<COUNT>'
+      // example 'x2'
+      let itemCount = 1;
+
+      let itemCountEl = item.find('.item-count');
+      if(itemCountEl.length) {
+        let countString= itemCountEl.text();
+        itemCount = parseInt(removeNonNumbericCharacters(countString), 10);
+      }
+
+      // TODO: find id from name
+      let itemId = 0;
+
+      items.push({
+        id: itemId,
+        count: itemCount
+      });
+    });
+
+
+    blocks.push({
+      title,
+      items
+    });
+  });
+
+  return blocks;
+};
+
+let findBuildTitle = function($, parent) {
+  let buildTitleEl = parent.find('.build-title');
+
+  // User can define a custom title for the block as a h2 tag
+  // else champion name is withing h2 tag
+  // otherwise it gets placed within a h3 tag
+  let h2 = buildTitleEl.find('> h2');
+  let h3 = buildTitleEl.find('> h3');
+
+  let buildTitle = '';
+
+  if(h3.length && h3.text().length) {
+    buildTitle = h2.text();
+  }
+
+  return buildTitle.trim();
+};
+
+let findBuild = function($, parent) {
+  return {
+    title: findBuildTitle($, parent),
+    blocks: findItems($, parent)
+  };
+};
+
+// TODO: pass url instead of html
+// So each module can have their own logic to handle scraping
+export default function(html) {
+
+  let $ = cheerio.load(html);
+
+  // Create new tempalte object of response
+  let json = objectAssign({}, GUIDE_TEMPLATE);
+
+  // TODO: add url
+  // json.url = url
+
+  let guideDetails = $('.guide-details');
+
+  json.title = findGuideTitle($, guideDetails);
+  json.author = findGuideAuthor($, guideDetails);
+
+  // TODO: read create stirng
+  // json.createdAt = Date.now();
+  json.addedAt = Date.now();
+
+  // All build containers
+  let buildContainerEl = $('.build-container');
+
+  // Only use the the first block to get the champion
+  json.champion = findChampion($, buildContainerEl.first());
+
+  buildContainerEl.each(function() {
+    let build = findBuild($, $(this));
+    json.builds.push(build);
+  });
+
+  // Clean the values after getting them
+  // as for most values it removes the issue of calling trim on null
+  // NOTE: some values trim before!
+  json.title = json.title.trim();
+  json.author.name = json.author.name.trim();
+  json.author.url = json.author.url.trim();
+
+  return json;
+};

@@ -67,3 +67,12 @@ export function downloadImage(filename, url, saveDirectory, callback) {
 
   });
 };
+
+/**
+ * Strip string for all non-numberic characters
+ * @param  {string} str
+ * @return {string}
+ */
+export function removeNonNumbericCharacters(str) {
+  return str.replace(/\D/g,'');
+};

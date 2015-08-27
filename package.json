@@ -7,13 +7,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node tasks/build.js",
-    "package": "node_env=production gulp package", 
+    "package": "node_env=production gulp package",
     "start": "./node_modules/electron-prebuilt/cli.js ./prebuild"
   },
   "author": "Renārs Vilnis <renars.vilnis@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "biff": "^0.2.0",
+    "cheerio": "^0.19.0",
     "compare-versions": "^1.1.2",
     "lol-build-manager-config": "git+https://github.com/renarsvilnis/lol-build-manager-config.git",
     "lol-build-manager-util": "git+https://github.com/renarsvilnis/lol-build-manager-util.git",

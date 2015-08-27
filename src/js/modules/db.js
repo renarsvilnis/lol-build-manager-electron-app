@@ -80,6 +80,46 @@ let dbMethods = {
     return null;
   },
 
+  getChampionByName: function(name) {
+    let champions = this.getChampions();
+
+    if(!champions || typeof champions.data === 'undefined')
+      return null;
+
+    champions = champions.data;
+    name = name.toLowerCase();
+
+    for(let id in champions) {
+      let champion = champions[id];
+
+      let championName = champion.name.toLowerCase();
+      let championKey = champion.key.toLowerCase();
+
+      if(mgnUtil.isSubtringInString(championName, name) || mgnUtil.isSubtringInString(championKey, name))
+        return champion.id;
+    }
+
+    return null;
+  },
+
+  getItemById: function(id) {
+    let champions = thus.getChampions();
+
+    if(!champions || typeof champions.data === 'undefined')
+      return null;
+
+    champions = champions.data;
+
+    for(let key in champions) {
+      let champion = champions[key];
+
+      if(champion.id === id)
+        return champion;
+    }
+
+    return null;
+  },
+
   // ########################################
   // POST
   // ########################################

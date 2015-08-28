@@ -1,8 +1,12 @@
 'use strict';
 
 import fs from 'fs';
+import path from 'path';
 import mkdirp from 'mkdirp';
 import request from 'request';
+import pathExists from 'path-exists';
+
+import {LOL_ITEM_SET_PATH} from '../constants/lol-constants';
 
 /**
  * Download an image to a specific folder
@@ -59,4 +63,16 @@ export function removeNonNumbericCharacters(str) {
  */
 export function objectToArray(obj) {
   return Object.keys(obj).map((key) => obj[key]);
+};
+
+/**
+ * Check wheter given path contains valid item set directory
+ * @param  {string} dirPath - Path to League of Legends installation folder
+ * @param  {Function} callback [description]
+ * @return {Error} err
+ * @return {Boolean} exists
+ */
+export function isValidLolDirectroy(dirPath, callback) {
+  let itemSetFullPath =  path.normalize(dirPath + LOL_ITEM_SET_PATH);
+  pathExists(itemSetFullPath, callback);
 };

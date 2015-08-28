@@ -8,6 +8,7 @@ import AppActions from '../actions/app-actions';
 import AppStore from '../stores/app-store';
 import InputSelect from './input-select';
 import {REGIONS,LOL_INSTALL_PATH} from '../constants/lol-constants';
+import {isValidLolDirectroy} from '../modules/util';
 
 let dialog = remote.require('dialog');
 let RouteHandler = Router.RouteHandler;
@@ -50,21 +51,12 @@ let Welcome = React.createClass({
       if(!path)
         return;
 
-      this.changePath(path);
+      this._changePath(path);
     }); 
   },
 
   onPathChange: function(ev) {
-    this.setState({
-      path: ev.target.value || LOL_INSTALL_PATH
-    });
-  },
-
-  changePath: function(path) {
-    //  Do validation
-    this.setState({
-      path: path || LOL_INSTALL_PATH
-    });
+    this._changePath(ev.target.value);
   },
 
   onRegionChange: function(ev) {
@@ -76,6 +68,17 @@ let Welcome = React.createClass({
   onContinueClick: function() {
     // check if valid apppath
     // get app version
+  },
+
+  _changePath: function(path) {
+    //  Do validation
+    isValidLolDirectroy(path, function(err, exists) {
+      console.log('Valid lol path:', exists);  
+    });
+
+    this.setState({
+      path: path || LOL_INSTALL_PATH
+    });
   },
 
   // ########################################

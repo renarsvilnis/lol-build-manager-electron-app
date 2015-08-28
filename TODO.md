@@ -7,7 +7,7 @@
 - [ ] Download item and champion images
 - [ ] Re-download item and champion images
 - [ ] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
-- [ ] add gulp-cache for js files
+- [ ] ---add gulp-cache for js files---
 - [ ] windows url protocol
 - [ ] build system for getting installations for win and osx
 - [ ] take network status into consideration

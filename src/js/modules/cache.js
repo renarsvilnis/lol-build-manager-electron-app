@@ -4,17 +4,15 @@
  */
 'use strict';
 
-import util from './util';
+import db from '../modules/db';
+import AppActions from '../actions/app-actions';
 
 let Cache = {
-  load: function() {
-
-  },
-
-  // setLolRegion: function() {
-
-  // },
-
+  loadApp: function() {
+    AppActions.loadLolVersion();
+    AppActions.loadLolRegion();
+    AppActions.loadLolPath();
+  }
 
 };
 

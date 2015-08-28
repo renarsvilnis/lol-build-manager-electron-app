@@ -4,93 +4,111 @@ import remote from 'remote';
 import React from 'react';
 import Router from 'react-router';
 
-let dialog = remote.require('dialog');
-let app = remote.require('app');
-
+import AppActions from '../actions/app-actions';
 import AppStore from '../stores/app-store';
 import InputSelect from './input-select';
-import {
-  REGIONS,
-  LOL_INSTALL_PATH,
-} from '../constants/lol-constants';
+import {REGIONS,LOL_INSTALL_PATH} from '../constants/lol-constants';
 
+let dialog = remote.require('dialog');
 let RouteHandler = Router.RouteHandler;
 let RouteNavigation = Router.Navigation;
 
-/**
- * Create available option list for InputSelect
- * Also set default value to EU West region
- */
-let options = [];
-for(let value in REGIONS) {
-  let name = REGIONS[value];
-  options.push({
-    value,
-    name,
-    selected: value == 'euw' ? value : null
-  })
+let getState = function() {
+  return {
+    region: AppStore.getRegion() || 'euw',
+    path: AppStore.getPath() || LOL_INSTALL_PATH
+  };
 };
-
 
 let Welcome = React.createClass({
 
-  mixins: [RouteNavigation],
+  mixins: [AppStore.mixin, RouteNavigation],
 
-  getInitialState: function() {
-
-    return {
-      defaultPath: 'euw',
-      inputValue: LOL_INSTALL_PATH
-    };
-  },
-
-  componentDidMount: function() {
+  storeDidChange: function() {
     if(!AppStore.shouldShowWelcomeScreen()) {
-      this.transitionTo('home');
+      this.transitionTo('loader');
+      return;
     }
 
+    this.setState(getState());
   },
 
-  onInputChange: function(ev) {
-    this.setState({
-      inputValue: ev.target.value
-    });
+  getInitialState: function() {
+    return getState();
   },
+
+  // ########################################
+  // Input events
+  // ########################################
 
   onBrowsePress: function() {
-
     dialog.showOpenDialog({
       properties: ['openDirectory'],
-      defaultPath: LOL_INSTALL_PATH
-    }, (folderPath) => {
+      defaultPath: LOL_INSTALL_PATH 
+    }, (path) => {
 
-      if(!folderPath)
+      if(!path)
         return;
 
-      this.setState({
-        inputValue: folderPath,
-      });
+      this.changePath(path);
     }); 
   },
 
+  onPathChange: function(ev) {
+    this.setState({
+      path: ev.target.value || LOL_INSTALL_PATH
+    });
+  },
+
+  changePath: function(path) {
+    //  Do validation
+    this.setState({
+      path: path || LOL_INSTALL_PATH
+    });
+  },
+
+  onRegionChange: function(ev) {
+    AppActions.updateLolRegion({
+      region: ev.target.value
+    });
+  },
+
   onContinueClick: function() {
-    console.log(this);
-    this.transitionTo('home');
+    // check if valid apppath
+    // get app version
+  },
+
+  // ########################################
+  // Render
+  // ########################################
+  createOptions: function() {
+    let options = [];
+
+    for(let value in REGIONS) {
+      let name = REGIONS[value];
+      options.push({
+        value,
+        name,
+        selected: value == this.state.region ? value : null
+      })
+    };
+
+    return options;
   },
 
   render: function() {
-    
 
+    let options = this.createOptions();
+    
     return (
       <div className="v_welcome">
         <h2>Welcome to the League of Legends build manager!</h2>
 
         <input
-          ref="input"
           type="text"
           className="v_welcome__install-dir"
-          value={this.state.inputValue}
-          onClick={this.onInputChange}
+          value={this.state.path}
+          onChange={this.onPathChange}
           />
         <button
           type="button"
@@ -100,11 +118,14 @@ let Welcome = React.createClass({
         </button>
         <InputSelect
           className="v_welcome__regions"
-          options={options} />
+          options={options}
+          onChange={this.onRegionChange}
+          />
         <button
           className="v_welcome__continue"
           type="button"
           onClick={this.onContinueClick}
+          disabled={!navigator.onLine}
           >
           Continue
         </button>

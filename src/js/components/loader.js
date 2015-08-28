@@ -11,7 +11,13 @@ let Loader = React.createClass({
 
   mixins: [RouteNavigation],
 
+  appStoreChange: function() {
+    console.log('app store change');
+  },
+
   componentDidMount: function() {
+    AppStore.addChangeListener(this.appStoreChange);
+
     if(AppStore.shouldShowWelcomeScreen()) {
       this.transitionTo('welcome');
     } else {
@@ -19,6 +25,10 @@ let Loader = React.createClass({
       // Update if neseccery
       // When done transition to home
     }
+  },
+
+  componentWillUnmount: function() {
+    AppStore.removeChangeListener(this.appStoreChange);
   },
 
   render: function() {

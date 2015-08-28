@@ -8,8 +8,30 @@ import Biff from '../modules/biff';
 // Creates a DataStore
 let AppStore = Biff.createStore({
 
+  _lolRegion: '',
+  _lolVersion: '',
+  _lolPath: '',
+  // _items: [],
+  // _champions: [],
+  // _guides: [],
+
   shouldShowWelcomeScreen: function() {
-    return !db.getLolVersion() && !db.getLolRegion() && !db.getLolPath();
+    // No need to look for path, for the case when user relocates
+    // League of Legends game folder
+    return !this._lolVersion || !this._lolRegion;
+  },
+
+  downloadItems: function(callback) {
+    lolApi.getItems(db.getLolRegion(), function(err, results) {
+
+      if(err) {
+        callback(err, null);
+        return;
+      }
+
+
+      // db.setItems(results);
+    });
   },
 
   getBuilds: function() {
@@ -36,13 +58,57 @@ let AppStore = Biff.createStore({
     });
 
     return champions;
+  },
+
+  getRegion: function() {
+    return this._lolRegion;
+  },
+  getVersion: function() {
+    return this._lolVersion;
+  },
+  getPath: function() {
+    return this._lolPath;
+  },
+
+  loadRegion: function(region) {
+    this._lolRegion = region;
+  },
+
+  loadVersion: function(version) {
+    this._lolVersion = version;
+  },
+
+  loadPath: function(path) {
+    this._lolPath = path;
+  },
+
+  updateRegion: function(region) {
+    this._lolRegion = region;
   }
 
 }, function (payload) {
-  if (payload.actionType === "EXAMPLE_ACTIONS") {
-    // this.createRecipe(payload.data);
+  let actionType = payload.actionType;
+
+  console.log('Appstore', payload.actionType);
+
+  if(actionType === 'LOL_REGION_LOAD') {
+    this.loadRegion(payload.data.region);
     this.emitChange();
   }
+  if(actionType === 'LOL_VERSION_LOAD') {
+    this.loadVersion(payload.data.version);
+    this.emitChange();
+  }
+  if(actionType === 'LOL_PATH_LOAD') {
+    this.loadPath(payload.data.path);
+    this.emitChange();
+  }
+
+  if(actionType === 'LOL_REGION_UPDATE') {
+    this.updateRegion(payload.data.region);
+    this.emitChange();
+  }
+  
 });
 
 export default AppStore;

@@ -12,6 +12,8 @@ import BuildAdd from './components/build-add';
 import Settings from './components/settings';
 import NotFound from './components/not-found';
 
+import Cache    from './modules/cache';
+
 let Route         = Router.Route;
 let DefaultRoute  = Router.DefaultRoute;
 let NotFoundRoute = Router.NotFoundRoute;
@@ -30,6 +32,7 @@ let routes = (
   </Route>
 );
 
+Cache.loadApp();
 Router.run(routes, function(Handler, state) {
   // "Alternatively, you can pass the param data down..."
   // https://github.com/rackt/react-router/blob/master/docs/guides/

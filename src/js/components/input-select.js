@@ -26,7 +26,9 @@ let InputSelect = React.createClass({
     return (
       <select
         className={this.props.className}
-        defaultValue={defaultValue}>
+        defaultValue={defaultValue}
+        onChange={this.props.onChange}
+        >
         {options}
       </select>
     );

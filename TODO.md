@@ -4,7 +4,7 @@
 ### Base
 - [ ] windows url protocol
 - [ ] build system for getting installations for win and osx
-- [?] Check if League of Legends directory legit
+- [x] Check if League of Legends directory legit
 - [x] Clear cache function / Reset
 - [x] Download item and champion images
 - [ ] Scrape URL check if supported - same logic across extensions and app
@@ -12,12 +12,8 @@
 - [?] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
 - [-] ---add gulp-cache for js files---
 - [?] take network status into consideration
-    - change region
-    - update
-    - add new build
-- [ ] automate CDN version update
-- [ ] If and image isnt succcesfully downlaoded, do something about that
-
+- [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
+- [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
 
 ### Welcome
 - [ ] Accardion guide on how it works
@@ -37,7 +33,7 @@
 - [ ] Change directory
 - [ ] Change region
 - [ ] Force redownlaod app
-**Saving forces app restart**
+**[Saving forces app restart](https://github.com/atom/electron/issues/539)**
 
 ### Design
 - [ ] App icons
@@ -54,4 +50,5 @@
 - [ ] Windows progress when in loader view downlaoding assets
 - [ ] Add more website support
 - [ ] Better loader messages
-
+- [ ] Map specific builds
+- [ ] Global builds

@@ -18,7 +18,7 @@ export default {
     let bufferTemp = this.get().slice();
     this.clean();
     return bufferTemp;
-  }
+  },
 
   get: function() {
     return buffer;

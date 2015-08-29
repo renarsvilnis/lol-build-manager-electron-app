@@ -27,6 +27,7 @@ let Welcome = React.createClass({
 
   storeDidChange: function() {
     if(!AppStore.shouldShowWelcomeScreen()) {
+      // TODO: get app version
       this.transitionTo('loader');
       return;
     }
@@ -36,6 +37,12 @@ let Welcome = React.createClass({
 
   getInitialState: function() {
     return getState();
+  },
+
+  componentDidMount: function() {
+    AppActions.updateLolRegion({
+      region: this.state.region
+    });
   },
 
   // ########################################
@@ -66,16 +73,19 @@ let Welcome = React.createClass({
   },
 
   onContinueClick: function() {
+    isValidLolDirectroy(this.state.path, (err, exists) => {
+      if(exists) {
+        AppActions.updateLolPath({
+          path: this.state.path
+        });
+      } else {
+      }
+    });
     // check if valid apppath
-    // get app version
+    
   },
 
   _changePath: function(path) {
-    //  Do validation
-    isValidLolDirectroy(path, function(err, exists) {
-      console.log('Valid lol path:', exists);  
-    });
-
     this.setState({
       path: path || LOL_INSTALL_PATH
     });

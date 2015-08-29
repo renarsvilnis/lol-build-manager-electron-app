@@ -29,7 +29,7 @@ export function downloadImage(filename, url, saveDirectory, callback) {
 
     err = null;
     
-    let savePath = saveDirectory + filename;
+    let savePath = path.normalize(saveDirectory + filename);
 
     request(url)
       .on('response', function(res) {

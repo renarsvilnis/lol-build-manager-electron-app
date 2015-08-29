@@ -1,5 +1,6 @@
 'use strict';
 
+import path from 'path';
 import remote from 'remote';
 
 let app = remote.require('app');
@@ -18,6 +19,8 @@ export const API_KEY = '/* @echo API_KEY */';
  */
 export const CACHE_DIR = app.getPath('userCache');
 
+export const ITEMS_FOLDER = path.join(CACHE_DIR, 'items/');
+export const CHAMPIONS_FOLDER = path.join(CACHE_DIR, 'champions/');
 
 
 export const GUIDE_TEMPLATE = {

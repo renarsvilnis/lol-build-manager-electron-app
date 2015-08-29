@@ -29,8 +29,7 @@ export const LOL_INSTALL_PATH = process.platform === 'darwin'
   : LOL_INSTALL_PATH_WIN;
 
 export const LOL_ITEM_SET_PATH_WIN = '/Config/Global/Champions/';
-// TODO: check if correct url
-export const LOL_ITEM_SET_PATH_OSX = '/Contents/Resources/Config/Global/Champions/';
+export const LOL_ITEM_SET_PATH_OSX = '/Contents/LoL/Config/Champions/';
 export const LOL_ITEM_SET_PATH = process.platform === 'darwin'
   ? LOL_ITEM_SET_PATH_OSX
   : LOL_ITEM_SET_PATH_WIN;

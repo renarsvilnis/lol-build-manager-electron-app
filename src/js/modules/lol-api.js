@@ -4,6 +4,7 @@
 'use strict';
 
 import request from 'request';
+import url from 'url';
 
 import db from './db';
 import {API_KEY} from '../constants/app-constants';
@@ -15,6 +16,9 @@ import {objectToArray} from './util';
  */
 const API_URL = 'https://global.api.pvp.net/api/lol/static-data';
 const API_VERSION = 'v1.2';
+
+const CDN_URL =  'http://ddragon.leagueoflegends.com/cdn'
+const CDN_VERSION = '5.16.1';
 
 const ERR_MSG = {
   400: 'Bad request',
@@ -50,6 +54,15 @@ let getApiUrl = function(region, service) {
   ].join('/');
 };
 
+let getCDNUrl = function(service, filename) {
+  return [
+    CDN_URL,
+    CDN_VERSION,
+    'img',
+    service,
+    filename
+  ].join('/');
+};
 
 let lolApi = {
 
@@ -151,6 +164,36 @@ let lolApi = {
 
       callback(null, results);
     });
+  },
+
+
+  getLatestGameVersion: function(region, callback) {
+
+    if(!region) {
+      callback(getStatusMessage('NO_REGION'));
+      return;
+    }
+
+    let url = getApiUrl(region, 'versions');
+    let qs = {api_key: API_KEY};
+
+    request.get({url, qs, json: true}, function(err, res, body) {
+
+      if(err || res.statusCode !== 200) {
+        callback(getStatusMessage(res.statusCode));
+        return;
+      }
+
+      callback(null, body[0]);
+    });
+  },
+
+  getItemImageUrl: function(filename) {
+    return getCDNUrl('item', filename);
+  },
+
+  getChampionImageUrl: function(filename) {
+    return getCDNUrl('champion', filename);
   }
 
 };

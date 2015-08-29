@@ -148,6 +148,14 @@ let dbMethods = {
   setChampions: function(champions) {
     objectPath.set(db.object, 'db.object.champions', champions);
     db.save();
+  },
+
+  // ########################################
+  // DELETE
+  // ########################################
+  reset: function() {
+    db.object = {};
+    db.save();
   }
 
 };

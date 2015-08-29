@@ -32,6 +32,9 @@ let routes = (
   </Route>
 );
 
+import db from './modules/db';
+db.reset();
+
 Cache.loadApp();
 Router.run(routes, function(Handler, state) {
   // "Alternatively, you can pass the param data down..."

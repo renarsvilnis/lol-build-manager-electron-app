@@ -1,6 +1,7 @@
 'use strict';
 
 import remote from 'remote';
+import compareVersions from 'compare-versions';
 
 import db from '../modules/db';
 import Biff from '../modules/biff';
@@ -11,29 +12,31 @@ let AppStore = Biff.createStore({
   _lolRegion: '',
   _lolVersion: '',
   _lolPath: '',
-  // _items: [],
-  // _champions: [],
-  // _guides: [],
+  _items: [],
+  _champions: [],
 
   shouldShowWelcomeScreen: function() {
-    // No need to look for path, for the case when user relocates
-    // League of Legends game folder
-    return !this._lolVersion || !this._lolRegion;
+    return !this._lolRegion || !this._lolPath;
   },
 
-  downloadItems: function(callback) {
-    lolApi.getItems(db.getLolRegion(), function(err, results) {
-
-      if(err) {
-        callback(err, null);
-        return;
-      }
-
-
-      // db.setItems(results);
-    });
+  appReady: function() {
+    return this._lolRegion
+      && this._lolVersion
+      && this._lolPath
+      && !!this._items.length
+      && !!this._champions.length;
   },
 
+  isNewerVersion: function(version) {
+    let currentVersion = this.getVersion();
+
+    if(!currentVersion)
+      currentVersion = '';
+
+    return compareVersions(version, currentVersion);
+  },
+
+  // TODO: REMOVE THIS
   getBuilds: function() {
     let champions = db.getChampions();
 
@@ -82,8 +85,24 @@ let AppStore = Biff.createStore({
     this._lolPath = path;
   },
 
+  loadItems: function(items) {
+    this._items = items;
+  },
+
+  loadChampions: function(champions) {
+    this._champions = champions;
+  },
+
   updateRegion: function(region) {
     this._lolRegion = region;
+  },
+
+  updatePath: function(path) {
+    this._lolPath = path;
+  },
+
+  updateVersion: function(version) {
+    this._lolVersion = version;
   }
 
 }, function (payload) {
@@ -108,7 +127,27 @@ let AppStore = Biff.createStore({
     this.updateRegion(payload.data.region);
     this.emitChange();
   }
-  
+
+  if(actionType === 'LOL_PATH_UPDATE') {
+    this.updatePath(payload.data.path);
+    this.emitChange();
+  }
+
+  if(actionType === 'LOL_VERSION_UPDATE') {
+    this.updateVersion(payload.data.version);
+    this.emitChange();
+  }
+
+  if(actionType === 'LOL_ITEMS_LOAD') {
+    this.loadItems(payload.data.items);
+    this.emitChange();
+  }
+
+  if(actionType === 'LOL_CHAMPIONS_LOAD') {
+    this.loadChampions(payload.data.champions);
+    this.emitChange();
+  }
+
 });
 
 export default AppStore;

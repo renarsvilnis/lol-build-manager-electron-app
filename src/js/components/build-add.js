@@ -8,6 +8,7 @@ let BuildAdd = React.createClass({
     return (
       <div className="c_build-add">
         <h2>BuildAdd</h2>
+        <input type="text"/>
       </div>
     );
   }

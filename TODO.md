@@ -41,6 +41,9 @@
 - [ ] Navigation icons
 - [ ] Scrollbars
 
+### Extension
+- [ ] Fix correct name for pageAction button
+
 ### Misc
 - [ ] Write about project
 

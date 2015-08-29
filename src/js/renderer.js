@@ -18,7 +18,6 @@ let Route         = Router.Route;
 let DefaultRoute  = Router.DefaultRoute;
 let NotFoundRoute = Router.NotFoundRoute;
 
-
 let routes = (
   <Route handler={App} path="/">
     <DefaultRoute name="loader" handler={Loader} />
@@ -32,6 +31,7 @@ let routes = (
   </Route>
 );
 
+// for now clear cache each app load
 import db from './modules/db';
 db.reset();
 
@@ -44,26 +44,3 @@ Router.run(routes, function(Handler, state) {
   // React.render(<Handler params={params} />, el);
   React.render(<Handler />, document.body);
 });
-
-
-// import scraper from './modules/scraper';
-// // let url = 'http://www.probuilds.net/guide/NA/1925326964/60783';
-// // let url = 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408';
-// // let url = 'http://www.mobafire.com/league-of-legends/build/kayle-angel-more-like-a-god-429690';
-// // let url = 'http://www.mobafire.com/league-of-legends/build/shyvana-the-ultimate-assassin-jungle-how-2-penta-as-a-jungle-430011';
-// let buildUrl = 'http://www.mobafire.com/league-of-legends/build/support-katarina-support-fear-not-its-not-a-troll-pick-429930';
-// scraper(buildUrl);
-
-
-// import db from './modules/db';
-// import lolApi from './modules/lol-api';
-
-// lolApi.getItems('na', function(err, results) {
-//   if(!err)
-//     db.setItems(results);
-// });
-
-// lolApi.getChampions('na', function(err, results) {
-//   if(!err)
-//     db.setChampions(results);
-// });

@@ -66,7 +66,6 @@ let Cache = {
         });
       });
     }
-
   },
 
   loadChampions: function() {
@@ -93,9 +92,6 @@ let Cache = {
 
           // Try to download image
           downloadImage(filename, url, CHAMPIONS_FOLDER, function(err, filepath) {
-            if(err) {
-              console.log(champion, filename, url);
-            }
             champion.image = err ? null :filepath;
             callback(null, champion);
           });
@@ -106,7 +102,6 @@ let Cache = {
         });
       });
     }
-
   },
 
 

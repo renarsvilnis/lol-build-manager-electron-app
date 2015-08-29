@@ -7,13 +7,13 @@ import Biff from '../modules/biff';
 
 // Creates a DataStore
 let AppStore = Biff.createStore({
-
+  // ########################################
   _lolRegion: '',
   _lolVersion: '',
   _lolPath: '',
   _items: [],
   _champions: [],
-
+  // ########################################
   shouldShowWelcomeScreen: function() {
     return !this._lolRegion || !this._lolPath;
   },
@@ -34,34 +34,7 @@ let AppStore = Biff.createStore({
 
     return compareVersions(version, currentVersion);
   },
-
-  // TODO: REMOVE THIS
-  getBuilds: function() {
-    let champions = db.getChampions();
-
-    if(!champions) {
-      champions = [];
-    } else {
-      champions = champions.data;
-    }
-
-    // sort champions by lower case name
-    champions.sort(function(a, b) {
-      let lowA = a.name.toLowerCase(),
-          lowB = b.name.toLowerCase();
-
-      if(lowA < lowB) {
-        return -1;
-      } else if(lowA > lowB) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-
-    return champions;
-  },
-
+  // ########################################
   getRegion: function() {
     return this._lolRegion;
   },
@@ -71,7 +44,7 @@ let AppStore = Biff.createStore({
   getPath: function() {
     return this._lolPath;
   },
-
+  // ########################################
   loadRegion: function(region) {
     this._lolRegion = region;
   },
@@ -91,7 +64,7 @@ let AppStore = Biff.createStore({
   loadChampions: function(champions) {
     this._champions = champions;
   },
-
+  // ########################################
   updateRegion: function(region) {
     this._lolRegion = region;
   },
@@ -109,6 +82,7 @@ let AppStore = Biff.createStore({
 
   console.log('Appstore', payload.actionType);
 
+  // ########################################
   if(actionType === 'LOL_REGION_LOAD') {
     this.loadRegion(payload.data.region);
     this.emitChange();
@@ -121,7 +95,16 @@ let AppStore = Biff.createStore({
     this.loadPath(payload.data.path);
     this.emitChange();
   }
+  if(actionType === 'LOL_ITEMS_LOAD') {
+    this.loadItems(payload.data.items);
+    this.emitChange();
+  }
 
+  if(actionType === 'LOL_CHAMPIONS_LOAD') {
+    this.loadChampions(payload.data.champions);
+    this.emitChange();
+  }
+  // ########################################
   if(actionType === 'LOL_REGION_UPDATE') {
     this.updateRegion(payload.data.region);
     this.emitChange();
@@ -137,15 +120,6 @@ let AppStore = Biff.createStore({
     this.emitChange();
   }
 
-  if(actionType === 'LOL_ITEMS_LOAD') {
-    this.loadItems(payload.data.items);
-    this.emitChange();
-  }
-
-  if(actionType === 'LOL_CHAMPIONS_LOAD') {
-    this.loadChampions(payload.data.champions);
-    this.emitChange();
-  }
 
 });
 

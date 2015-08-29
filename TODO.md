@@ -8,9 +8,9 @@
 - [x] Clear cache function / Reset
 - [x] Download item and champion images
 - [ ] Scrape URL check if supported - same logic across extensions and app
-- [-] ---Re-download item and champion images---
+~~- [ ] Re-download item and champion images~~
 - [?] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
-- [-] ---add gulp-cache for js files---
+~~- [ ] Add gulp-cache for js files~~
 - [?] take network status into consideration
 - [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it

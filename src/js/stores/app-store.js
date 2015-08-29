@@ -1,6 +1,5 @@
 'use strict';
 
-import remote from 'remote';
 import compareVersions from 'compare-versions';
 
 import db from '../modules/db';

@@ -16,15 +16,22 @@
     - update
     - add new build
 - [ ] automate CDN version update
+- [ ] If and image isnt succcesfully downlaoded, do something about that
 
 
 ### Welcome
 - [ ] Accardion guide on how it works
 
 ### Builds
-- [ ] Load builds from existing files + cache data
+- [ ] Load existing builds
+- [ ] Match existing builds with cached data about them
 - [ ] Add build through extension
 - [ ] Add build through app manualy
+- [ ] Delete build
+- [ ] View build file in explorer or finder
+- [ ] Link to author
+- [ ] Link to guide
+- [ ] Update guide - will promt if has multiple builds related to that guide
 
 ### Settings
 - [ ] Change directory
@@ -43,7 +50,8 @@
 
 ### Future features
 - [ ] Map specific guides
-- [ ] Autoupdate app
+- [ ] [Autoupdate app](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md)
 - [ ] Windows progress when in loader view downlaoding assets
 - [ ] Add more website support
+- [ ] Better loader messages
 

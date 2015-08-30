@@ -16,9 +16,12 @@ let findGuideTitle = function($, parent) {
 let findGuideAuthor = function($, parent) {
   let profileEl = parent.find('a');
 
+  let profileUrl = profileEl.attr('href') || '';
+  profileUrl = profileUrl ? (DOMAIN + profileEl) : '';
+
   return {
     name: profileEl.text(),
-    url: DOMAIN + profileEl.attr('href')
+    url: profileUrl
   };
 };
 
@@ -31,7 +34,8 @@ let findUpdateAt = function($, parent) {
   dateContainerEl.find('a').text('').remove();
 
   // TODO: tinker more for a better result
-  return chrono.parseDate(dateContainerEl.text().trim()).getTime();
+  let updatedAt = chrono.parseDate(dateContainerEl.text().trim());
+  return updatedAt ? updatedAt.getTime() : null;
 };
 
 let findChampion = function($, parent) {
@@ -61,7 +65,6 @@ let findChampion = function($, parent) {
   let championName = buildText.substring(0, REMOVE_PATTERN.length + 1);
 
   let championId = db.getChampionByName(championName);
-  
   return championId;
 };
 
@@ -97,12 +100,17 @@ let findItems = function($, parent) {
         itemCount = parseInt(removeNonNumbericCharacters(countString), 10);
       }
 
+      // TODO: update getItemByName algorithm
       let itemId = db.getItemByName(itemName);
 
-      items.push({
-        id: itemId,
-        count: itemCount
-      });
+      if(itemId) {
+        items.push({
+          id: itemId,
+          count: itemCount
+        });  
+      } else {
+        console.log('item not found', itemName);
+      }
     });
 
 
@@ -179,7 +187,7 @@ let parse = function(url, html) {
 
 export default function(url, callback) {
   request(url, {
-    timeout: 2000
+    timeout: 10000
   }, function(err, res, html) {
     if (!err && res.statusCode === 200) {
       callback(null, parse(url, html));

@@ -39,6 +39,10 @@ let dbMethods = {
   getGuides: () => objectPath.get(db.object, 'db.object.guides'),
 
   getItemByName: function(name) {
+
+    if(!name)
+      return null;
+    
     let items = this.getItems();
 
     if(!items || typeof items.data === 'undefined')
@@ -78,6 +82,10 @@ let dbMethods = {
   },
 
   getChampionByName: function(name) {
+
+    if(!name)
+      return null;
+
     let champions = this.getChampions();
 
     if(!champions || typeof champions.data === 'undefined')

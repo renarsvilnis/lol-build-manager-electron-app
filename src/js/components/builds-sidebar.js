@@ -59,9 +59,8 @@ let Sidebar = React.createClass({
 
   createChampionNodes: function() {
     let nodes = this.state.store.map(function(group) {
-      console.log(group.name);
       return (
-        <SidebarChampion name={group.name} key={group.id} />
+        <SidebarChampion group={group} key={group.id} />
       );
     });
 
@@ -75,7 +74,9 @@ let Sidebar = React.createClass({
     return (
       <div className="c_builds-sidebar">
         <h2>Champions</h2>
-        {championNodes}
+        <div className="c_builds-sidebar__champions">
+          {championNodes}
+        </div>
       </div>
     );
   }

@@ -1,5 +1,7 @@
 'use strict';
 
+import uuid from 'node-uuid';
+
 import db from '../modules/db';
 import Biff from '../modules/biff';
 
@@ -21,6 +23,8 @@ let groupList = function(list) {
     if(!championId)
       continue;
 
+    addUuid(item);
+
     if(typeof groups[championId] === 'undefined')
       groups[championId] = [];
 
@@ -30,15 +34,26 @@ let groupList = function(list) {
   return groups;
 };
 
+let addUuid = function(item) {
+  // if a guide then add uuid for each build
+  if(item.url) {
+    item.builds.forEech(function(build) {
+      build.id = uuid.v1();
+    })
+  }
+
+  item.id = uuid.v1();
+};
+
 let loadGroupChampions = function(groups) {
 
   let list = [];
 
   for(let championId in groups) {
     let group = groups[championId];
-
     let champion = db.getChampionById(championId);
 
+    // ginore group if doesn't have a valid chmapion
     if(!champion)
       continue;
 

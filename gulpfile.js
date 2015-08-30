@@ -25,10 +25,11 @@ var pkg = require('./package.json');
 // current enviroment
 var env = process.env.NODE_ENV || 'development';
 
-var IN_BASE   = 'src/';
-var OUT_BASE  = 'prebuild/';
-var OUT_BUILD = 'build/';
-var BOWER     = 'bower_components/';
+var IN_BASE      = 'src/';
+var OUT_BASE     = 'prebuild/';
+var OUT_BUILD    = 'build/';
+var BOWER        = 'bower_components/';
+var NODE_MODULES = 'node_modules/';
 
 var IN = {
   CSS   : IN_BASE + 'scss/',
@@ -158,10 +159,18 @@ gulp.task('images', function() {
 // ####################
 // FONTS
 // ####################
+var fontFiletypes = '**/*.{eot,svg,ttf,woff,woff2}';
 gulp.task('fonts', function() {
-  var fileTypes = '**/*.{eot,svg,ttf,woff,woff2}';
+  return gulp.start('fonts-local', 'fonts-material-icons');
+});
 
-  return gulp.src(IN.FONTS + fileTypes)
+gulp.task('fonts-local', function() {
+  return gulp.src(IN.FONTS + fontFiletypes)
+    .pipe(gulp.dest(OUT.FONTS));
+});
+
+gulp.task('fonts-material-icons', function() {
+  return gulp.src(NODE_MODULES + 'material-design-icons/iconfont/' +fontFiletypes)
     .pipe(gulp.dest(OUT.FONTS));
 });
 

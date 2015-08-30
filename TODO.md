@@ -14,6 +14,7 @@
 - [?] take network status into consideration
 - [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
+- [ ] Update db search by name to look for enchantments
 
 ### Welcome
 - [ ] Accardion guide on how it works

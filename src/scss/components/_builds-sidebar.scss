@@ -12,4 +12,37 @@
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: $sidebar-width;
+
+}
+
+.c_builds-sidebar__champions {
+  margin: 1em 0;  
+}
+
+.c_builds-champion {
+
+  &__header {
+    margin: 0;   
+  }
+
+  &__avatar {
+    width: 1.5em;
+    height: auto;
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 0;
+    margin: 0 0.5em 0 0;
+  }
+
+  &__sets {
+    margin: 1em 0 1em 0.5em;
+  }
+
+  &__build {
+    font-size: 0.75em;
+  }
+
+  &__guide {
+    
+  }
 }

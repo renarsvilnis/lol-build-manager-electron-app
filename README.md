@@ -7,6 +7,8 @@ TODO: registring a url protocol
 
 Although writing all JavaScript in ES2015 need to write React class with ES5 syntax due to `react-router` dependency as it uses mixins which aren't supported in ES2015 React component classes.
 
+Scrapping data, different naming conventions
+
 
 ### Developing
 First things first, get yourself a League of Legends API key from developer.riotgames.com

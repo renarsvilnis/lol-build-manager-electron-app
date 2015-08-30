@@ -10,8 +10,8 @@ import mgnUtil from 'lol-build-manager-util';
 let buffer = [];
 
 export default {
-  push: function(url) {
-    buffer.push(mgnUtil.decodeUrlData(url));
+  push: function(data) {
+    buffer.push(mgnUtil.decodeUrlData(data));
   },
 
   flush: function() {

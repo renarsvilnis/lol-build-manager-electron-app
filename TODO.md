@@ -7,7 +7,7 @@
 - [x] Check if League of Legends directory legit
 - [x] Clear cache function / Reset
 - [x] Download item and champion images
-- [ ] Scrape URL check if supported - same logic across extensions and app
+- [x] Scrape URL check if supported - same logic across extensions and app
 - [ ] ~~Re-download item and champion images~~
 - [?] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
 - [ ] ~~Add gulp-cache for js files~~
@@ -23,14 +23,15 @@
 - [x] Load existing builds
 - [x] Match existing builds with cached data about them
 - [ ] Render build sidebar
-- [ ] Open single build
+- [?] Open single build
 - [ ] Add build through extension
-- [ ] Add build through app manualy
+- [?] Add build through app manualy
 - [ ] Delete build
 - [ ] View build file in explorer or finder
 - [ ] Link to author
 - [ ] Link to guide
 - [ ] Update guide - will promt if has multiple builds related to that guide
+- [ ] Reload guide list
 
 ```javascript
 import shell from 'shell';

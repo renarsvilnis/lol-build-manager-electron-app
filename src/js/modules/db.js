@@ -11,16 +11,17 @@
  */
 'use strict';
 
+import path from 'path';
 import low from 'lowdb';
 import objectPath from 'object-path';
 
 import mgnUtil from 'lol-build-manager-util';
 import {CACHE_DIR} from '../constants/app-constants';
 
-let filename = 'cache.json',
-    path     = CACHE_DIR + '/' + filename;
+const filename = 'cache.json',
+const filepath = path.join(CACHE_DIR, filename);
 
-let db = low(path, {
+let db = low(filepath, {
   autosave: true,
   async: false // synchronous for now, as we don't have heavy I/O operations
 });
@@ -32,11 +33,11 @@ let dbMethods = {
   // ########################################
 
   getLolVersion: () => objectPath.get(db.object, 'db.object.lol.version'),
-  getLolRegion: () => objectPath.get(db.object, 'db.object.lol.region'),
-  getLolPath: () => objectPath.get(db.object, 'db.object.lol.path'),
-  getItems: () => objectPath.get(db.object, 'db.object.items'),
-  getChampions: () => objectPath.get(db.object, 'db.object.champions'),
-  getGuides: () => objectPath.get(db.object, 'db.object.guides'),
+  getLolRegion:  () => objectPath.get(db.object, 'db.object.lol.region'),
+  getLolPath:    () => objectPath.get(db.object, 'db.object.lol.path'),
+  getItems:      () => objectPath.get(db.object, 'db.object.items'),
+  getChampions:  () => objectPath.get(db.object, 'db.object.champions'),
+  getGuides:     () => objectPath.get(db.object, 'db.object.guides'),
 
   getItemByName: function(name) {
 
@@ -126,7 +127,7 @@ let dbMethods = {
     return null;
   },
 
-  getGuideByFile: function(filepath) {
+  getGuideByFile: function(file) {
     let guides = this.getGuides();
 
     if(!guides || !guides.length)
@@ -142,7 +143,7 @@ let dbMethods = {
       for(let ii = 0, ll = builds.length; ii < ll; ii++) {
         let build = builds[ii];
 
-        if(build === filepath)
+        if(build === file)
           return guide;
       }
     }
@@ -164,8 +165,8 @@ let dbMethods = {
     db.save();
   },
 
-  setLolPath: function(path) {
-    objectPath.set(db.object, 'db.object.lol.path', path);
+  setLolPath: function(folderpath) {
+    objectPath.set(db.object, 'db.object.lol.path', folderpath);
     db.save();
   },
 

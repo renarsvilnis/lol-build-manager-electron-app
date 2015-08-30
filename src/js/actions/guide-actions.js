@@ -10,6 +10,17 @@ let GuideActions = Biff.createActions({
       actionType: 'LIST_LOAD',
       data
     });
+  },
+
+  guideCreate: function(data) {
+
+    // cache.createGuide(data.guide, callback(err, ))
+
+    // this.dispatch({
+    //   actionType: 'GUIDE_CREATE',
+    //   data:
+
+    // })
   }
 });
 

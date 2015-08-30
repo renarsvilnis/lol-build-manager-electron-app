@@ -35,7 +35,9 @@ let BuildAdd = React.createClass({
           scraping: false
         });
 
-        console.log(err, results);
+        if(!err)
+          GuideActions.guideCreate({guide: results});
+
       })  
     });
   },

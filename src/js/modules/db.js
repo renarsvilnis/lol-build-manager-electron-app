@@ -32,14 +32,11 @@ let dbMethods = {
   // ########################################
 
   getLolVersion: () => objectPath.get(db.object, 'db.object.lol.version'),
-
   getLolRegion: () => objectPath.get(db.object, 'db.object.lol.region'),
-
   getLolPath: () => objectPath.get(db.object, 'db.object.lol.path'),
-
   getItems: () => objectPath.get(db.object, 'db.object.items'),
-
   getChampions: () => objectPath.get(db.object, 'db.object.champions'),
+  getGuides: () => objectPath.get(db.object, 'db.object.guides'),
 
   getItemByName: function(name) {
     let items = this.getItems();
@@ -104,7 +101,7 @@ let dbMethods = {
   },
 
   getItemById: function(id) {
-    let champions = thus.getChampions();
+    let champions = this.getChampions();
 
     if(!champions || typeof champions.data === 'undefined')
       return null;
@@ -116,6 +113,30 @@ let dbMethods = {
 
       if(champion.id === id)
         return champion;
+    }
+
+    return null;
+  },
+
+  getGuideByFile: function(filepath) {
+    let guides = this.getGuides();
+
+    if(!guides || !guides.length)
+      return null;
+
+    for(let i = 0, l = guides.length; i < l; i++) {
+      let guide = guides[i];
+      let builds = guide.builds;
+
+      if(!builds || !builds.length)
+        continue;
+
+      for(let ii = 0, ll = builds.length; ii < ll; ii++) {
+        let build = builds[ii];
+
+        if(build === filepath)
+          return guide;
+      }
     }
 
     return null;

@@ -32,8 +32,8 @@ let routes = (
 );
 
 // for now clear cache each app load
-import db from './modules/db';
-db.reset();
+// import db from './modules/db';
+// db.reset();
 
 Cache.loadApp();
 Router.run(routes, function(Handler, state) {

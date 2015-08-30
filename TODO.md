@@ -8,9 +8,9 @@
 - [x] Clear cache function / Reset
 - [x] Download item and champion images
 - [ ] Scrape URL check if supported - same logic across extensions and app
-~~- [ ] Re-download item and champion images~~
+- [ ] ~~Re-download item and champion images~~
 - [?] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
-~~- [ ] Add gulp-cache for js files~~
+- [ ] ~~Add gulp-cache for js files~~
 - [?] take network status into consideration
 - [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
@@ -29,6 +29,11 @@
 - [ ] Link to guide
 - [ ] Update guide - will promt if has multiple builds related to that guide
 
+```javascript
+import shell from 'shell';
+shell.showItemInFolder(path);
+```
+
 ### Settings
 - [ ] Change directory
 - [ ] Change region
@@ -36,7 +41,7 @@
 **[Saving forces app restart](https://github.com/atom/electron/issues/539)**
 
 ### Design
-- [ ] App icons
+- [ ] [App icons](http://google.github.io/material-design-icons/#icon-images-for-the-web)
 - [ ] Chrome extension store images 
 - [ ] Navigation icons
 - [ ] Scrollbars
@@ -55,3 +60,5 @@
 - [ ] Better loader messages
 - [ ] Map specific builds
 - [ ] Global builds
+- [ ] Sort build order
+- [ ] Add check for reserved filelist words within `cache.loadBuilds` method

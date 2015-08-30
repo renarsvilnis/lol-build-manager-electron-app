@@ -18,6 +18,8 @@
     "cheerio": "^0.19.0",
     "chrono-node": "^1.0.6",
     "compare-versions": "^1.1.2",
+    "filewalker": "^0.1.2",
+    "jsonfile": "^2.2.1",
     "lol-build-manager-config": "git+https://github.com/renarsvilnis/lol-build-manager-config.git",
     "lol-build-manager-util": "git+https://github.com/renarsvilnis/lol-build-manager-util.git",
     "lowdb": "^0.10.2",
@@ -50,6 +52,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
     "gulp-uglify": "^1.2.0",
+    "material-design-icons": "^2.0.0",
     "wiredep": "^3.0.0-beta"
   }
 }

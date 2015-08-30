@@ -65,6 +65,10 @@ export function objectToArray(obj) {
   return Object.keys(obj).map((key) => obj[key]);
 };
 
+export function getLolItemSetPath(baseDir) {
+  return path.normalize(baseDir + LOL_ITEM_SET_PATH);
+};
+
 /**
  * Check wheter given path contains valid item set directory
  * @param  {string} dirPath - Path to League of Legends installation folder
@@ -73,6 +77,6 @@ export function objectToArray(obj) {
  * @return {Boolean} exists
  */
 export function isValidLolDirectroy(dirPath, callback) {
-  let itemSetFullPath =  path.normalize(dirPath + LOL_ITEM_SET_PATH);
+  let itemSetFullPath = getLolItemSetPath(dirPath);
   pathExists(itemSetFullPath, callback);
 };

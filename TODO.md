@@ -19,8 +19,10 @@
 - [ ] Accardion guide on how it works
 
 ### Builds
-- [ ] Load existing builds
-- [ ] Match existing builds with cached data about them
+- [x] Load existing builds
+- [x] Match existing builds with cached data about them
+- [ ] Render build sidebar
+- [ ] Open single build
 - [ ] Add build through extension
 - [ ] Add build through app manualy
 - [ ] Delete build

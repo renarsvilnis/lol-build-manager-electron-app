@@ -9,12 +9,13 @@ import async from 'async';
 import filewalker from 'filewalker';
 import jsonfile from 'jsonfile';
 
-import AppActions from '../actions/app-actions';
-import AppStore from '../stores/app-store';
 import db from '../modules/db';
 import lolApi from '../modules/lol-api';
 import {downloadImage, getLolItemSetPath} from './util';
 import {ITEMS_FOLDER, CHAMPIONS_FOLDER} from '../constants/app-constants';
+
+import AppActions from '../actions/app-actions';
+import AppStore from '../stores/app-store';
 
 let Cache = {
   loadApp: function() {
@@ -117,12 +118,7 @@ let Cache = {
       // Process builds that where not created by
       // League of Legends build manager
       this._processRemainingFileList.bind(this, itemSetPath),
-    ], function(err, results) {
-
-      console.log('Waterfall done', results);
-      // TODO: call store action
-    });
-
+    ], callback);
   },
 
   _getItemSetFilelist: function(path, next) {

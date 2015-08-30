@@ -3,18 +3,90 @@
 import db from '../modules/db';
 import Biff from '../modules/biff';
 
+
+/**
+ * Group the list by champions
+ * @param  {Array} Array of objects holding build or guide objects
+ * @return {Object} Grouped object by chmapion id
+ */
+let groupList = function(list) {
+  let groups = {};
+
+  // group by champion id
+  for(let i = 0, l = list.length; i < l; i++) {
+    let item = list[i];
+
+    let championId = item.champion;
+
+    if(!championId)
+      continue;
+
+    if(typeof groups[championId] === 'undefined')
+      groups[championId] = [];
+
+    groups[championId].push(item);
+  }
+
+  return groups;
+};
+
+let loadGroupChampions = function(groups) {
+
+  let list = [];
+
+  for(let championId in groups) {
+    let group = groups[championId];
+
+    let champion = db.getChampionById(championId);
+
+    if(!champion)
+      continue;
+
+    list.push({
+      id: champion.id,
+      name: champion.name,
+      image: champion.image,
+      data: group
+    });
+  }
+
+  return list;
+};
+
+
 // Creates a DataStore
 let GuideStore = Biff.createStore({
+
+  _list: [],
+  _groupedList: [],
+
+  getList: function() {
+    return this._list;
+  },
+
+  getGroupedList: function() {
+    return this._groupedList;
+  },
+
+  loadList: function(list) {
+    this._list = list;
+    this.processList();
+  },
+
+  processList: function() {
+    let groupedList = groupList(this.getList());
+    this._groupedList = loadGroupChampions(groupedList);
+  },
 
 }, function (payload) {
   let actionType = payload.actionType;
 
   console.log('GuideStore', payload.actionType);
 
-  // if(actionType === 'LOL_REGION_LOAD') {
-  //   this.loadRegion(payload.data.region);
-  //   this.emitChange();
-  // }
+  if(actionType === 'LIST_LOAD') {
+    this.loadList(payload.data.list);
+    this.emitChange();
+  }
 
 });
 

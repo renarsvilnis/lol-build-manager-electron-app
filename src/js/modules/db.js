@@ -70,7 +70,7 @@ let dbMethods = {
     for(let key in items) {
       let item = items[key];
 
-      if(item.id === id)
+      if(item.id == id)
         return item;
     }
 
@@ -100,7 +100,7 @@ let dbMethods = {
     return null;
   },
 
-  getItemById: function(id) {
+  getChampionById: function(id) {
     let champions = this.getChampions();
 
     if(!champions || typeof champions.data === 'undefined')
@@ -111,7 +111,7 @@ let dbMethods = {
     for(let key in champions) {
       let champion = champions[key];
 
-      if(champion.id === id)
+      if(champion.id == id)
         return champion;
     }
 

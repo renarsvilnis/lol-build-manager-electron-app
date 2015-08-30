@@ -3,15 +3,27 @@
 import React from 'react';
 import Router from 'react-router';
 
+import cache from '../modules/cache';
+import GuideActions from '../actions/guide-actions';
+import GuideStore from '../stores/guide-store';
+
 import Nav from './nav';
 
 let RouteHandler = Router.RouteHandler;
 
-// <Route handler={HomeBody} path="/">
-//   <DefaultRoute name="builds" handler={Builds} />
-// </Route>
-
 let Home = React.createClass({
+
+  mixins: [GuideStore.mixin],
+
+  storeDidChange: function() {
+    console.log('guide store change store');
+  },
+
+  componentDidMount: function() {
+    cache.loadBuilds(function(err, list) {
+      GuideActions.loadList({list});
+    });
+  },
 
   render: function() {
     return (

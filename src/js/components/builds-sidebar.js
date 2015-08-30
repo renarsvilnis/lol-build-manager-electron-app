@@ -2,10 +2,14 @@
 
 import React from 'react';
 
-import SidebarChampion from './builds-sidebar-champion';
+import cache from '../modules/cache';
+
+import GuideStore from '../stores/guide-store';
 import AppStore from '../stores/app-store';
 
-import cache from '../modules/cache';
+import SidebarChampion from './builds-sidebar-champion';
+
+
 
 // getBuilds: function() {
 //   let champions = db.getChampions();
@@ -34,26 +38,30 @@ import cache from '../modules/cache';
 
 let getState = function() {
   return {
-    // active:AppStore.getActiveGuideId()
-    // store: AppStore.getBuilds()
-    store: []
+    store: GuideStore.getGroupedList()
   }
 };
 
+
 let Sidebar = React.createClass({
+
+  mixins: [GuideStore.mixin],
 
   getInitialState: function() {
     return getState();
   },
 
-  componentDidMount: function() {
-    cache.loadBuilds(function() {});
+  storeDidChange: function() {
+    this.setState(getState());
   },
 
+  componentDidMount: function() {},
+
   createChampionNodes: function() {
-    let nodes = this.state.store.map(function(champion) {
+    let nodes = this.state.store.map(function(group) {
+      console.log(group.name);
       return (
-        <SidebarChampion champion={champion} key={champion.id} />
+        <SidebarChampion name={group.name} key={group.id} />
       );
     });
 

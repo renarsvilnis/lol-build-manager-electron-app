@@ -18,7 +18,7 @@ import objectPath from 'object-path';
 import mgnUtil from 'lol-build-manager-util';
 import {CACHE_DIR} from '../constants/app-constants';
 
-const filename = 'cache.json',
+const filename = 'cache.json';
 const filepath = path.join(CACHE_DIR, filename);
 
 let db = low(filepath, {

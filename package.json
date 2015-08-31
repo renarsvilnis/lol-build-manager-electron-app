@@ -6,9 +6,9 @@
   "main": "javascripts/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node tasks/build.js",
-    "package": "node_env=production gulp package",
-    "start": "./node_modules/electron-prebuilt/cli.js ./prebuild"
+    "watch": "./node_modules/gulp/bin/gulp.js"
+    "package": "NODE_ENV=production gulp package",
+    "start-app": "./node_modules/electron-prebuilt/cli.js ./prebuild"
   },
   "author": "Renārs Vilnis <renars.vilnis@gmail.com>",
   "license": "MIT",

@@ -1,5 +1,5 @@
 # lol-build-manager-electron-app
-Cross platform application built with help of Electron framework for the League of Legends build manager. *Currently only works for OSX*.
+Cross platform application built with help of Electron framework for the League of Legends build manager. **Currently only works in OSX**.
 
 ### Developing
 First things first, get yourself a League of Legends API key from [developer.riotgames.com](developer.riotgames.com).

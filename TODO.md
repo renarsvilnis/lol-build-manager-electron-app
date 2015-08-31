@@ -59,6 +59,7 @@ Maybe add that on settings save it forces the app to [restart](https://github.co
 - [ ] Write about project
 
 ### Future features
+- [ ] Handle 3rd party item-set file renames for files that where created through app. *not sure we even need to handle them explicitly*
 - [ ] Map specific guides
 - [ ] [Autoupdate app](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md)
 - [ ] Windows progress when in loader view downlaoding assets

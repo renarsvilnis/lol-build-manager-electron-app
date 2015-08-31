@@ -14,6 +14,7 @@
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
 - [ ] Update db search by name to look for enchantments
 - [ ] Gulp watch node_module by package json
+- [ ] Add check for reserved filelist words within `cache.loadBuilds` method with use of `lolConstants.RESERVED_SUFFFIXES` and `champion.key`
 
 ### View Welcome
 - [ ] Accardion guide on how it works
@@ -68,4 +69,6 @@ Maybe add that on settings save it forces the app to [restart](https://github.co
 - [ ] Map specific builds
 - [ ] Global builds
 - [ ] Sort build order
-- [ ] Add check for reserved filelist words within `cache.loadBuilds` method with use of `lolConstants.RESERVED_SUFFFIXES` and `champion.key`
+- [ ] Consider serverside api requests, thus not exposing api-key  when built
+- [ ] Consider serverside webpage scraping
+- [ ] Consider Imagesprites

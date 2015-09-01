@@ -6,9 +6,7 @@
 - [x] Clear cache function / Reset
 - [x] Download item and champion images
 - [x] Scrape URL check if supported - same logic across extensions and app
-- [ ] ~~Re-download item and champion images~~
 - [?] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
-- [ ] ~~Add gulp-cache for js files~~
 - [?] take network status into consideration
 - [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
@@ -24,7 +22,7 @@
 - [x] Match existing builds with cached data about them
 - [ ] Render build sidebar
 - [?] Open single build
-- [ ] Add build through extension
+- [?] Add build through extension
 - [?] Add build through app manualy
 - [ ] Delete build
 - [ ] View build file in explorer or finder
@@ -52,12 +50,6 @@ Maybe add that on settings save it forces the app to [restart](https://github.co
 - [ ] Chrome extension store images 
 - [ ] Navigation icons
 - [ ] Scrollbars
-
-### Extension
-- [ ] Fix correct name for pageAction button
-
-### Misc
-- [ ] Write about project
 
 ### Future features
 - [ ] Handle 3rd party item-set file renames for files that where created through app. *not sure we even need to handle them explicitly*

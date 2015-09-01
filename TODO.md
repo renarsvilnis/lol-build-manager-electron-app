@@ -13,6 +13,7 @@
 - [x] Update db search by name to look for enchantments
 - [x] Gulp watch node_module by package json
 - [ ] Add check for reserved filelist words within `cache.loadBuilds` method with use of `lolConstants.RESERVED_SUFFFIXES` and `champion.key`
+- [ ] When fresh installation of League of Legends, there isn't `LOL_ITEM_SET_PATH` yet. Only the path to the `Config` exists
 
 ### View Welcome
 - [ ] Accardion guide on how it works

@@ -1,15 +1,14 @@
 'use strict';
 
-// ########################################
-// Modules
-// ########################################
+var fs = require('fs');
+
 var gulp              = require('gulp'),
     del               = require('del'),
     mqpacker          = require('css-mqpacker'),
     autoprefixer      = require('autoprefixer-core'),
-    // wiredep           = require('wiredep').stream,
     packager          = require('electron-packager');
 
+// autoload node modules that prefixed with 'gulp-'
 var $ = require('gulp-load-plugins')({
   scope: ['devDependencies'],
   camelize: true,
@@ -64,6 +63,15 @@ gulp.task('clean', function(cb) {
   del([OUT_BASE], cb);
 });
 
+/**
+ * Escape regex expression
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
+ * @param  {String} string
+ * @return {String}
+ */
+var escapeRegExp = function(string){
+  return string.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
+};
 
 // ########################################
 // Electron tasks
@@ -78,26 +86,47 @@ gulp.task('misc-files', function() {
   ]).pipe(gulp.dest(OUT_BASE));
 });
 
-gulp.task('node-modules', function() {
+gulp.task('node-modules', function(callback) {
+
+  /**
+   * Array of dependencies that need to be copied, by default it loads all
+   * production dependencies
+   * Note: its possible to add more modules manualy, by adding the name
+   * of the module to the array
+   * @type {string[]}
+   */
   var dependencies = [];
 
-  if(pkg.dependencies) {
+  // Instead of requiring package.json file, we want to read it each time there
+  // is an update to it, instead of watching all node_modules files for
+  // changes. Don't trigger if you don't save a installed node module, which
+  // would not be happening anyway
+  fs.readFile('./package.json', {encoding: 'utf8'}, function(err, pkgJson) {
 
-    var depList = Object.keys(pkg.dependencies);
+    if(err) {
+      callback(err);
+      return;
+    }
 
-    depList.map(function(dep) {
-      dependencies.push(dep);
-    });
-  }
+    // autoload all production dependencies
+    if(pkgJson.dependencies) {
+      var depList = Object.keys(pkgJson.dependencies);
+      depList.map(function(dep) {
+        dependencies.push(dep);
+      });
+    }
 
-  dependencies = dependencies.map(function(dep) {
-    return './node_modules/' + dep + '/**/*';
-  })
+    // add globs to the dependencies
+    dependencies = dependencies.map(function(dep) {
+      return './node_modules/' + dep + '/**/*';
+    })
 
-  return gulp.src(dependencies, {
-    base: './node_modules/'
-  })
-    .pipe(gulp.dest(OUT_BASE + 'node_modules/'));
+
+    gulp.src(dependencies, {base: './node_modules/'})
+      .pipe(gulp.dest(OUT_BASE + 'node_modules/'))
+      .on('end', callback);
+  });
+  
 });
 
 // ####################
@@ -183,10 +212,6 @@ gulp.task('js', function() {
     .pipe($.plumber())
     .pipe($.babel())
     .pipe($.preprocess())
-    // .on('error', function(e) {
-    //   console.error(e);
-    //   this.emit('end');
-    // })
     .pipe(gulp.dest(OUT.JS));
 });
 
@@ -210,16 +235,6 @@ gulp.task('default', ['clean'], function() {
 
 
 gulp.task('package', function(callback) {
-
-  /**
-   * Escape regex expression
-   * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-   * @param  {String} string
-   * @return {String}
-   */
-  var escapeRegExp = function(string){
-    return string.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
-  };
 
   // var ignoreList = [
   //   '/.git',
@@ -272,4 +287,5 @@ gulp.task('watch', function () {
   gulp.watch(IN.JS + '**/*.{js,jsx}', ['js']);
   gulp.watch(IN.CSS + '**/*.scss', ['styles']);
   gulp.watch(IN.HTML + '**/*.html', ['html']);
+  gulp.watch('package.json', ['electron']);
 });

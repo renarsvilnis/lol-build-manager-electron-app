@@ -12,8 +12,8 @@
 - [?] take network status into consideration
 - [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
-- [ ] Update db search by name to look for enchantments
-- [ ] Gulp watch node_module by package json
+- [x] Update db search by name to look for enchantments
+- [x] Gulp watch node_module by package json
 - [ ] Add check for reserved filelist words within `cache.loadBuilds` method with use of `lolConstants.RESERVED_SUFFFIXES` and `champion.key`
 
 ### View Welcome

@@ -52,16 +52,84 @@ let dbMethods = {
     items = items.data;
     name = name.toLowerCase();
 
+    // try to find item by name
     for(let id in items) {
       let item = items[id];
 
       let itemName = item.name.toLowerCase();
 
       if(mgnUtil.isSubtringInString(itemName, name))
-        return item.id;
+        return item;
+    }
+
+    // if wasn't able to find it, most likely a item with an enchantment
+    return this.getEnchantedItemByName(name);
+  },
+
+  getEnchantedItemByName: function(name) {
+    // Most likely pattern of enchanted items are
+    // '<parent_item_name> - <enchantment_name>' 
+    let itemParts = name.split(' - ');
+
+    if(itemParts.length !== 2) 
+      return null;
+
+    let parentName = itemParts[0].trim(),
+        enchantmentName = itemParts[1].trim();
+
+    enchantmentName = enchantmentName.toLowerCase();
+
+    // find the parent element
+    let parentItem = dbMethods.getItemByName(parentName);
+
+    if(!parentItem)
+      return null;
+
+    let itemsFromParent = this.getItemsBuiltFromParentId(parentItem.id);
+
+    if(!itemsFromParent.length)
+      return null;
+
+    // iterate items that where created form parent and try to match it
+    // with the name of the enchantment
+    for(let i = 0, l = itemsFromParent.length; i < l; i++) {
+      let item = itemsFromParent[i];
+      let itemName = item.name.toLowerCase();
+
+      if(mgnUtil.isSubtringInString(itemName, enchantmentName))
+        return item;
     }
 
     return null;
+  },
+
+  getItemsBuiltFromParentId: function(parentId) {
+    // typecast to string
+    parentId = parentId + '';
+
+    let items = this.getItems();
+
+    let foundItems = [];
+
+    if(!items || typeof items.data === 'undefined')
+      return foundItems;
+
+    items = items.data;
+
+    items.forEach((item) => {
+      // if item is built from other items
+      
+      if(item.from) {
+        let parentItemIndex = item.from.indexOf(parentId);
+
+        // if item is built from the given parent id
+        if(parentItemIndex >= 0) {
+          foundItems.push(item);
+        }
+      }
+    });
+
+    return foundItems;
   },
 
   getItemById: function(id) {
@@ -103,7 +171,7 @@ let dbMethods = {
 
       // Depending on name good ideda to try to look for key and name match
       if(mgnUtil.isSubtringInString(championName, name) || mgnUtil.isSubtringInString(championKey, name))
-        return champion.id;
+        return champion;
     }
 
     return null;

@@ -111,7 +111,7 @@ let lolApi = {
     let url = getApiUrl(region, 'item');
     let qs = {
       api_key: API_KEY,
-      itemListData: 'sanitizedDescription,image',
+      itemListData: 'from,sanitizedDescription,image',
     };
 
     request.get({url, qs, json: true}, function(err, res, body) {

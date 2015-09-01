@@ -3,6 +3,9 @@
 import React from 'react';
 import scraper from '../modules/scraper';
 
+import GuideActions from '../actions/guide-actions';
+import GuideStore from '../stores/guide-store';
+
 const inputPlaceholder = 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408';
 
 let BuildAdd = React.createClass({
@@ -10,7 +13,7 @@ let BuildAdd = React.createClass({
   getInitialState: function() {
     return {
       scraping: false,
-      url: '',
+      url: 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408',
       outputMessage: '',
     }
   },
@@ -35,8 +38,11 @@ let BuildAdd = React.createClass({
           scraping: false
         });
 
-        if(!err)
+        console.log(err, results);
+
+        if(!err) {
           GuideActions.guideCreate({guide: results});
+        }
 
       })  
     });

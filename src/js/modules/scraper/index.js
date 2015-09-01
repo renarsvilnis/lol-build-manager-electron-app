@@ -43,19 +43,17 @@ let isValidBuild = function(json) {
     for(let ii = 0, ll = build.blocks.length; ii < ll; ii++) {
       let block = build.blocks[ii];
 
-      // TODO: fix item naming issue
       if(!block.type ||
-         !block.items /*||
-         !block.items.length*/)
+         !block.items ||
+         !block.items.length)
         return false;
 
       // check if items are correct
       for(let iii = 0, lll = block.items.length; iii < lll; iii++) {
         let item = block.items[iii];
 
-        // TODO: fix item naming issue
-        // if(!item.id || !item.count)
-        //   return false;
+        if(!item.id || !item.count)
+          return false;
       }
     }
   }

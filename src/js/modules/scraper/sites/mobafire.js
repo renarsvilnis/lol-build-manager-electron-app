@@ -64,8 +64,9 @@ let findChampion = function($, parent) {
   // Using substring as the patern is on the end of file
   let championName = buildText.substring(0, REMOVE_PATTERN.length + 1);
 
-  let championId = db.getChampionByName(championName);
-  return championId;
+  let champion = db.getChampionByName(championName);
+
+  return champion ? champion.id : null;
 };
 
 let findItems = function($, parent) {
@@ -100,12 +101,11 @@ let findItems = function($, parent) {
         itemCount = parseInt(removeNonNumbericCharacters(countString), 10);
       }
 
-      // TODO: update getItemByName algorithm
-      let itemId = db.getItemByName(itemName);
+      let itemObj = db.getItemByName(itemName);
 
-      if(itemId) {
+      if(itemObj) {
         items.push({
-          id: itemId,
+          id: itemObj.id,
           count: itemCount
         });  
       } else {
@@ -165,12 +165,12 @@ let parse = function(url, html) {
   json.addedAt = Date.now();
 
   // All build containers
-  let buildContainerEl = $('.build-container');
+  let buildBlocksEl = $('.build-container .build-box');
 
   // Only use the the first block to get the champion
-  json.champion = findChampion($, buildContainerEl.first());
+  json.champion = findChampion($, buildBlocksEl.first());
 
-  buildContainerEl.each(function() {
+  buildBlocksEl.each(function() {
     let build = findBuild($, $(this));
     json.builds.push(build);
   });

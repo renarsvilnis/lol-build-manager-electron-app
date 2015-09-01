@@ -210,10 +210,10 @@ let Cache = {
       let filepathParts = filepath.split('/');
 
       let championKey = filepathParts[0];
-      let championId = db.getChampionByName(championKey);
+      let champion = db.getChampionByName(championKey);
 
       // If itemset file assigned to a invalid champion, ignore it
-      if(!championId) {
+      if(!champion) {
         callback(new Error('Unknown champion key'), null);
         return;
       }
@@ -228,7 +228,7 @@ let Cache = {
         }
 
         // assign the build a champion id
-        obj.champion = championId;
+        obj.champion = champion.id;
 
         items.push(obj);
         callback(null);

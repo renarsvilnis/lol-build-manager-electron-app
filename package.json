@@ -31,7 +31,8 @@
     "path-exists": "^1.0.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
-    "request": "^2.61.0"
+    "request": "^2.61.0",
+    "sanitize-filename": "^1.4.2"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",

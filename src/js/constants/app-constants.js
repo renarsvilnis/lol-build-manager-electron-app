@@ -64,7 +64,7 @@ export const GUIDE_TEMPLATE = {
      * Build information
      * @type {Object} guide
      * @type {string} guide.title - Title of the guide
-     * @type {Array} guide.blocks - Array of objects of block rows
+     * @type {Array}  guide.blocks - Array of objects of block rows
      */
     // {
     //   title: '',
@@ -73,7 +73,7 @@ export const GUIDE_TEMPLATE = {
          * Item block
          * @type {Object} block
          * @type {string} block.type - Title of the block, same as LOL API
-         * @type {Array} block.items - Array of objects of block items
+         * @type {Array}  block.items - Array of objects of block items
          */
         // {
         //   type: '',
@@ -82,7 +82,7 @@ export const GUIDE_TEMPLATE = {
              * Item
              * @type {object} item
              * @type {string} item.id - Item Id as string
-             * @type {count} item.count - Shows how many item needed
+             * @type {count}  item.count - Shows how many item needed
              */
     //         {
     //           id: '1001',

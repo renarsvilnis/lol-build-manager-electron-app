@@ -34,6 +34,11 @@ let groupList = function(list) {
   return groups;
 };
 
+/**
+ * Add unique id for sidebar menu item, it can be either a build or guide
+ * It is used to identify react.js components
+ * @param {Object} item [description]
+ */
 let addUuid = function(item) {
   // if a guide then add uuid for each build
   if(item.url) {
@@ -65,6 +70,8 @@ let loadGroupChampions = function(groups) {
     });
   }
 
+  // TODO: sort list by name
+
   return list;
 };
 
@@ -72,8 +79,18 @@ let loadGroupChampions = function(groups) {
 // Creates a DataStore
 let GuideStore = Biff.createStore({
 
+  /**
+   * Array of builds and guides objects
+   * @type {Object[]}
+   */
   _list: [],
+
+  /**
+   * Array of builds and guides which are grouped by champion
+   * @type {Object[]}
+   */
   _groupedList: [],
+
 
   getList: function() {
     return this._list;

@@ -14,6 +14,8 @@
 - [x] Gulp watch node_module by package json
 - [ ] Add check for reserved filelist words within `cache.loadBuilds` method with use of `lolConstants.RESERVED_SUFFFIXES` and `champion.key`
 - [ ] When fresh installation of League of Legends, there isn't `LOL_ITEM_SET_PATH` yet. Only the path to the `Config` exists
+- [ ] Add `isBuild` method for better code structure
+- [ ] Add `loadGroupChampions` sort by champion name
 
 ### View Welcome
 - [ ] Accardion guide on how it works

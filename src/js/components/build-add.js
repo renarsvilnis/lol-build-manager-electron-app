@@ -13,7 +13,7 @@ let BuildAdd = React.createClass({
   getInitialState: function() {
     return {
       scraping: false,
-      url: 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408',
+      url: inputPlaceholder,
       outputMessage: '',
     }
   },

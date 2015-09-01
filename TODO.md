@@ -65,3 +65,4 @@ Maybe add that on settings save it forces the app to [restart](https://github.co
 - [ ] Consider serverside api requests, thus not exposing api-key  when built
 - [ ] Consider serverside webpage scraping
 - [ ] Consider Imagesprites
+- [ ] Add skillorder similar as [lol-item-sets-generator](http://www.lol-item-sets-generator.org/) does

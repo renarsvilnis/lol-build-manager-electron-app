@@ -16,6 +16,7 @@
 - [x] When fresh installation of League of Legends, there isn't `LOL_ITEM_SET_PATH` yet. Only the path to the `Config` exists
 - [ ] Add `isBuild` method for better code structure
 - [ ] Add `loadGroupChampions` sort by champion name
+- [ ] [Add app autoupdate](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md) - quite easy to implement by the looks of it
 
 ### View Welcome
 - [ ] Accardion guide on how it works

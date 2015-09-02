@@ -28,6 +28,22 @@ export const LOL_INSTALL_PATH = process.platform === 'darwin'
   ? LOL_INSTALL_PATH_OSX
   : LOL_INSTALL_PATH_WIN;
 
+/**
+ * Relative paths which are checked for existance to determined if given path
+ * is a valid League of Legends installation.
+ * Note: needs to be existing just after game installation
+ * @type {String}
+ */
+export const LOL_VALID_INSTALL_PATH_WIN = '/Config/';
+export const LOL_VALID_INSTALL_PATH_OSX = '/Contents/LoL/Config/';
+export const LOL_VALID_INSTALL_PATH = process.platform === 'darwin'
+  ? LOL_VALID_INSTALL_PATH_OSX
+  : LOL_VALID_INSTALL_PATH_WIN;
+
+/**
+ * Relative paths to League of Legends item-sets
+ * @type {String}
+ */
 export const LOL_ITEM_SET_PATH_WIN = '/Config/Global/Champions/';
 export const LOL_ITEM_SET_PATH_OSX = '/Contents/LoL/Config/Champions/';
 export const LOL_ITEM_SET_PATH = process.platform === 'darwin'

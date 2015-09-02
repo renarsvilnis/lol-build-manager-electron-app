@@ -6,7 +6,7 @@ import mkdirp from 'mkdirp';
 import request from 'request';
 import pathExists from 'path-exists';
 
-import {LOL_ITEM_SET_PATH} from '../constants/lol-constants';
+import {LOL_ITEM_SET_PATH, LOL_VALID_INSTALL_PATH} from '../constants/lol-constants';
 
 /**
  * Download an image to a specific folder
@@ -77,6 +77,6 @@ export function getLolItemSetPath(baseDir) {
  * @return {Boolean} exists
  */
 export function isValidLolDirectroy(dirPath, callback) {
-  let itemSetFullPath = getLolItemSetPath(dirPath);
-  pathExists(itemSetFullPath, callback);
+  let folderPath = path.normalize(dirPath + LOL_VALID_INSTALL_PATH)
+  pathExists(folderPath, callback);
 };

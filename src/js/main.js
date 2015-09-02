@@ -7,11 +7,17 @@ import CrashReporter from 'crash-reporter';
 import ipc from 'ipc';
 
 import urlBuffer from './modules/url-buffer';
+import pkg from '../package.json';
 
 let mainWindow = null;
 
 // Report crashes to our server.
-CrashReporter.start();
+CrashReporter.start({
+  productName: pkg.appName,
+  companyName: pkg.author.name
+  submitUrl: '', // TODO
+  autoSubmit: true
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {

@@ -10,7 +10,11 @@
     "package": "NODE_ENV=production gulp package",
     "start-app": "./node_modules/electron-prebuilt/cli.js ./prebuild"
   },
-  "author": "Renārs Vilnis <renars.vilnis@gmail.com>",
+  "author": {
+    "name": "Renārs Vilnis",
+    "email": "renars.vilnis@gmail.com",
+    "url": "https://renarsvilnis.com/"
+  },
   "license": "MIT",
   "dependencies": {
     "async": "^1.4.2",

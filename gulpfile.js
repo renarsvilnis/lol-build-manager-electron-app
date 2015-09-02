@@ -236,41 +236,26 @@ gulp.task('default', ['clean'], function() {
 
 gulp.task('package', function(callback) {
 
-  // var ignoreList = [
-  //   '/.git',
-  //   '/tasks',
-  //   '/sample-build.json'
-  // ];
-
-  // // Add development node modules to ignore list
-  // if(typeof pkg.devDependencies) {
-  //   var devDependencies = Object.keys(pkg.devDependencies);
-
-  //   devDependencies.map(function(devPkg) {
-  //     ignoreList.push('/node_modules/' + devPkg);
-  //   });  
-  // };
-
-  // // Escape regex for all ignored files
-  // ignoreList = ignoreList.map(function(ignore) {
-  //   return escapeRegExp(ignore)
-  // });
+  // TODO: instead of copying node-odules llok at using 'npm prune'
+  // Reference: https://docs.npmjs.com/cli/prune
 
   var opts = {
-    dir: OUT_BASE,
-    // ignore: new RegExp(ignoreList.join('|'), 'i'),
     name: pkg.appName,
+    dir: OUT_BASE,
     out: OUT_BUILD,
-    platform: 'darwin',
+    platform: ['darwin', 'win32'],
     arch: 'x64',
-    version: '0.30.4',
+    version: '0.31.1',
     overwrite: true,
+    asar: true, // packages the source code within your app into an archive
     protocols: [
       {
         name: pkg.appName,
         schemes: [pkg.name]
       }
-    ]
+    ],
+    // TODO: version string
+    // version-string
   };
 
   packager(opts, function(err, appPath) {

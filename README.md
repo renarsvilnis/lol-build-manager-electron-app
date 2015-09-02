@@ -23,6 +23,14 @@ But seriously, due to the tight time constraints for now there aren't any tests.
 
 ### Publishing
 ```bash
+# for building the application on OSX you need to have brew
+# and through it install Wine, it is needed for Windows build
+brew install wine
+# it is very likely the installation for it will fail and you will be
+# prompt to install xquartz, install it and then try again Wine
+# it will take some time
+brew install Caskroom/cask/xquartz
+
 API_KEY="<YOUR_API_KEY>" npm run package
 ```
 

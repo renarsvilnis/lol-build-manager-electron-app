@@ -69,3 +69,4 @@ Maybe add that on settings save it forces the app to [restart](https://github.co
 - [ ] Consider serverside webpage scraping
 - [ ] Consider Imagesprites
 - [ ] Add skillorder similar as [lol-item-sets-generator](http://www.lol-item-sets-generator.org/) does
+- [ ] Create a crash report [web handler](https://github.com/atom/electron/blob/master/docs/api/crash-reporter.md#crash-reporter-payload)

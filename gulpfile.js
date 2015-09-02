@@ -73,6 +73,11 @@ var escapeRegExp = function(string){
   return string.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
 };
 
+var checkApiKey = function() {
+  if(!process.env.API_KEY)
+    throw 'Missing API key';
+}
+
 // ########################################
 // Electron tasks
 // ########################################
@@ -219,6 +224,10 @@ gulp.task('js', function() {
 // Main TASKS
 // ####################
 gulp.task('default', ['clean'], function() {
+
+  // check for the presence of the api key
+  checkApiKey();
+
   gulp.start('styles', 'images', 'fonts', 'js', 'html', 'electron', function(){
 
     // only launch in development
@@ -235,6 +244,9 @@ gulp.task('default', ['clean'], function() {
 
 
 gulp.task('package', function(callback) {
+
+  // check for the presence of the api key
+  checkApiKey();
 
   // TODO: instead of copying node-odules llok at using 'npm prune'
   // Reference: https://docs.npmjs.com/cli/prune

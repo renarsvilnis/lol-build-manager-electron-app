@@ -11,7 +11,7 @@ import jsonfile from 'jsonfile';
 
 import db from '../modules/db';
 import lolApi from '../modules/lol-api';
-import {downloadImage, getLolItemSetPath} from './util';
+import {downloadImage, createLolItemSetPath} from './util';
 import {ITEMS_FOLDER, CHAMPIONS_FOLDER} from '../constants/app-constants';
 
 import AppActions from '../actions/app-actions';
@@ -108,7 +108,7 @@ let Cache = {
 
   loadBuilds: function(callback) {
 
-    let itemSetPath = getLolItemSetPath(AppStore.getPath());
+    let itemSetPath = createLolItemSetPath(AppStore.getPath());
 
     async.waterfall([
       // Get builds from fs

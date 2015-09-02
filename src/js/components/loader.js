@@ -7,6 +7,7 @@ import AppStore from '../stores/app-store';
 import AppActions from '../actions/app-actions';
 import lolApi from '../modules/lol-api.js';
 import cache from '../modules/cache';
+import {createIfNotExistLolItemSetDir} from '../modules/util';
 
 let RouteNavigation = Router.Navigation;
 
@@ -46,7 +47,7 @@ let Loader = React.createClass({
 
     // TODO: opening app the first time with no internet?
     // Maybe add Store method that checks if ready for offline?
-    
+
     // check for updates
     this.setSubTitle('CHECKING_UPDATE');
     lolApi.getLatestGameVersion(AppStore.getRegion(), (err, version) => {
@@ -62,7 +63,17 @@ let Loader = React.createClass({
       }
 
       this.setSubTitle('DOWNLOADING_ASSETS');
-      cache.loadAssets();
+
+      // create item-set folder, which is later needed when reading files
+      createIfNotExistLolItemSetDir(AppStore.getPath(), (err, made) => {
+        if(err) {
+          // TODO: what now?
+          console.log(err)
+        } else {
+          cache.loadAssets();  
+        }
+        
+      });
     });  
 
   },

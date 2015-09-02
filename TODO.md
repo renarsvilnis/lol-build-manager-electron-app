@@ -1,7 +1,7 @@
     
 ### General
 - [ ] windows url protocol
-- [ ] build system for packaging app for win and osx
+- [ ] build system for packaging app for [win](https://github.com/atom/grunt-electron-installer) and osx
 - [x] Check if League of Legends directory legit
 - [x] Clear cache function / Reset
 - [x] Download item and champion images

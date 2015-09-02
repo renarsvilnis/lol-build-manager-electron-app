@@ -73,16 +73,16 @@ let Welcome = React.createClass({
   },
 
   onContinueClick: function() {
+    // check if given address is correct
     isValidLolDirectroy(this.state.path, (err, exists) => {
       if(exists) {
         AppActions.updateLolPath({
           path: this.state.path
         });
       } else {
-      }
+        // TODO: show error
+      }  
     });
-    // check if valid apppath
-    
   },
 
   _changePath: function(path) {

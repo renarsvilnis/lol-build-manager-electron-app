@@ -3,19 +3,23 @@
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
+import remote from 'remote';
 import request from 'request';
 import pathExists from 'path-exists';
+import childProcess from 'child_process';
+
+let app = remote.require('app');
 
 import {LOL_ITEM_SET_PATH, LOL_VALID_INSTALL_PATH} from '../constants/lol-constants';
 
 /**
  * Download an image to a specific folder
- * @param  {String} filename with extension
- * @param  {String} url for the image including filename
- * @param  {String} path to directory where image is going to be saved
- * @param  {Function} callback
- * @return {Error} error message
- * @return {String} path to saved image
+ * @param  {String} Filename with extension
+ * @param  {String} Url for the image including filename
+ * @param  {String} Path to directory where image is going to be saved
+ * @param  {Function}
+ * @return {Error}
+ * @return {String} Path to saved image
  */
 export function downloadImage(filename, url, saveDirectory, callback) {
 
@@ -48,7 +52,7 @@ export function downloadImage(filename, url, saveDirectory, callback) {
 
 /**
  * Strip string for all non-numberic characters
- * @param  {string} str
+ * @param  {string}
  * @return {string}
  */
 export function removeNonNumbericCharacters(str) {
@@ -65,18 +69,46 @@ export function objectToArray(obj) {
   return Object.keys(obj).map((key) => obj[key]);
 };
 
-export function getLolItemSetPath(baseDir) {
+/**
+ * Create the itemset path from given League of Legends base game folder
+ * @param  {string} Path to League of Legends installation folder
+ * @return {string}
+ */
+export function createLolItemSetPath(baseDir) {
   return path.normalize(baseDir + LOL_ITEM_SET_PATH);
 };
 
 /**
  * Check wheter given path contains valid item set directory
- * @param  {string} dirPath - Path to League of Legends installation folder
- * @param  {Function} callback [description]
- * @return {Error} err
- * @return {Boolean} exists
+ * @param  {string} Path to League of Legends installation folder
+ * @param  {Function}
+ * @return {Error}
+ * @return {Boolean} Does dir exists
  */
-export function isValidLolDirectroy(dirPath, callback) {
-  let folderPath = path.normalize(dirPath + LOL_VALID_INSTALL_PATH)
+export function isValidLolDirectroy(baseDir, callback) {
+  let folderPath = path.normalize(baseDir + LOL_VALID_INSTALL_PATH)
   pathExists(folderPath, callback);
+};
+
+/**
+ * Creates a recursive file path for itemsets if doesn't exist
+ * @param  {string} Path to League of Legends installation folder
+ * @param  {Function} callback   [description]
+ * @return {[type]}              [description]
+ */
+export function createIfNotExistLolItemSetDir(baseDir, callback) {
+  let itemSetPath = createLolItemSetPath(baseDir);
+  mkdirp(itemSetPath, callback);
+};
+
+/**
+ * Restart electron app
+ * Note: doesn't reopen the application in OSX
+ * TODO: look for an alternative of clossing the renderer
+ *       window and reopening it
+ * Reference: https://github.com/atom/electron/issues/539
+ */
+export function restartApp() {
+  childProcess.exec(process.execPath);
+  app.quit();
 };

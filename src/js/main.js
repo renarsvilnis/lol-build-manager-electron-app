@@ -14,7 +14,7 @@ let mainWindow = null;
 // Report crashes to our server.
 CrashReporter.start({
   productName: pkg.appName,
-  companyName: pkg.author.name
+  companyName: pkg.author.name,
   submitUrl: '', // TODO
   autoSubmit: true
 });

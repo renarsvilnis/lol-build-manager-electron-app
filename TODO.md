@@ -13,7 +13,7 @@
 - [x] Gulp watch node_module by package json
 - [ ] Add check for reserved filelist words within `cache.loadBuilds` method with use of `lolConstants.RESERVED_SUFFFIXES` and `champion.key`
 - [x] When fresh installation of League of Legends, there isn't `LOL_ITEM_SET_PATH` yet. Only the path to the `Config` exists
-- [ ] Add `isBuild` method for better code structure, better yet create a Guide and Build class
+- [?] Add `isBuild` method for better code structure, better yet create a Guide, Build, Block, Item class
 - [ ] Add `loadGroupChampions` sort by champion name
 - [ ] [Add app autoupdate](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md) - quite easy to implement by the looks of it, but only for OSX
 - [?] take network status into consideration

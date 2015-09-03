@@ -1,4 +1,7 @@
 .c_settings {
+
+  $settings-input-height: 16px;
+
   height: 100%;
   overflow: hidden;
 
@@ -20,7 +23,11 @@
   &__label {
     float: left;
     width: 150px;
+
+    // For creating DOM space for an empty label 
+    min-height: 1px;
     font-size: 12px;
+    color: $settings-label-color;
   }
 
   &__body {
@@ -30,21 +37,39 @@
 
   &__info {
     font-size: 10px;
-  }
-
-  &__region {
-
+    color: $settings-label-info-color;
   }
 
   &__input {
     width: 400px;
+    border: none;
+    font-family: $font-family;
+    height: $settings-input-height;
+    line-height: 1;
   }
 
   &__input-select {
-
+    border: none;
+    font-family: $font-family;
+    height: $settings-input-height;
+    line-height: 1;
   }
 
   &__btn {
+    border: none;
+    font-family: $font-family;
+    line-height: 1;
+    height: $settings-input-height;
+    line-height: 1;
+    padding: 0 0.5em;
+    margin: 0;
 
+    background-color: $btn-color-bg;
+    color: $btn-color;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $btn-color-bg-hover;
+    }
   }
 }

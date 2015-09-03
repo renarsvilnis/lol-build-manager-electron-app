@@ -50,7 +50,7 @@ let Welcome = React.createClass({
   // Input events
   // ########################################
 
-  onBrowsePress: function() {
+  onSelectPathPress: function() {
     dialog.showOpenDialog({
       properties: ['openDirectory'],
       defaultPath: LOL_INSTALL_PATH 
@@ -64,7 +64,6 @@ let Welcome = React.createClass({
   },
 
   onPathChange: function(ev) {
-    // TODO check 
     this._changePath(ev.target.value);
   },
 
@@ -129,9 +128,9 @@ let Welcome = React.createClass({
           />
         <button
           type="button"
-          onClick={this.onBrowsePress}
+          onClick={this.onSelectPathPress}
           >
-          Browse
+          Select
         </button>
         <InputSelect
           className="v_welcome__regions"

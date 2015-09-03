@@ -24,27 +24,25 @@ let getState = function() {
 let SettingsRow = React.createClass({
 
   renderLabel: function() {
-    let label = null;
 
-    if(this.props.label) {
-      let labelInfo = null;
+    let label;
+    let labelInfo = null;
 
-      // if label consists of additional info text
-      if(this.props.labelInfo) {
-        labelInfo = (
-          <div className="c_settings__info">
-            {this.props.labelInfo}
-          </div>
-        );
-      }
-
-      label = (
-        <div className="c_settings__label">
-          {this.props.label}
-          {labelInfo}
+    // if label consists of additional info text
+    if(this.props.labelInfo) {
+      labelInfo = (
+        <div className="c_settings__info">
+          {this.props.labelInfo}
         </div>
       );
     }
+
+    label = (
+      <div className="c_settings__label">
+        {this.props.label}
+        {labelInfo}
+      </div>
+    );
 
     return label;
   },
@@ -113,7 +111,7 @@ let Settings = React.createClass({
         <SettingsRow
           label="Game directory:"
           labelInfo="Path to the League of Legends game"
-          >
+        >
           <input
             type="text"
             className="c_settings__input"
@@ -124,8 +122,8 @@ let Settings = React.createClass({
             className="c_settings__btn"
             type="button"
             onClick={this.onBrowsePress}
-            >
-            Browse
+          >
+            Select
           </button>
         </SettingsRow>
 
@@ -140,11 +138,11 @@ let Settings = React.createClass({
 
         <SettingsRow
           label="Clear cache:"
-          labelInfo="Clears the cache info without removing guides">
+          labelInfo="Clears the application cache without removing guides. Application will restart!">
           <button
             className="c_settings__btn"
             type="button"
-            >
+          >
             Clear
           </button>
         </SettingsRow>
@@ -153,7 +151,7 @@ let Settings = React.createClass({
           <button
             className="c_settings__btn"
             type="button"
-            >
+          >
             Save settings
           </button>
         </SettingsRow>

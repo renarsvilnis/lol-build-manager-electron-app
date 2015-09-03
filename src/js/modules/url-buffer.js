@@ -1,30 +1,56 @@
 /**
- * Node module that stores incoming data from app set custom protocol
+ * Singleton class that stores incoming data from app set custom protocol
  * so that it can be used later when the app has launched succesfully
  */
 'use strict';
 
-import app from 'app';
-import mgnUtil from 'lol-build-manager-util';
+import {parseAppProtocolUrl} from 'lol-build-manager-util';
+import objectAssign from 'object-assign';
 
-let buffer = [];
+let buffer = null;
 
 export default {
-  push: function(data) {
-    buffer.push(mgnUtil.decodeUrlData(data));
+
+  /**
+   * Parse and push a url-string into buffer
+   * @param  {string} 
+   * @param  {Function}
+   * @return {null}
+   * @return {Boolean} Did it push to the buffer successfully
+   */
+  push: function(url, callback) {
+    parseAppProtocolUrl(url, function(err, obj) {
+      if(err) {
+        callback(null, false);
+      } else {
+        buffer = obj;
+        callback(null, true);
+      }
+    });
   },
 
+  /**
+   * Returns and cleans the buffer
+   * @return {Object|null} buffer
+   */
   flush: function() {
-    let bufferTemp = this.get().slice();
+    let tempBuffer = this.get();
     this.clean();
-    return bufferTemp;
+    return tempBuffer;
   },
 
+  /**
+   * Gets buffer
+   * @return {Object|null}
+   */
   get: function() {
-    return buffer;
+    return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
   },
 
+  /**
+   * Cleans the buffer
+   */
   clean: function() {
-    buffer = [];
+    buffer = null;
   }
 };

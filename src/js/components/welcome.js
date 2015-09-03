@@ -6,9 +6,10 @@ import Router from 'react-router';
 
 import AppActions from '../actions/app-actions';
 import AppStore from '../stores/app-store';
-import InputSelect from './input-select';
 import {REGIONS,LOL_INSTALL_PATH} from '../constants/lol-constants';
 import {isValidLolDirectroy} from '../modules/util';
+
+import InputSelect from './input-select';
 
 let dialog = remote.require('dialog');
 let RouteHandler = Router.RouteHandler;
@@ -63,6 +64,7 @@ let Welcome = React.createClass({
   },
 
   onPathChange: function(ev) {
+    // TODO check 
     this._changePath(ev.target.value);
   },
 
@@ -86,6 +88,8 @@ let Welcome = React.createClass({
   },
 
   _changePath: function(path) {
+    // TODO: check if is legit, if is then show that its,
+    // don't show incorrect value
     this.setState({
       path: path || LOL_INSTALL_PATH
     });

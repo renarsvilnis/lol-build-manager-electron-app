@@ -17,6 +17,7 @@
 - [ ] Add `isBuild` method for better code structure
 - [ ] Add `loadGroupChampions` sort by champion name
 - [ ] [Add app autoupdate](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md) - quite easy to implement by the looks of it
+- [ ] Add window event listeners `online` and `offline` to trigger react state changes in thos ecomponents that uses `navigator.onLine`
 
 ### View Welcome
 - [ ] Accardion guide on how it works
@@ -52,7 +53,7 @@ Maybe add that on settings save it forces the app to [restart](https://github.co
 - [ ] Redesign with cute kittens
 - [x] [App icons](http://google.github.io/material-design-icons/#icon-images-for-the-web)
 - [ ] Chrome extension store images 
-- [ ] Navigation icons
+- [x] Navigation icons
 - [ ] Scrollbars
 
 ### Future features

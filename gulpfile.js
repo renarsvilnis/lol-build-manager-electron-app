@@ -257,7 +257,7 @@ gulp.task('package', function(callback) {
     out: OUT_BUILD,
     platform: ['darwin', 'win32'],
     arch: 'x64',
-    version: '0.31.1',
+    version: '0.31.2',
     overwrite: true,
     asar: true, // packages the source code within your app into an archive
     protocols: [

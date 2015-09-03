@@ -7,50 +7,55 @@
 import {parseAppProtocolUrl} from 'lol-build-manager-util';
 import objectAssign from 'object-assign';
 
+/**
+ * Buffer that holds a single (last) recieved data object from
+ * the registered custom url scheme
+ * @type {Object|null}
+ */
 let buffer = null;
 
-export default {
-
-  /**
-   * Parse and push a url-string into buffer
-   * @param  {string} 
-   * @param  {Function}
-   * @return {null}
-   * @return {Boolean} Did it push to the buffer successfully
-   */
-  push: function(url, callback) {
-    parseAppProtocolUrl(url, function(err, obj) {
-      if(err) {
+/**
+ * Parse and push a url-string into buffer
+ * @param  {string} 
+ * @param  {Function}
+ * @return {null}
+ * @return {Boolean} Did it push to the buffer successfully
+ */
+export function push(url, callback) {
+  parseAppProtocolUrl(url, function(err, obj) {
+    if(err) {
+      if(callback)
         callback(null, false);
-      } else {
-        buffer = obj;
+    } else {
+      buffer = obj;
+
+      if(callback)
         callback(null, true);
-      }
-    });
-  },
+    }
+  });
+};
 
-  /**
-   * Returns and cleans the buffer
-   * @return {Object|null} buffer
-   */
-  flush: function() {
-    let tempBuffer = this.get();
-    this.clean();
-    return tempBuffer;
-  },
+/**
+ * Returns and cleans the buffer
+ * @return {Object|null} buffer
+ */
+export function flush() {
+  let tempBuffer = get();
+  clean();
+  return tempBuffer;
+};
 
-  /**
-   * Gets buffer
-   * @return {Object|null}
-   */
-  get: function() {
-    return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
-  },
+/**
+ * Gets buffer
+ * @return {Object|null}
+ */
+export function get() {
+  return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
+};
 
-  /**
-   * Cleans the buffer
-   */
-  clean: function() {
-    buffer = null;
-  }
+/**
+ * Cleans the buffer
+ */
+export function clean() {
+  buffer = null;
 };

@@ -14,48 +14,52 @@ import objectAssign from 'object-assign';
  */
 let buffer = null;
 
-/**
- * Parse and push a url-string into buffer
- * @param  {string} 
- * @param  {Function}
- * @return {null}
- * @return {Boolean} Did it push to the buffer successfully
- */
-export function push(url, callback) {
-  parseAppProtocolUrl(url, function(err, obj) {
-    if(err) {
-      if(callback)
-        callback(null, false);
-    } else {
-      buffer = obj;
+export default {
 
-      if(callback)
-        callback(null, true);
-    }
-  });
-};
+  /**
+   * Parse and push a url-string into buffer
+   * @param  {string} 
+   * @param  {Function}
+   * @return {null}
+   * @return {Boolean} Did it push to the buffer successfully
+   */
+  push: function(url, callback) {
+    parseAppProtocolUrl(url, function(err, obj) {
+      if(err) {
 
-/**
- * Returns and cleans the buffer
- * @return {Object|null} buffer
- */
-export function flush() {
-  let tempBuffer = get();
-  clean();
-  return tempBuffer;
-};
+        if(callback)
+          callback(null, false);
+      } else {
+        buffer = obj;
 
-/**
- * Gets buffer
- * @return {Object|null}
- */
-export function get() {
-  return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
-};
+        if(callback)
+          callback(null, true);
+      }
+    });
+  },
 
-/**
- * Cleans the buffer
- */
-export function clean() {
-  buffer = null;
+  /**
+   * Returns and cleans the buffer
+   * @return {Object|null} buffer
+   */
+  flush: function() {
+    let tempBuffer = this.get();
+    this.clean();
+    return tempBuffer;
+  },
+
+  /**
+   * Gets buffer
+   * @return {Object|null}
+   */
+  get: function() {
+    return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
+  },
+
+  /**
+   * Cleans the buffer
+   */
+  clean: function() {
+    buffer = null;
+  }
 };

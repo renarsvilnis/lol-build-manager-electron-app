@@ -6,7 +6,7 @@ import BrowserWindow from 'browser-window';
 import CrashReporter from 'crash-reporter';
 import ipc from 'ipc';
 
-import {push as UrlBufferPush} from './modules/url-buffer';
+import UrlBuffer from './modules/url-buffer';
 import pkg from '../package.json';
 
 let mainWindow = null;
@@ -30,7 +30,7 @@ app.on('ready', function() {
 
 // Listen to custom protocole incoming messages
 app.on('open-url', function(ev, url) {
-  UrlBufferPush(url);
+  UrlBuffer.push(url);
 });
 
 let createMainWindow = function() {

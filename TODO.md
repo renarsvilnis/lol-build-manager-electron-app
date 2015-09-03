@@ -7,7 +7,6 @@
 - [x] Download item and champion images
 - [x] Scrape URL check if supported - same logic across extensions and app
 - [?] Buffer that stores one url from specified protocol and parses it when app is ready a.k.a in home screen
-- [?] take network status into consideration
 - [ ] [automate CDN version update](https://developer.riotgames.com/api/methods#!/968/3325)
 - [ ] Check if downloaded image isn't succcesfully downloaded, then do something about it
 - [x] Update db search by name to look for enchantments
@@ -17,6 +16,7 @@
 - [ ] Add `isBuild` method for better code structure, better yet create a Guide and Build class
 - [ ] Add `loadGroupChampions` sort by champion name
 - [ ] [Add app autoupdate](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md) - quite easy to implement by the looks of it, but only for OSX
+- [?] take network status into consideration
 - [ ] Add window event listeners `online` and `offline` to trigger react state changes in thos ecomponents that uses `navigator.onLine`
 
 ### View Welcome

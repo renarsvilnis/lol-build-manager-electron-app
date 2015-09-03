@@ -46,6 +46,7 @@
     "electron-prebuilt": "^0.31.2",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
+    "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-if": "^1.2.5",
     "gulp-imagemin": "^2.3.0",

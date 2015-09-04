@@ -3,7 +3,7 @@
  */
 'use strict';
 
-export default function Build(data = {}) {
+export function Build(data = {}) {
   this._title = null;
   this._filename = null;
   this._blocks = [];

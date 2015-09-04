@@ -3,7 +3,7 @@
  */
 'use strict';
 
-export default function Item(data = {}) {
+export function Item(data = {}) {
 
   /**
    * ID of the item

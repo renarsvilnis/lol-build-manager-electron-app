@@ -3,7 +3,7 @@
  */
 'use strict';
 
-export default function Block(data = {}) {
+export function Block(data = {}) {
 
   /**
    * Name of the block
@@ -24,7 +24,7 @@ export default function Block(data = {}) {
  * Load data from an given object
  * @param {Object}
  */
-Build.prototype.loadFromObject = function(data) {
+Block.prototype.loadFromObject = function(data) {
   this.setType(data.type);
   this.pushItems(data.items);
 };
@@ -33,7 +33,7 @@ Build.prototype.loadFromObject = function(data) {
  * Set type
  * @param {String}
  */
-Build.prototype.setType = function(type) {
+Block.prototype.setType = function(type) {
 
   if(!this.isValidType(type))
     return;
@@ -45,7 +45,7 @@ Build.prototype.setType = function(type) {
  * Push items 
  * @param {Object[]}
  */
-Build.prototype.pushItems = function(items) {
+Block.prototype.pushItems = function(items) {
 
   if(!this.isValidItems(items))
     return;
@@ -59,7 +59,7 @@ Build.prototype.pushItems = function(items) {
  * Push item
  * @param {Object}
  */
-Build.prototype.pushItem = function(item) {
+Block.prototype.pushItem = function(item) {
 
 };
 
@@ -67,7 +67,7 @@ Build.prototype.pushItem = function(item) {
  * Return a object representation of this block
  * @return {Object}
  */
-Build.prototype.toObject = function() {
+Block.prototype.toObject = function() {
   return {
     type: this.getType(),
     items: this.getItems()
@@ -78,7 +78,7 @@ Build.prototype.toObject = function() {
  * Get the type of block
  * @return {String|null}
  */
-Build.prototype.getType = function() {
+Block.prototype.getType = function() {
   return this._type;
 };
 
@@ -86,7 +86,7 @@ Build.prototype.getType = function() {
  * Get items of block
  * @return {Object[]}
  */
-Build.prototype.getItems = function() {
+Block.prototype.getItems = function() {
   return this._items;
 };
 
@@ -94,7 +94,7 @@ Build.prototype.getItems = function() {
  * Check if block is valid
  * @return {Boolean}
  */
-Build.prototype.isValid = function() {
+Block.prototype.isValid = function() {
 
   let type = this.getType();
   let items = this.getItems();
@@ -107,7 +107,7 @@ Build.prototype.isValid = function() {
  * @param  {*}
  * @return {Boolean}
  */
-Build.prototype.isValidType = function(type) {
+Block.prototype.isValidType = function(type) {
   return type && typeof type === 'string';
 };
 
@@ -116,7 +116,7 @@ Build.prototype.isValidType = function(type) {
  * @param  {*}
  * @return {Boolean}
  */
-Build.prototype.isValidItems = function(items) {
+Block.prototype.isValidItems = function(items) {
 
   if(!Array.isArray(items) || !items.length)
     return false;
@@ -136,7 +136,7 @@ Build.prototype.isValidItems = function(items) {
  * @param  {*}
  * @return {Boolean}
  */
-Build.prototype.isValidItem = function(item) {
+Block.prototype.isValidItem = function(item) {
 
   return true;
 };

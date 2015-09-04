@@ -3,7 +3,7 @@
  */
 'use strict';
 
-export default function Guide(data) {
+export function Guide(data) {
 
   this._url = null;
   this._champion = null;

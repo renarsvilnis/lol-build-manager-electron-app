@@ -1,5 +1,5 @@
 /**
- * Block class that represents a single block withing a guide
+ * Block class that represents a single block within a guide
  */
 'use strict';
 

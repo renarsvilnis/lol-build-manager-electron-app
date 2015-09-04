@@ -1,5 +1,5 @@
 /**
- * Block class that represents a single block withing a guide
+ * Item class that represents a single item within a block
  */
 'use strict';
 
@@ -81,7 +81,7 @@ Item.prototype.getCount = function() {
 };
 
 /**
- * Check if block is valid
+ * Check if item is valid
  * @return {Boolean}
  */
 Item.prototype.isValid = function() {

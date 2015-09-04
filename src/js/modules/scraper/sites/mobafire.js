@@ -5,7 +5,7 @@ import request from 'request';
 
 import db from '../../db';
 import {GUIDE_TEMPLATE} from '../../../constants/app-constants';
-import {removeNonNumbericCharacters} from '../../util';
+import {parseIntFromString} from '../../util';
 
 const DOMAIN = '//www.mobafire.com';
 
@@ -98,7 +98,7 @@ let findItems = function($, parent) {
       let itemCountEl = item.find('.item-count');
       if(itemCountEl.length) {
         let countString= itemCountEl.text();
-        itemCount = parseInt(removeNonNumbericCharacters(countString), 10);
+        itemCount = parseIntFromString(countString);
       }
 
       let itemObj = db.getItemByName(itemName);

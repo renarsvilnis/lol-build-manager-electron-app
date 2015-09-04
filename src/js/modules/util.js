@@ -56,7 +56,25 @@ export function downloadImage(filename, url, saveDirectory, callback) {
  * @return {string}
  */
 export function removeNonNumbericCharacters(str) {
-  return str.replace(/\D/g,'');
+  if(typeof str === 'string') {
+    return str.replace(/\D/g,'');  
+  } else if(typeof str === 'number' && !isNaN) {
+    return str;
+  } else {
+    return '';
+  }
+  
+};
+
+/**
+ * Parse number out of string
+ * Example: 'x2' -> 2
+ * Example: '2x' -> 2
+ * @param {string}
+ * @return {number}
+ */
+export function parseIntFromString(str) {
+  return parseInt(removeNonNumbericCharacters(str), 10);
 };
 
 /**

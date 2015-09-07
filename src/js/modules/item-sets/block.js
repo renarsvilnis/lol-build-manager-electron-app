@@ -3,6 +3,9 @@
  */
 'use strict';
 
+import Item from 'item';
+import {isObject} from '../util';
+
 export function Block(data = {}) {
 
   /**
@@ -25,6 +28,10 @@ export function Block(data = {}) {
  * @param {Object}
  */
 Block.prototype.loadFromObject = function(data) {
+
+  if(!isObject(data))
+    return;
+
   this.setType(data.type);
   this.pushItems(data.items);
 };
@@ -47,7 +54,7 @@ Block.prototype.setType = function(type) {
  */
 Block.prototype.pushItems = function(items) {
 
-  if(!this.isValidItems(items))
+  if(!Array.isArray(items))
     return;
 
   items.forEach((item) => {
@@ -61,6 +68,16 @@ Block.prototype.pushItems = function(items) {
  */
 Block.prototype.pushItem = function(item) {
 
+  // try to create a new Item class instace and check if it is valid
+  if(!this.isValidItem(item)) {
+    item = new Item(item);
+
+    if(!this.isValidItem(item))
+      return false;
+  }
+
+  this._items.push(item);
+  return true;
 };
 
 /**
@@ -137,6 +154,5 @@ Block.prototype.isValidItems = function(items) {
  * @return {Boolean}
  */
 Block.prototype.isValidItem = function(item) {
-
-  return true;
+  return item instanceof Item && item.isValid();
 };

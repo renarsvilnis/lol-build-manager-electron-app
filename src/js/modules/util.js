@@ -130,3 +130,16 @@ export function restartApp() {
   childProcess.exec(process.execPath);
   app.quit();
 };
+
+/**
+ * Check if given value is an object
+ * Reference: http://stackoverflow.com/a/22482737/1378261
+ * @param  {*}
+ * @return {Boolean}
+ */
+export function isObject(val) {
+  if(val === null)
+    return false;
+
+  return (typeof val === 'function') || (typeof val === 'object');
+}

@@ -3,6 +3,8 @@
  */
 'use strict';
 
+import {isObject} from '../util';
+
 export function Item(data = {}) {
 
   /**
@@ -25,6 +27,10 @@ export function Item(data = {}) {
  * @param {Object}
  */
 Item.prototype.loadFromObject = function(data) {
+
+  if(!isObject(data))
+    return;
+
   this.setId(data.id);
   this.setCount(data.count);
 };

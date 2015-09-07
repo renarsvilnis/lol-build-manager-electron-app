@@ -9,5 +9,15 @@
         "build"
       ]
 		}
-	]
+	],
+  "settings": {
+    "todoreview": {
+      "exclude_folders": [
+        "*.git*",
+        "*node_modules*",
+        "*prebuild*",
+        // "build*"
+      ]
+    }
+  }
 }

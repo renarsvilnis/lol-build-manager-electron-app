@@ -21,7 +21,7 @@ export function Build(data = {}) {
   this._filename = null;
 
   /**
-   * List of item blocks for build
+   * Array of item blocks for build
    * @type {Block[]}
    */
   this._blocks = [];

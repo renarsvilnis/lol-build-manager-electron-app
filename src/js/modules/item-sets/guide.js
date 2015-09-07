@@ -3,15 +3,50 @@
  */
 'use strict';
 
-export function Guide(data) {
+import Build from 'build';
+import {isObject} from '../util';
 
+export function Guide(data = {}) {
+
+  /**
+   * Url from which this guide was created from
+   * @type {string|null}
+   */
   this._url = null;
+
+  /**
+   * ID of the champion the guide is related to
+   * @type {number|null}
+   */
   this._champion = null;
+
+  /**
+   * Title of the guide
+   * @type {string|null}
+   */
   this._title = null;
+
+  /**
+   * Author info
+   * @type {Object|null} author
+   * @type {string} author.name - name of the author
+   * @type {string} author.url - Url to the author of the guide
+   */
   this._author = null;
+
+  // TODO: figure out what to do
   this._updatedAt = null;
+
+  // TODO: figure out what to do
   this._createAt = Date.now();
+
+  /**
+   * Array of builds for guide
+   * @type {Build[]}
+   */
   this._builds = [];
+
+  this.loadFromObject(data);
 };
 
 Guide.prototype.loadFromObject = function(data) {};

@@ -42,10 +42,12 @@ Block.prototype.loadFromObject = function(data) {
  */
 Block.prototype.setType = function(type) {
 
+  type = type.trim();
+
   if(!this.isValidType(type))
     return;
 
-  this._type = type.trim();
+  this._type = type;
 };
 
 /**

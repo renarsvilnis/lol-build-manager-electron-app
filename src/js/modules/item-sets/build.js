@@ -33,7 +33,7 @@ export function Build(data = {}) {
 Build.prototype.loadFromFile = function(filepath) {};
 
 /**
- * Load data form a given object
+ * Load data from a given object
  * @param {Object}
  */
 Build.prototype.loadFromObject = function(data) {
@@ -50,17 +50,20 @@ Build.prototype.loadFromObject = function(data) {
  * @param {string}
  */
 Build.prototype.setTitle = function(title) {
+
+  title = title.trim();
+
   if(!this.isValidTitle(title))
     return;
 
-  this._title = title.trim();
+  this._title = title;
 };
 
 // TODO: create method
 Build.prototype.setFilename = function(filename) {};
 
 /**
- * Push blocks into guide
+ * Push blocks into build
  * @param  {Object[]|Block[]}
  */
 Build.prototype.pushBlocks = function(blocks) {

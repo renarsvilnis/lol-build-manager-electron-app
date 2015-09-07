@@ -3,6 +3,7 @@
  */
 'use strict';
 
+import normalizeUrl from 'normalize-url'
 import Build from 'build';
 import {isObject} from '../util';
 
@@ -49,13 +50,88 @@ export function Guide(data = {}) {
   this.loadFromObject(data);
 };
 
-Guide.prototype.loadFromObject = function(data) {};
-Guide.prototype.setUrl = function(url) {};
-Guide.prototype.setChampion = function(champion) {};
-Guide.prototype.setTitle = function(title) {};
-Guide.prototype.setAuthor = function(author) {};
-Guide.prototype.setUpdateDate = function(date) {};
-Guide.prototype.pushBuilds = function(builds) {};
+/**
+ * Load data from a given object
+ * @param  {Object}
+ */
+Guide.prototype.loadFromObject = function(data) {
+  if(!isObject(data))
+    return;
+
+  this.setUrl(data.url);
+  this.setChampion(data.champion);
+  this.setTitle(data.title);
+  this.setAuthor(data.author);
+  // TODO: add updatedAt
+  // TODO: add createdAt
+  this.pushBuilds(data.buids);
+};
+
+/**
+ * Set origin url of the guide
+ * @param {string}
+ */
+Guide.prototype.setUrl = function(url) {
+
+  url = normalizeUrl(url);
+
+  if(!this.isValidUrl(url))
+    return;
+
+  this._title = url;
+};
+
+/**
+ * Set the champion id of the guide
+ * @param {number} - Champion ID
+ */
+Guide.prototype.setChampion = function(champion) {
+  if(!this.isValidChampion(champion))
+    return;
+
+  this._champion = champion;
+};
+
+/**
+ * Set the title of the guide
+ * @param {string}
+ */
+Guide.prototype.setTitle = function(title) {
+  title = trim();
+
+  if(!this.isValidTitle(title))
+    return;
+
+  this._title = title;
+};
+
+/**
+ * Set the author of the guide
+ * @param {Object|null}
+ */
+Guide.prototype.setAuthor = function(author) {
+  if(!this.isValidAuthor)
+    return;
+
+  this._author = author;
+};
+
+// TODO: implement method
+// Guide.prototype.setUpdateDate = function(date) {};
+
+/**
+ * Push builds into guide
+ * @param  {Object[]|Build[]}
+ */
+Guide.prototype.pushBuilds = function(builds) {
+  if(!Array.isArray(builds))
+    return;
+
+  builds.forEach((build) => {
+    this.pushBuild(build);
+  });
+};
+
 Guide.prototype.pushBuild = function(build) {};
 
 Guide.prototype.toObject = function() {};
@@ -67,6 +143,12 @@ Guide.prototype.getUpdateDate = function() {};
 Guide.prototype.getBuilds = function() {};
 
 Guide.prototype.isValid = function() {};
+
+Guide.prototype.isValidUrl = function(url) {};
+
+// TODO: make db call to cehck if that champion exists?!
+Guide.prototype.isValidChampion = function(champion) {};
+Guide.prototype.isValidTitle = function(title) {};
 
 Guide.prototype.save = function(path, callback) {};
 

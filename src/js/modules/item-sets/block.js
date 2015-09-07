@@ -16,7 +16,7 @@ export function Block(data = {}) {
 
   /**
    * Array of items for a block
-   * @type {Object[]}
+   * @type {Item[]}
    */
   this._items = [];
 
@@ -38,7 +38,7 @@ Block.prototype.loadFromObject = function(data) {
 
 /**
  * Set type
- * @param {String}
+ * @param {string}
  */
 Block.prototype.setType = function(type) {
 
@@ -50,7 +50,7 @@ Block.prototype.setType = function(type) {
 
 /**
  * Push items 
- * @param {Object[]}
+ * @param {Object[]|Item[]}
  */
 Block.prototype.pushItems = function(items) {
 
@@ -64,7 +64,7 @@ Block.prototype.pushItems = function(items) {
 
 /**
  * Push item
- * @param {Object}
+ * @param {Object|Item}
  */
 Block.prototype.pushItem = function(item) {
 
@@ -73,11 +73,10 @@ Block.prototype.pushItem = function(item) {
     item = new Item(item);
 
     if(!this.isValidItem(item))
-      return false;
+      return;
   }
 
   this._items.push(item);
-  return true;
 };
 
 /**
@@ -93,7 +92,7 @@ Block.prototype.toObject = function() {
 
 /**
  * Get the type of block
- * @return {String|null}
+ * @return {string|null}
  */
 Block.prototype.getType = function() {
   return this._type;
@@ -104,7 +103,14 @@ Block.prototype.getType = function() {
  * @return {Object[]}
  */
 Block.prototype.getItems = function() {
-  return this._items;
+  let items = this._items;
+  let ret = [];
+
+  items.forEach((item) => {
+    ret.push(item.toObject());
+  });
+
+  return ret;
 };
 
 /**
@@ -112,11 +118,8 @@ Block.prototype.getItems = function() {
  * @return {Boolean}
  */
 Block.prototype.isValid = function() {
-
   let type = this.getType();
-  let items = this.getItems();
-
-  return this.isValidType(type) && this.isValidItems(items);
+  return this.isValidType(type) && this.isValidItems();
 };
 
 /**
@@ -129,11 +132,14 @@ Block.prototype.isValidType = function(type) {
 };
 
 /**
- * Check if given items are valid
- * @param  {*}
+ * Check if block items are valid
+ * @param {*} [items=this._items] - Defaults to this block items
  * @return {Boolean}
  */
 Block.prototype.isValidItems = function(items) {
+
+  if(typeof items === 'undefined')
+    items = this._items;
 
   if(!Array.isArray(items) || !items.length)
     return false;

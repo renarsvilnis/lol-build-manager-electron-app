@@ -81,7 +81,7 @@ Build.prototype.pushBlocks = function(blocks) {
  */
 Build.prototype.pushBlock = function(block) {
 
-  // try to create a new Block class instance and chekc if it is valid
+  // try to create a new Block class instance and check if it is valid
   if(!this.isValidBlock(block)) {
     block = new Block(block);
 

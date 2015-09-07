@@ -117,7 +117,8 @@ Guide.prototype.setAuthor = function(author) {
 };
 
 // TODO: implement method
-// Guide.prototype.setUpdateDate = function(date) {};
+Guide.prototype.setUpdateDate = function(date) {};
+
 
 /**
  * Push builds into guide
@@ -132,7 +133,22 @@ Guide.prototype.pushBuilds = function(builds) {
   });
 };
 
-Guide.prototype.pushBuild = function(build) {};
+/**
+ * Push a build
+ * @param  {Object|Build}
+ */
+Guide.prototype.pushBuild = function(build) {
+
+  // try to create a new Build class instance and check if it is valid
+  if(!this.isValidBuild(build)) {
+    build = new Build(build);
+
+    if(!this.isValidBuild(build))
+      return;
+  }
+
+  this._builds.push(build);
+};
 
 Guide.prototype.toObject = function() {};
 Guide.prototype.getUrl = function() {};
@@ -146,10 +162,23 @@ Guide.prototype.isValid = function() {};
 
 Guide.prototype.isValidUrl = function(url) {};
 
-// TODO: make db call to cehck if that champion exists?!
+// TODO: make db call to check if that champion exists?!
 Guide.prototype.isValidChampion = function(champion) {};
 Guide.prototype.isValidTitle = function(title) {};
+// TODO: posible for changes
+Guide.prototype.isDate = function(data) {};
+Guide.prototype.isValidBuilds = function(builds) {};
 
+/**
+ * Check if given build is valid
+ * @param  {*}
+ * @return {Boolean}
+ */
+Guide.prototype.isValidBuild = function(build) {
+  return build instanceof Build && build.isValid();
+};
+
+// TODO: should i even add it?
 Guide.prototype.save = function(path, callback) {};
 
 

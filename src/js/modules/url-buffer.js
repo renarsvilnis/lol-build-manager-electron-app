@@ -4,6 +4,8 @@
  */
 'use strict';
 
+import objectAssign from 'object-assign';
+
 import {parseAppProtocolUrl} from 'lol-build-manager-util';
 
 /**
@@ -52,7 +54,7 @@ export default {
    * @return {Object|null}
    */
   get: function() {
-    return typeof buffer === 'object' ? Object.assign({}, buffer) : null;
+    return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
   },
 
   /**

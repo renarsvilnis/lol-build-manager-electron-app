@@ -1,5 +1,6 @@
 /**
  * Block class that represents a single block within a guide
+ * TODO: add champion id?
  */
 'use strict';
 

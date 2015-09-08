@@ -5,7 +5,6 @@
 'use strict';
 
 import {parseAppProtocolUrl} from 'lol-build-manager-util';
-import objectAssign from 'object-assign';
 
 /**
  * Buffer that holds a single (last) recieved data object from
@@ -53,7 +52,7 @@ export default {
    * @return {Object|null}
    */
   get: function() {
-    return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
+    return typeof buffer === 'object' ? Object.assign({}, buffer) : null;
   },
 
   /**

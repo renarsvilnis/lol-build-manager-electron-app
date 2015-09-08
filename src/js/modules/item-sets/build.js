@@ -29,9 +29,6 @@ export function Build(data = {}) {
   this.loadFromObject(data);
 };
 
-// TODO: create method
-Build.prototype.loadFromFile = function(filepath) {};
-
 /**
  * Load data from a given object
  * @param {Object}
@@ -46,7 +43,7 @@ Build.prototype.loadFromObject = function(data) {
 };
 
 /**
- * Set title of build
+ * Set title of the build
  * @param {string}
  */
 Build.prototype.setTitle = function(title) {
@@ -59,8 +56,19 @@ Build.prototype.setTitle = function(title) {
   this._title = title;
 };
 
-// TODO: create method
-Build.prototype.setFilename = function(filename) {};
+/**
+ * Set the filename of the build
+ * @param {string}
+ */
+Build.prototype.setFilename = function(filename) {
+
+  filename = filename.trim();
+
+  if(!this.isValidFileName(title))
+    return;
+
+  this._filename = filename;
+};
 
 /**
  * Push blocks into build
@@ -148,13 +156,24 @@ Build.prototype.isValid = function() {
     && this.isValidBlocks();
 };
 
+/**
+ * Check if given title is valid
+ * @param  {*}
+ * @return {Boolean}
+ */
 Build.prototype.isValidTitle = function(title) {
-  return title && typeof type === 'string';
+  return title && typeof title === 'string';
 };
 
-// TODO: create method
-Build.prototype.isValidFileName = function() {
-  return true;
+/**
+ * Check if given filename is valid
+ * @param  {string}
+ * @return {Boolean}
+ */
+Build.prototype.isValidFileName = function(filename) {
+  // a file name can not exists if its not saved yet
+  return (typeof filename === 'undefined' || filename === null)
+    || (!!(filename && typeof filename === 'string'));
 };
 
 /**
@@ -188,7 +207,3 @@ Build.prototype.isValidBlocks = function(blocks) {
 Build.prototype.isValidBlock = function(block) {
   return block instanceof Block && block.isValid();
 };
-
-// TODO: create method
-Build.prototype.save = function(path, callback) {};
-

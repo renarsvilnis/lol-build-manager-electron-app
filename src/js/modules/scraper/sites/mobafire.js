@@ -1,5 +1,4 @@
 import cheerio from 'cheerio';
-import objectAssign from 'object-assign';
 import chrono from 'chrono-node';
 import request from 'request';
 
@@ -152,7 +151,7 @@ let parse = function(url, html) {
   let $ = cheerio.load(html);
 
   // Create new tempalte object of response
-  let json = objectAssign({}, GUIDE_TEMPLATE);
+  let json = Object.assign({}, GUIDE_TEMPLATE);
 
   json.url = url;
 

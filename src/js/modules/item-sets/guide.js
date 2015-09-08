@@ -1,5 +1,6 @@
 /**
  * Guide class that represents a single guide
+ * TODO: setting champion id recursively sets champion id for all builds
  */
 'use strict';
 
@@ -35,17 +36,30 @@ export function Guide(data = {}) {
    */
   this._author = null;
 
-  // TODO: figure out what to do
-  this._updatedAt = null;
-
-  // TODO: figure out what to do
-  this._createAt = Date.now();
-
   /**
    * Array of builds for guide
    * @type {Build[]}
    */
   this._builds = [];
+
+  /**
+   * Epoch data when the guide was created - app side
+   * NOTE: Can be overwritten later
+   * @type {number}
+   */
+  this._createdAt = Date.now();
+
+  /**
+   * Epoch date when the guide was last updated by - app side
+   * @type {number|null}
+   */
+  this._updatedAt = null;
+
+  /**
+   * Epoch date when the guide was last updated by - guide website
+   * @type {number|null}
+   */
+  this._guideUpdatedAt = null;
 
   this.loadFromObject(data);
 };
@@ -62,9 +76,10 @@ Guide.prototype.loadFromObject = function(data) {
   this.setChampion(data.champion);
   this.setTitle(data.title);
   this.setAuthor(data.author);
-  // TODO: add updatedAt
-  // TODO: add createdAt
   this.pushBuilds(data.buids);
+  this.setCreatedAt(data.createdAt);
+  this.setUpdatedAt(data.updatedAt);
+  this.setGuideUpdatedAt(data.guideUpdatedAt);
 };
 
 /**
@@ -116,10 +131,6 @@ Guide.prototype.setAuthor = function(author) {
   this._author = author;
 };
 
-// TODO: implement method
-Guide.prototype.setUpdateDate = function(date) {};
-
-
 /**
  * Push builds into guide
  * @param  {Object[]|Build[]}
@@ -150,19 +161,92 @@ Guide.prototype.pushBuild = function(build) {
   this._builds.push(build);
 };
 
-Guide.prototype.toObject = function() {};
-Guide.prototype.getUrl = function() {};
-Guide.prototype.getChampion = function() {};
-Guide.prototype.getTitle = function() {};
-Guide.prototype.getAuthor = function() {};
-Guide.prototype.getUpdateDate = function() {};
-Guide.prototype.getBuilds = function() {};
+// TODO: this
+Guide.prototype.setCreatedAt = function() {};
+
+// TODO: this
+Guide.prototype.setUpdatedAt = function() {};
+
+// TODO: this
+Guide.prototype.setGuideUpdatedAt = function() {};
+
+/**
+ * Return a object representation of this guide
+ * @return {Object}
+ */
+Guide.prototype.toObject = function() {
+  return {
+    url: this.getUrl(),
+    champion: this.getChampion(),
+    title: this.getTitle(),
+    author: this.getAuthor(),
+    builds: this.getBuilds(),
+    createdAt: this.getCreatedAt(),
+    updatedAt: this.getUpdatedAt(),
+    guideUpdatedAt: this.getGuideUpdatedAt()
+  };
+};
+
+/**
+ * Get the title of the guide
+ * @return {string|null}
+ */
+Guide.prototype.getUrl = function() {
+  return this._url;
+};
+
+/**
+ * Get the champion ID that the build guide is about
+ * @return {number|null}
+ */
+Guide.prototype.getChampion = function() {
+  return this._champion;
+};
+
+/**
+ * Get the title of the guide
+ * @return {string|null}
+ */
+Guide.prototype.getTitle = function() {
+  return this._title;
+};
+
+/**
+ * Get information about the author of the guide
+ * @return {Object|null}
+ */
+Guide.prototype.getAuthor = function() {
+  return this._author;
+};
+
+/**
+ * Get builds related to the guide
+ * @return {Build[]}
+ */
+Guide.prototype.getBuilds = function() {
+  let builds = this._builds;
+  let ret = [];
+
+  builds.forEach((build) => {
+    ret.push(build.toObject());
+  });
+
+  return ret;
+};
+
+// TODO: this
+Guide.prototype.getCreatedAt = function() {};
+
+// TODO: this
+Guide.prototype.getUpdatedAt = function() {};
+
+// TODO: this
+Guide.prototype.getGuideUpdatedAt = function() {};
 
 Guide.prototype.isValid = function() {};
 
-Guide.prototype.isValidUrl = function(url) {};
 
-// TODO: make db call to check if that champion exists?!
+Guide.prototype.isValidUrl = function(url) {};
 Guide.prototype.isValidChampion = function(champion) {};
 Guide.prototype.isValidTitle = function(title) {};
 // TODO: posible for changes
@@ -177,8 +261,3 @@ Guide.prototype.isValidBuilds = function(builds) {};
 Guide.prototype.isValidBuild = function(build) {
   return build instanceof Build && build.isValid();
 };
-
-// TODO: should i even add it?
-Guide.prototype.save = function(path, callback) {};
-
-

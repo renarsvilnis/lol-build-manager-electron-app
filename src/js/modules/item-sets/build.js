@@ -4,7 +4,7 @@
 'use strict';
 
 import Block from 'block';
-import {isObject} from '../util';
+import {isObject, isUndefinedOrNull} from '../util';
 
 export function Build(data = {}) {
 
@@ -172,8 +172,8 @@ Build.prototype.isValidTitle = function(title) {
  */
 Build.prototype.isValidFileName = function(filename) {
   // a file name can not exists if its not saved yet
-  return (typeof filename === 'undefined' || filename === null)
-    || (!!(filename && typeof filename === 'string'));
+  return isUndefinedOrNull(filename) ||
+    (!!(filename && typeof filename === 'string'));
 };
 
 /**
@@ -183,7 +183,7 @@ Build.prototype.isValidFileName = function(filename) {
  */
 Build.prototype.isValidBlocks = function(blocks) {
 
-  if(typeof blocks === 'undefined')
+  if(isUndefinedOrNull(blocks))
     blocks = this._blocks;
 
   if(!Array.isArray(blocks) || !blocks.length)

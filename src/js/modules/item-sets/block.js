@@ -5,7 +5,7 @@
 'use strict';
 
 import Item from 'item';
-import {isObject} from '../util';
+import {isObject, isUndefinedOrNull} from '../util';
 
 export function Block(data = {}) {
 
@@ -141,7 +141,7 @@ Block.prototype.isValidType = function(type) {
  */
 Block.prototype.isValidItems = function(items) {
 
-  if(typeof items === 'undefined')
+  if(isUndefinedOrNull(items))
     items = this._items;
 
   if(!Array.isArray(items) || !items.length)

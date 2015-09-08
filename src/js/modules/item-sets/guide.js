@@ -1,12 +1,13 @@
 /**
  * Guide class that represents a single guide
  * TODO: setting champion id recursively sets champion id for all builds
+ * TODO: onSome item change change last updated?
  */
 'use strict';
 
 import normalizeUrl from 'normalize-url'
 import Build from 'build';
-import {isObject} from '../util';
+import {isObject, isUndefinedOrNull} from '../util';
 
 export function Guide(data = {}) {
 
@@ -112,7 +113,7 @@ Guide.prototype.setChampion = function(champion) {
  * @param {string}
  */
 Guide.prototype.setTitle = function(title) {
-  title = trim();
+  title = title.trim();
 
   if(!this.isValidTitle(title))
     return;
@@ -125,7 +126,7 @@ Guide.prototype.setTitle = function(title) {
  * @param {Object|null}
  */
 Guide.prototype.setAuthor = function(author) {
-  if(!this.isValidAuthor)
+  if(!this.isValidAuthor())
     return;
 
   this._author = author;
@@ -161,14 +162,38 @@ Guide.prototype.pushBuild = function(build) {
   this._builds.push(build);
 };
 
-// TODO: this
-Guide.prototype.setCreatedAt = function() {};
+/**
+ * Set epoch date when the guide was created by app-side
+ * @param {number}
+ */
+Guide.prototype.setCreatedAt = function(date) {
+  if(!this.isValidDate(date))
+    return;
 
-// TODO: this
-Guide.prototype.setUpdatedAt = function() {};
+  this._createdAt = date;
+};
 
-// TODO: this
-Guide.prototype.setGuideUpdatedAt = function() {};
+/**
+ * Set epoch date when the guide was last updated by app-side
+ * @param {number}
+ */
+Guide.prototype.setUpdatedAt = function(date) {
+  if(!this.isValidDate(date))
+    return;
+
+  this._updatedAt = date;
+};
+
+/**
+ * Set epoch date when the guide was last updated by the guide author
+ * @param {number}
+ */
+Guide.prototype.setGuideUpdatedAt = function(date) {
+  if(!this.isValidDate(date))
+    return;
+
+  this._guideUpdatedAt = date;
+};
 
 /**
  * Return a object representation of this guide
@@ -235,23 +260,114 @@ Guide.prototype.getBuilds = function() {
 };
 
 // TODO: this
-Guide.prototype.getCreatedAt = function() {};
+Guide.prototype.getCreatedAt = function() {
+  return this._createdAt;
+};
 
 // TODO: this
-Guide.prototype.getUpdatedAt = function() {};
+Guide.prototype.getUpdatedAt = function() {
+  return this._updatedAt;
+};
 
 // TODO: this
-Guide.prototype.getGuideUpdatedAt = function() {};
+Guide.prototype.getGuideUpdatedAt = function() {
+  return this._guideUpdatedAt;
+};
 
-Guide.prototype.isValid = function() {};
+/**
+ * Check if given guide is valid
+ * @return {Boolean}
+ */
+Guide.prototype.isValid = function() {
+  let url            = this.getUrl(),
+      champion       = this.getChampion(),
+      title          = this.getTitle(),
+      author         = this.getAuthor(),
+      createdAt      = this.getCreatedAt(),
+      updatedAt      = this.getUpdatedAt(),
+      guideUpdatedAt = this.getGuideUpdatedAt();
+
+  return this.isValidUrl(url) &&
+    this.isValidChampion(champion) &&
+    this.isValidTitle(title) &&
+    this.isValidAuthor(author) &&
+    this.isValidDate(createdAt) &&
+    this.isValidDate(updatedAt) &&
+    this.isValidDate(guideUpdatedAt) &&
+    this.isValidBuilds();
+};
+
+/**
+ * Check if given url is valid
+ * @param  {*}
+ * @return {Boolean}
+ */
+Guide.prototype.isValidUrl = function(url) {
+  return url && typeof url === 'string';
+};
+
+/**
+ * Check if given champion id is valid
+ * @param  {*}
+ * @return {Boolean}
+ */
+Guide.prototype.isValidChampion = function(champion) {
+  return champion && typeof champion === 'number' && !isNan(champion);
+};
+
+// TODO: this
+Guide.prototype.isValidTitle = function(title) {
+  return title && typeof title === 'string';
+};
+
+// TODO: this
+Guide.prototype.isValidAuthor = function(author) {
+
+  if(isUndefinedOrNull(author))
+    return true;
+
+  if(!isObject(author))
+    return false;
+
+  let name = author.name,
+      url  = author.url;
+
+  // if(isUndefinedOrNull())
 
 
-Guide.prototype.isValidUrl = function(url) {};
-Guide.prototype.isValidChampion = function(champion) {};
-Guide.prototype.isValidTitle = function(title) {};
-// TODO: posible for changes
-Guide.prototype.isDate = function(data) {};
-Guide.prototype.isValidBuilds = function(builds) {};
+  // check author url
+  // if(author.url )
+
+  return true;
+};
+
+// TODO: this
+Guide.prototype.isValidDate = function(date) {
+  return date && typeof date === 'number' && !isNaN(data) && date > 0;
+};
+
+/**
+ * Check if all builds are valid
+ * @param  {*}  [builds=this._builds]
+ * @return {Boolean}
+ */
+Guide.prototype.isValidBuilds = function(builds) {
+
+  if(isUndefinedOrNull(builds))
+    builds = this._builds;
+
+  if(!Array.isArray(builds) || !builds.length)
+    return false;
+
+  for(let i = 0, l = builds.length; i < l; i++) {
+    let build = builds[i];
+
+    if(!this.isValidBuild(build))
+      return false;
+  }
+
+  return true;
+};
 
 /**
  * Check if given build is valid

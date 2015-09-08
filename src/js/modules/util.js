@@ -142,4 +142,13 @@ export function isObject(val) {
     return false;
 
   return (typeof val === 'function') || (typeof val === 'object');
-}
+};
+
+/**
+ * Check if given value is undefined or null
+ * @type {*}
+ * @return {Boolean}
+ */
+export function isUndefinedOrNull(val) {
+  return typeof author === 'undefined' || author === null;
+};

@@ -73,7 +73,7 @@ let lolApi = {
    * @return {Error}
    * @return {String} newest League of Legends version
    */
-  getLatestGameVersion: function(region, callback) {
+  getLatestGameVersion(region, callback) {
 
     if(!region) {
       callback(getStatusMessage('NO_REGION'));
@@ -101,7 +101,7 @@ let lolApi = {
    * @return {Error}
    * @return {Object} results containing version and item data object
    */
-  getItems: function(region, callback) {
+  getItems(region, callback) {
 
     if(!region) {
       callback(getStatusMessage('NO_REGION'));
@@ -137,7 +137,7 @@ let lolApi = {
    * @return {Error}
    * @return {Object} results containing version and champion data object
    */
-  getChampions: function(region, callback) {
+  getChampions(region, callback) {
 
     if(!region) {
       callback(getStatusMessage('NO_REGION'));
@@ -167,7 +167,7 @@ let lolApi = {
   },
 
 
-  getLatestGameVersion: function(region, callback) {
+  getLatestGameVersion(region, callback) {
 
     if(!region) {
       callback(getStatusMessage('NO_REGION'));
@@ -188,11 +188,11 @@ let lolApi = {
     });
   },
 
-  getItemImageUrl: function(filename) {
+  getItemImageUrl(filename) {
     return getCDNUrl('item', filename);
   },
 
-  getChampionImageUrl: function(filename) {
+  getChampionImageUrl(filename) {
     return getCDNUrl('champion', filename);
   }
 

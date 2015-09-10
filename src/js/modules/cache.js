@@ -18,13 +18,13 @@ import AppActions from '../actions/app-actions';
 import AppStore from '../stores/app-store';
 
 let Cache = {
-  loadApp: function() {
+  loadApp() {
     AppActions.loadLolVersion();
     AppActions.loadLolRegion();
     AppActions.loadLolPath();
   },
 
-  loadAssets: function() {
+  loadAssets() {
     let version = AppStore.getVersion();
     let region = AppStore.getRegion();
 
@@ -34,7 +34,7 @@ let Cache = {
     }
   },
 
-  loadItems: function() {
+  loadItems() {
     let items = db.getItems();
 
     // if items up-to-date
@@ -70,7 +70,7 @@ let Cache = {
     }
   },
 
-  loadChampions: function() {
+  loadChampions() {
     let champions = db.getChampions();
 
     // if items up-to-date
@@ -106,7 +106,7 @@ let Cache = {
     }
   },
 
-  loadBuilds: function(callback) {
+  loadBuilds(callback) {
 
     let itemSetPath = createLolItemSetPath(AppStore.getPath());
 
@@ -121,7 +121,7 @@ let Cache = {
     ], callback);
   },
 
-  _getItemSetFilelist: function(path, next) {
+  _getItemSetFilelist(path, next) {
     let filelist = [];
 
     filewalker(path)
@@ -148,7 +148,7 @@ let Cache = {
       .walk();
   },
 
-  _processGuides: function(itemSetPath, filelist, next) {
+  _processGuides(itemSetPath, filelist, next) {
 
     /**
      * Collection of Guides and Builds for outputting
@@ -202,7 +202,7 @@ let Cache = {
     });
   },
 
-  _processRemainingFileList: function(itemSetPath, filelist, items, next) {
+  _processRemainingFileList(itemSetPath, filelist, items, next) {
     // Iterate remaining itemset files for which finding a guide entry from
     // db was impossible a.k.a process builds that where not created by
     // League of Legends build manager

@@ -14,11 +14,11 @@ let AppStore = Biff.createStore({
   _items: [],
   _champions: [],
   // ########################################
-  shouldShowWelcomeScreen: function() {
+  shouldShowWelcomeScreen() {
     return !this._lolRegion || !this._lolPath;
   },
 
-  appReady: function() {
+  appReady() {
     return this._lolRegion
       && this._lolVersion
       && this._lolPath
@@ -26,7 +26,7 @@ let AppStore = Biff.createStore({
       && !!this._champions.length;
   },
 
-  isNewerVersion: function(version) {
+  isNewerVersion(version) {
     let currentVersion = this.getVersion();
 
     if(!currentVersion)
@@ -35,45 +35,45 @@ let AppStore = Biff.createStore({
     return compareVersions(version, currentVersion);
   },
   // ########################################
-  getRegion: function() {
+  getRegion() {
     return this._lolRegion;
   },
-  getVersion: function() {
+  getVersion() {
     return this._lolVersion;
   },
-  getPath: function() {
+  getPath() {
     return this._lolPath;
   },
   // ########################################
-  loadRegion: function(region) {
+  loadRegion(region) {
     this._lolRegion = region;
   },
 
-  loadVersion: function(version) {
+  loadVersion(version) {
     this._lolVersion = version;
   },
 
-  loadPath: function(path) {
+  loadPath(path) {
     this._lolPath = path;
   },
 
-  loadItems: function(items) {
+  loadItems(items) {
     this._items = items;
   },
 
-  loadChampions: function(champions) {
+  loadChampions(champions) {
     this._champions = champions;
   },
   // ########################################
-  updateRegion: function(region) {
+  updateRegion(region) {
     this._lolRegion = region;
   },
 
-  updatePath: function(path) {
+  updatePath(path) {
     this._lolPath = path;
   },
 
-  updateVersion: function(version) {
+  updateVersion(version) {
     this._lolVersion = version;
   }
 

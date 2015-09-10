@@ -24,7 +24,7 @@ export default {
    * @return {null}
    * @return {Boolean} Did it push to the buffer successfully
    */
-  push: function(url, callback) {
+  push(url, callback) {
     parseAppProtocolUrl(url, function(err, obj) {
       if(err) {
 
@@ -43,7 +43,7 @@ export default {
    * Returns and cleans the buffer
    * @return {Object|null} buffer
    */
-  flush: function() {
+  flush() {
     let tempBuffer = this.get();
     this.clean();
     return tempBuffer;
@@ -53,14 +53,14 @@ export default {
    * Gets buffer
    * @return {Object|null}
    */
-  get: function() {
+  get() {
     return typeof buffer === 'object' ? objectAssign({}, buffer) : null;
   },
 
   /**
    * Cleans the buffer
    */
-  clean: function() {
+  clean() {
     buffer = null;
   }
 };

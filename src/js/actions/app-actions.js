@@ -8,7 +8,7 @@ let AppActions = Biff.createActions({
   // ########################################
   // Load methods
   // ########################################
-  loadLolRegion: function() {
+  loadLolRegion() {
     this.dispatch({
       actionType: 'LOL_REGION_LOAD',
       data: {
@@ -16,7 +16,7 @@ let AppActions = Biff.createActions({
       }
     });
   },
-  loadLolVersion: function() {
+  loadLolVersion() {
     this.dispatch({
       actionType: 'LOL_VERSION_LOAD',
       data: {
@@ -24,7 +24,7 @@ let AppActions = Biff.createActions({
       }
     });
   },
-  loadLolPath: function() {
+  loadLolPath() {
     this.dispatch({
       actionType: 'LOL_PATH_LOAD',
       data: {
@@ -32,13 +32,13 @@ let AppActions = Biff.createActions({
       }
     });
   },
-  loadItems: function(data) {
+  loadItems(data) {
     this.dispatch({
       actionType: 'LOL_ITEMS_LOAD',
       data
     });
   },
-  loadChampions: function(data) {
+  loadChampions(data) {
     this.dispatch({
       actionType: 'LOL_CHAMPIONS_LOAD',
       data
@@ -48,7 +48,7 @@ let AppActions = Biff.createActions({
   // ########################################
   // Update methods
   // ########################################
-  updateLolRegion: function(data) {
+  updateLolRegion(data) {
 
     db.setLolRegion(data.region);
 
@@ -58,7 +58,7 @@ let AppActions = Biff.createActions({
     });
   },
 
-  updateLolPath: function(data) {
+  updateLolPath(data) {
 
     db.setLolPath(data.path);
 
@@ -68,7 +68,7 @@ let AppActions = Biff.createActions({
     });
   },
 
-  updateVersion: function(data) {
+  updateVersion(data) {
 
     db.setLolVersion(data.version);
 

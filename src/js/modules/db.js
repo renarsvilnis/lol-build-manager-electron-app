@@ -32,6 +32,7 @@ let dbMethods = {
   // GET
   // ########################################
 
+  // Note: works as arrow functions because now referencing to this
   getLolVersion: () => objectPath.get(db.object, 'db.object.lol.version'),
   getLolRegion:  () => objectPath.get(db.object, 'db.object.lol.region'),
   getLolPath:    () => objectPath.get(db.object, 'db.object.lol.path'),
@@ -39,7 +40,7 @@ let dbMethods = {
   getChampions:  () => objectPath.get(db.object, 'db.object.champions'),
   getGuides:     () => objectPath.get(db.object, 'db.object.guides'),
 
-  getItemByName: function(name) {
+  getItemByName(name) {
 
     if(!name)
       return null;
@@ -66,7 +67,7 @@ let dbMethods = {
     return this.getEnchantedItemByName(name);
   },
 
-  getEnchantedItemByName: function(name) {
+  getEnchantedItemByName(name) {
     // Most likely pattern of enchanted items are
     // '<parent_item_name> - <enchantment_name>' 
     let itemParts = name.split(' - ');
@@ -103,7 +104,7 @@ let dbMethods = {
     return null;
   },
 
-  getItemsBuiltFromParentId: function(parentId) {
+  getItemsBuiltFromParentId(parentId) {
     // typecast to string
     parentId = parentId + '';
 
@@ -132,7 +133,7 @@ let dbMethods = {
     return foundItems;
   },
 
-  getItemById: function(id) {
+  getItemById(id) {
     let items = thus.getItems();
 
     if(!items || typeof items.data === 'undefined')
@@ -150,7 +151,7 @@ let dbMethods = {
     return null;
   },
 
-  getChampionByName: function(name) {
+  getChampionByName(name) {
 
     if(!name)
       return null;
@@ -177,7 +178,7 @@ let dbMethods = {
     return null;
   },
 
-  getChampionById: function(id) {
+  getChampionById(id) {
     let champions = this.getChampions();
 
     if(!champions || typeof champions.data === 'undefined')
@@ -195,7 +196,7 @@ let dbMethods = {
     return null;
   },
 
-  getGuideByFile: function(file) {
+  getGuideByFile(file) {
     let guides = this.getGuides();
 
     if(!guides || !guides.length)
@@ -223,27 +224,27 @@ let dbMethods = {
   // POST
   // ########################################
 
-  setLolVersion: function(version) {
+  setLolVersion(version) {
     objectPath.set(db.object, 'db.object.lol.version', version);
     db.save();
   },
 
-  setLolRegion: function(region) {
+  setLolRegion(region) {
     objectPath.set(db.object, 'db.object.lol.region', region);
     db.save();
   },
 
-  setLolPath: function(folderpath) {
+  setLolPath(folderpath) {
     objectPath.set(db.object, 'db.object.lol.path', folderpath);
     db.save();
   },
 
-  setItems: function(items) {
+  setItems(items) {
     objectPath.set(db.object, 'db.object.items', items);
     db.save();
   },
 
-  setChampions: function(champions) {
+  setChampions(champions) {
     objectPath.set(db.object, 'db.object.champions', champions);
     db.save();
   },
@@ -251,7 +252,7 @@ let dbMethods = {
   // ########################################
   // DELETE
   // ########################################
-  reset: function() {
+  reset() {
     db.object = {};
     db.save();
   }

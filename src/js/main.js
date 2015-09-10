@@ -4,7 +4,6 @@ import path from 'path';
 import app from 'app';
 import BrowserWindow from 'browser-window';
 import CrashReporter from 'crash-reporter';
-import ipc from 'ipc';
 
 import UrlBuffer from './modules/url-buffer';
 import pkg from '../package.json';
@@ -50,11 +49,8 @@ let createMainWindow = function() {
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/../html/index.html');
-
-  // Open the devtools.
-  mainWindow.openDevTools();
-
   mainWindow.focus();
+  mainWindow.openDevTools();
 
   mainWindow.on('closed', function() {
     mainWindow = null;

@@ -19,15 +19,38 @@ let DefaultRoute  = Router.DefaultRoute;
 let NotFoundRoute = Router.NotFoundRoute;
 
 let routes = (
-  <Route handler={App} path="/">
-    <DefaultRoute name="loader" handler={Loader} />
-    <Route name="welcome" handler={Welcome} />
-    <Route name="home" handler={Home}>
-      <DefaultRoute name="builds" handler={Builds} />
-      <Route name="add" handler={BuildAdd} />
-      <Route name="settings" handler={Settings} />
+  <Route
+    handler={App}
+    path="/"
+  >
+    <DefaultRoute
+      handler={Loader}
+      name="loader"
+    />
+    <Route
+      handler={Welcome}
+      name="welcome"
+    />
+    <Route
+      handler={Home}
+      name="home"
+    >
+      <DefaultRoute
+        handler={Builds}
+        name="builds"
+      />
+      <Route
+        handler={BuildAdd}
+        name="add"
+      />
+      <Route
+        handler={Settings}
+        name="settings"
+      />
     </Route>
-    <NotFoundRoute handler={NotFound} />
+    <NotFoundRoute
+      handler={NotFound}
+    />
   </Route>
 );
 

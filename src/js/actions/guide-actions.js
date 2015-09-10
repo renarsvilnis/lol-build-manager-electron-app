@@ -5,14 +5,14 @@ import Biff from '../modules/biff';
 
 let GuideActions = Biff.createActions({
 
-  loadList: function(data) {
+  loadList(data) {
     this.dispatch({
       actionType: 'LIST_LOAD',
       data
     });
   },
 
-  guideCreate: function(data) {
+  guideCreate(data) {
 
     // cache.createGuide(data.guide, callback(err, ))
 

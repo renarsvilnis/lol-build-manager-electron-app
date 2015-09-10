@@ -92,20 +92,20 @@ let GuideStore = Biff.createStore({
   _groupedList: [],
 
 
-  getList: function() {
+  getList() {
     return this._list;
   },
 
-  getGroupedList: function() {
+  getGroupedList() {
     return this._groupedList;
   },
 
-  loadList: function(list) {
+  loadList(list) {
     this._list = list;
     this.processList();
   },
 
-  processList: function() {
+  processList() {
     let groupedList = groupList(this.getList());
     this._groupedList = loadGroupChampions(groupedList);
   },

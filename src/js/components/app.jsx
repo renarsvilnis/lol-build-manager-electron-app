@@ -6,7 +6,7 @@ import Router from 'react-router';
 let RouteHandler = Router.RouteHandler;
 
 let App = React.createClass({
-  render: function() {
+  render() {
     return (
       <div className="app">
         <RouteHandler {...this.props} />

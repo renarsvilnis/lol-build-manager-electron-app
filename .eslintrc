@@ -1,29 +1,29 @@
 {
+  // Dependencies
+  // eslint - will need to include manualy
+  // eslint-config-semistandard
+  // eslint-plugin-babel
+  // eslint-plugin-react
+  // babel-eslint
+
   // Later for charable configs
   // Reference: http://eslint.org/docs/developer-guide/shareable-configs
-  // "extends": "eslint-config-renarsvilnis",
+  "extends": ["semistandard"],
 
   "ecmaFeatures": {
-    "modules": true,
     "jsx": true
   },
   "plugins": [
-    "react",
-    "babel"
+    "standard",
+    "babel",
+    "react"
   ],
   "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
-  },
   "rules": {
 
     // esling rules
     // Reference: http://eslint.org/docs/rules/
-    "quotes": [2, "single"],
-    "strict": 0,
-
+    // instead of using eslin rules we use semistandard
 
     // babel plugin
     "babel/generator-star-spacing": 1,

@@ -1,36 +1,35 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import scraper from '../modules/scraper'
+import React from 'react';
+import scraper from '../modules/scraper';
 
-import GuideActions from '../actions/guide-actions'
-import GuideStore from '../stores/guide-store'
+import GuideActions from '../actions/guide-actions';
+// import GuideStore from '../stores/guide-store';
 
-const inputPlaceholder = 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408'
+const inputPlaceholder = 'http://www.mobafire.com/league-of-legends/build/manzeys-all-around-twisted-fate-guide-includes-all-roles-429408';
 
 let BuildAdd = React.createClass({
 
-  getInitialState: function() {
+  getInitialState () {
     return {
       scraping: false,
       url: inputPlaceholder,
-      outputMessage: '',
-    }
+      outputMessage: ''
+    };
   },
 
-  urlChange: function(ev) {
+  urlChange (ev) {
     this.setState({
       url: ev.target.value
-    })
+    });
   },
 
-  addBuild: function(ev) {
+  addBuild (ev) {
     this.setState({
       outputMessage: '',
       scraping: true
-    }, function() {
+    }, function () {
       scraper(this.state.url, (err, results) => {
-
         let outputMessage = err ? err.message : '';
 
         this.setState({
@@ -40,15 +39,14 @@ let BuildAdd = React.createClass({
 
         console.log(err, results);
 
-        if(!err) {
+        if (!err) {
           GuideActions.guideCreate({guide: results});
         }
-
-      })  
+      });
     });
   },
 
-  render: function() {
+  render () {
     return (
       <div className="c_build-add">
 
@@ -72,7 +70,7 @@ let BuildAdd = React.createClass({
         >
           {'Add'}
         </button>
-        
+
         <div>{this.state.outputMessage}</div>
       </div>
     );

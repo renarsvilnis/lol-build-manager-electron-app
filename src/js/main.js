@@ -19,23 +19,23 @@ CrashReporter.start({
 });
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   app.quit();
 });
 
-app.on('ready', function() {
+app.on('ready', function () {
   createMainWindow();
 });
 
 // Listen to custom protocole incoming messages
-app.on('open-url', function(ev, url) {
+app.on('open-url', function (ev, url) {
   UrlBuffer.push(url);
 });
 
-let createMainWindow = function() {
-
-  if(mainWindow)
+let createMainWindow = function () {
+  if (mainWindow) {
     return;
+  }
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -48,12 +48,13 @@ let createMainWindow = function() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadUrl('file://' + __dirname + '/../html/index.html');
+  let mainWindowPath = path.join('file://', __dirname, '/../html/index.html');
+  console.log(mainWindowPath);
+  mainWindow.loadUrl(mainWindowPath);
   mainWindow.focus();
   mainWindow.openDevTools();
 
-  mainWindow.on('closed', function() {
+  mainWindow.on('closed', function () {
     mainWindow = null;
   });
-
 };

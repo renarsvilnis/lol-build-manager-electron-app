@@ -1,21 +1,21 @@
 'use strict';
 
-import React    from 'react'
-import Router   from 'react-router';
+import React from 'react';
+import Router from 'react-router';
 
-import App      from './components/app';
-import Loader   from './components/loader';
-import Welcome  from './components/welcome';
-import Home     from './components/home';
-import Builds   from './components/builds';
+import App from './components/app';
+import Loader from './components/loader';
+import Welcome from './components/welcome';
+import Home from './components/home';
+import Builds from './components/builds';
 import BuildAdd from './components/build-add';
 import Settings from './components/settings';
 import NotFound from './components/not-found';
 
-import Cache    from './modules/cache';
+import Cache from './modules/cache';
 
-let Route         = Router.Route;
-let DefaultRoute  = Router.DefaultRoute;
+let Route = Router.Route;
+let DefaultRoute = Router.DefaultRoute;
 let NotFoundRoute = Router.NotFoundRoute;
 
 let routes = (
@@ -59,7 +59,7 @@ let routes = (
 // db.reset();
 
 Cache.loadApp();
-Router.run(routes, function(Handler, state) {
+Router.run(routes, function (Handler, state) {
   // "Alternatively, you can pass the param data down..."
   // https://github.com/rackt/react-router/blob/master/docs/guides/
   // overview.md#dynamic-segments

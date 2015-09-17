@@ -50,6 +50,7 @@ shell.showItemInFolder(path);
 Maybe add that on settings save it forces the app to [restart](https://github.com/atom/electron/issues/539).
 
 ### Design
+- [ ] `'title-bar-style': 'hidden-inset'` play around this property in [browserWindow](https://github.com/atom/electron/blob/master/docs/api/browser-window.md). [Inspired from](https://github.com/sindresorhus/caprine/blob/master/index.js)
 - [ ] Redesign with cute kittens
 - [x] [App icons](http://google.github.io/material-design-icons/#icon-images-for-the-web)
 - [ ] Chrome extension store images 
